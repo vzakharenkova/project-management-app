@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Jost:display=swap');
+
+html * {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Jost', sans-serif;
+}
+h1 {
+  margin: 0;
+  font-weight: unset;
+}
