@@ -1,0 +1,24 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  .card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $white;
+    border-radius: 10px;
+    height: 5rem;
+    padding: $card_padding-x;
+    cursor: pointer;
+
+    .delete_btn {
+      display: flex;
+      background-color: $background-delete;
+      color: $red;
+      border-radius: 6px;
+      padding: 0.4rem;
+      height: fit-content;
+      cursor: pointer;
+    }
+  }
+}

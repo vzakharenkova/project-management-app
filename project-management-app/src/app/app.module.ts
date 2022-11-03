@@ -12,6 +12,10 @@ import { DescriptionComponent } from './welcom-page/components/description/descr
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { BoardsPageComponent } from './boards-page/boards-page.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { BoardCardComponent } from './boards-page/components/board-card/board-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { MatIconModule } from '@angular/material/icon';
     TeamComponent,
     TeamCardComponent,
     DescriptionComponent,
+    BoardsPageComponent,
+    HeaderComponent,
+    FooterComponent,
+    BoardCardComponent,
   ],
   imports: [
     BrowserModule,
