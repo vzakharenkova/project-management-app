@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TaskFormComponent } from './task-form/task-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project-management-app';
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(TaskFormComponent);
+  }
 }
+
+
+
