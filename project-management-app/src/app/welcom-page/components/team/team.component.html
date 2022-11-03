@@ -1,0 +1,8 @@
+<div class="page">
+  <div class="page_title">Our team brings you a development tool used by agile teams</div>
+  <div class="team">
+    <app-team-card *ngFor="let member of teamMembers" [member]="member"></app-team-card>
+  </div>
+  <mat-icon class="prev" (click)="changePageNumber(1)">navigate_before</mat-icon>
+  <mat-icon class="next" (click)="changePageNumber(3)">navigate_next</mat-icon>
+</div>

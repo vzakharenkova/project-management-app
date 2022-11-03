@@ -1,0 +1,48 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  .page {
+    background-color: $background-dark;
+    height: $height-fullScreen;
+    padding-top: 2rem;
+    padding-left: 9rem;
+    padding-right: 9rem;
+
+    &_btns {
+      display: flex;
+      justify-content: end;
+
+      button[mat-raised-button] {
+        background-color: $btn_purple;
+        width: 6rem;
+        margin-left: 1rem;
+        font-family: inherit;
+        font-size: 1rem;
+      }
+    }
+
+    &_content {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+
+      .description {
+        display: flex;
+        align-items: center;
+        color: $white;
+        font-size: $heading-fontSize;
+        margin-right: 3rem;
+        line-height: 4rem;
+      }
+
+      .img {
+        height: 80vh;
+        width: 60vw;
+      }
+    }
+
+    .prev {
+      @include prev-page;
+    }
+  }
+}
