@@ -10,10 +10,13 @@ $heading-purple: #101c56;
 $height-fullScreen: 100vh;
 $header-height: 5.5rem;
 $main_content_height: calc(100vh - 11rem);
+$btn-heignt: 2.5rem;
 $padding-x: 3rem;
 $card_padding-x: 1rem;
 
 $heading-fontSize: 2.3rem;
+$subheading-fontSize: 1.5rem;
+$btn-fontSize: 1rem;
 
 @mixin nav-arrow {
   position: absolute;

@@ -1,0 +1,44 @@
+@import 'src/app/shared/shared.scss';
+
+:host {
+  min-height: 100vh;
+  .page {
+    min-height: $main_content_height;
+    padding: 0 $padding-x;
+    background-color: $background-light;
+    &_heading {
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+
+      .page_title {
+        display: flex;
+        align-items: baseline;
+        font-weight: bold;
+
+        .common_title {
+          font-size: $heading-fontSize;
+        }
+
+        .arrow {
+          height: fit-content;
+          width: fit-content;
+          font-size: 2rem;
+          padding: 0 0.5rem;
+        }
+
+        .board_title {
+          font-size: $subheading-fontSize;
+        }
+      }
+
+      .create_btn {
+        background-color: $btn_purple;
+        color: $white;
+        font-family: inherit;
+        height: $btn-heignt;
+        font-size: $btn-fontSize;
+      }
+    }
+  }
+}
