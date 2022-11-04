@@ -12,13 +12,7 @@
     cursor: pointer;
 
     .delete_btn {
-      display: flex;
-      background-color: $background-delete;
-      color: $red;
-      border-radius: 6px;
-      padding: 0.4rem;
-      height: fit-content;
-      cursor: pointer;
+      @include delete-btn;
     }
   }
 }

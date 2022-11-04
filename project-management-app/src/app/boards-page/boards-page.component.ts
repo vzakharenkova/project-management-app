@@ -7,5 +7,5 @@ import { boardList } from '../shared/boardsList';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent {
-  boardList = boardList;
+  public boardList = boardList;
 }

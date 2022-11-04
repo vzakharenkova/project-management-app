@@ -1,1 +1,12 @@
-<p>board-column works!</p>
+<div class="column">
+  <div class="column_heading">
+    <div class="column_title">{{ column.title }}</div>
+    <div class="column_actions">
+      <div class="add_btn"><mat-icon>add</mat-icon></div>
+      <div class="delete_btn"><mat-icon>delete</mat-icon></div>
+    </div>
+  </div>
+  <div class="column_tasks">
+    <app-task-card *ngFor="let task of column.tasks" [task]="task"></app-task-card>
+  </div>
+</div>
