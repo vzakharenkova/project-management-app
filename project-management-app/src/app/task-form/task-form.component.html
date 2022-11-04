@@ -1,11 +1,36 @@
-<div class="wrapper">
-  <mat-icon aria-label="close" fontIcon="close"></mat-icon>
-  <h1 mat-dialog-title>{{titleForm}}</h1>
-  <form>
-    <mat-form-field appearance="fill">
-      <mat-label>Task name</mat-label>
-      <input matInput maxlength="256" placeholder="name">
-    </mat-form-field>
+<div class="form">
+  <div class="close-container">
+    <mat-icon (click)="closeForm()" class="form__close" aria-label="Close icon" fontIcon="close"></mat-icon>
+  </div>
+  <h1 class="form__title">Create Task</h1>
+  <form class="task" [formGroup]="taskForm" (ngSubmit)="submit()">
+    <div class="task__name name">
+      <label class="form__label name__label" for="taskName">Task Name</label>
+      <input formControlName="taskName" [ngStyle]="addWarningStyle(taskForm.controls['taskName'])" class="form__input name__input" id="taskName" type="text" autocomplete="off" autofocus="">
+    </div>
+    <div class="select-container">
+      <div class="task__size size">
+        <label class="form__label size__label" for="taskSize">Task Size</label>
+        <select formControlName="taskSize" class="form__select size__select" id="taskSize">
+          <option value="small">Small</option>
+          <option value="mid">Medium</option>
+          <option value="big">Big</option>
+        </select>
+      </div>
+      <div class="task__priority size">
+        <label class="form__label size__label" for="taskPriority">Task Size</label>
+        <select formControlName="taskPriority" class="form__select size__select" id="taskPriority">
+          <option value="high">High</option>
+          <option value="mid">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="task__description description">
+      <label class="form__label description__label">Task Description</label>
+      <textarea formControlName="taskDescription" class="form__input description__text"></textarea>
+    </div>
+    <button mat-raised-button type="submit" class="form__btn">Create Task</button>
   </form>
 </div>
-
