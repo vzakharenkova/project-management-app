@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-welcom-page',
-  templateUrl: './welcom-page.component.html',
-  styleUrls: ['./welcom-page.component.scss'],
+  selector: 'app-welcome-page',
+  templateUrl: './welcome-page.component.html',
+  styleUrls: ['./welcome-page.component.scss'],
 })
-export class WelcomPageComponent {
+export class WelcomePageComponent {
   private page = 1;
 
   public changePage(newPage: number) {
