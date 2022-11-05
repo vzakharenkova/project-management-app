@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
+import { TaskFormComponent } from './task-form/task-form.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { TitleComponent } from './welcome-page/components/title/title.component';
 import { TeamComponent } from './welcome-page/components/team/team.component';
@@ -38,6 +48,6 @@ import { TaskPriorityDirective } from './single-board-page/derectives/task-prior
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent],,
 })
 export class AppModule {}
