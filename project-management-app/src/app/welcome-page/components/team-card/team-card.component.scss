@@ -1,0 +1,21 @@
+@import 'src/app/shared/shared.scss';
+
+.member {
+  border-radius: 5%;
+  background-color: $white;
+  padding: 2rem;
+  transition: all 0.5s;
+
+  &:hover {
+    box-shadow: 10px 5px 15px $background-light;
+  }
+
+  &_img {
+    display: block;
+    border-radius: 100%;
+    height: 15rem;
+  }
+  &_name {
+    text-align: center;
+  }
+}

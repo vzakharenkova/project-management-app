@@ -1,0 +1,68 @@
+$background-dark: #7d90e8;
+$background-light: #eef0fc;
+$background-delete: #fff0f0;
+$background-add: #c6cff9;
+$background-low: #f0fff9;
+$background-urgent: #fec3c5;
+$background-medium: #feefcd;
+$background-heigh: #ffb3f7;
+$color-low: #00c271;
+$color-urgent: #fb464a;
+$color-heigh: #eb02b8;
+$color-medium: #fbbe37;
+$white: #ffff;
+$red: #b80020;
+$btn_purple: #3754db;
+$btn-yellow: #fbb416;
+$heading-purple: #101c56;
+
+$height-fullScreen: 100vh;
+$header-height: 5.5rem;
+$main_content_height: calc(100vh - 11rem);
+$btn-heignt: 2.5rem;
+$padding-x: 3rem;
+$card_padding-x: 1rem;
+
+$heading-fontSize: 2.3rem;
+$subheading-fontSize: 1.5rem;
+$btn-fontSize: 1rem;
+
+@mixin nav-arrow {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5%;
+  font-size: 4rem;
+  height: fit-content;
+  width: fit-content;
+  color: $white;
+}
+
+@mixin next-page {
+  @include nav-arrow();
+  left: 93%;
+}
+
+@mixin prev-page {
+  @include nav-arrow();
+  right: 93%;
+}
+
+@mixin action-btn {
+  display: flex;
+  border-radius: 6px;
+  padding: 0.4rem;
+  height: fit-content;
+  cursor: pointer;
+}
+
+@mixin delete-btn {
+  @include action-btn();
+  background-color: $background-delete;
+  color: $red;
+}
+
+@mixin add-btn {
+  @include action-btn();
+  background-color: $background-add;
+  color: $heading-purple;
+}

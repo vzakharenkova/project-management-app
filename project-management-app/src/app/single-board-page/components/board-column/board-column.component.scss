@@ -1,0 +1,35 @@
+@import 'src/app/shared/shared.scss';
+
+.column {
+  background-color: $white;
+  border-radius: 6px;
+  padding: $card_padding-x;
+
+  &_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $subheading-fontSize;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &_actions {
+    display: flex;
+
+    .delete_btn {
+      @include delete-btn;
+    }
+
+    .add_btn {
+      @include add-btn;
+      margin-right: 1rem;
+    }
+  }
+
+  &_tasks {
+    display: grid;
+    grid-auto-rows: 10rem;
+    row-gap: 1rem;
+  }
+}
