@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { boardList } from '../shared/boardsList';
+import { BoardModel } from './models/board.model';
 
 @Component({
   selector: 'app-boards-page',
@@ -7,5 +8,5 @@ import { boardList } from '../shared/boardsList';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent {
-  public boardList = boardList;
+  public boardList: BoardModel[] = boardList;
 }
