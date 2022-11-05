@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { boardList } from '../shared/boardsList';
 import { BoardModel } from './models/board.model';
 
 @Component({
@@ -7,11 +8,5 @@ import { BoardModel } from './models/board.model';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent {
-  boardList: BoardModel[] = [
-    { title: 'Fhfjhvdf' },
-    { title: 'Agrthyr' },
-    { title: 'Sgregherh' },
-    { title: 'Bfwegfer' },
-    { title: 'Wgrgherh' },
-  ];
+  public boardList: BoardModel[] = boardList;
 }

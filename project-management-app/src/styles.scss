@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import 'src/app/shared/shared.scss';
 
 html * {
   box-sizing: border-box;
@@ -22,4 +23,24 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.low {
+  color: $color-low;
+  background-color: $background-low;
+}
+
+.medium {
+  color: $color-medium;
+  background-color: $background-medium;
+}
+
+.heigh {
+  color: $color-heigh;
+  background-color: $background-heigh;
+}
+
+.urgent {
+  color: $color-urgent;
+  background-color: $background-urgent;
 }

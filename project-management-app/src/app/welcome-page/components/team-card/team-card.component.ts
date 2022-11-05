@@ -7,5 +7,5 @@ import { MemberModel } from '../../models/team-members.model';
   styleUrls: ['./team-card.component.scss'],
 })
 export class TeamCardComponent {
-  @Input() member!: MemberModel;
+  @Input() member: MemberModel;
 }

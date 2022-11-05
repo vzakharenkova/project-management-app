@@ -15,6 +15,10 @@ import { BoardsPageComponent } from './boards-page/boards-page.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BoardCardComponent } from './boards-page/components/board-card/board-card.component';
+import { SingleBoardPageComponent } from './single-board-page/single-board-page.component';
+import { TaskCardComponent } from './single-board-page/components/task-card/task-card.component';
+import { BoardColumnComponent } from './single-board-page/components/board-column/board-column.component';
+import { TaskPriorityDirective } from './single-board-page/derectives/task-priority.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { BoardCardComponent } from './boards-page/components/board-card/board-ca
     HeaderComponent,
     FooterComponent,
     BoardCardComponent,
+    SingleBoardPageComponent,
+    TaskCardComponent,
+    BoardColumnComponent,
+    TaskPriorityDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule],
   providers: [],

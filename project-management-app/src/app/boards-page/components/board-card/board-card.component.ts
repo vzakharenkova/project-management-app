@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { BoardModel } from '../../models/board.model';
 
 @Component({
@@ -7,5 +8,11 @@ import { BoardModel } from '../../models/board.model';
   styleUrls: ['./board-card.component.scss'],
 })
 export class BoardCardComponent {
-  @Input() board!: BoardModel;
+  @Input() board: BoardModel;
+
+  constructor(private router: Router) {}
+
+  public openBoard() {
+    this.router.navigate(['boards', this.board.title]);
+  }
 }
