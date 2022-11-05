@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -37,7 +36,7 @@ import { TaskPriorityDirective } from './single-board-page/derectives/task-prior
     BoardColumnComponent,
     TaskPriorityDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })
