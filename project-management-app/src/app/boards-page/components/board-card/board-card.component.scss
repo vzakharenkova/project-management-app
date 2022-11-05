@@ -1,0 +1,16 @@
+@import 'src/app/shared/shared.scss';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $white;
+  border-radius: 10px;
+  height: 5rem;
+  padding: $card_padding-x;
+  cursor: pointer;
+
+  .delete_btn {
+    @include delete-btn;
+  }
+}
