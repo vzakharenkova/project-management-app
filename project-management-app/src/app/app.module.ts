@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { WelcomPageComponent } from './welcom-page/welcom-page.component';
-import { TitleComponent } from './welcom-page/components/title/title.component';
-import { TeamComponent } from './welcom-page/components/team/team.component';
-import { TeamCardComponent } from './welcom-page/components/team-card/team-card.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DescriptionComponent } from './welcom-page/components/description/description.component';
+import { SharedModule } from './shared/shared.module';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import { AppComponent } from './app.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { TitleComponent } from './welcome-page/components/title/title.component';
+import { TeamComponent } from './welcome-page/components/team/team.component';
+import { TeamCardComponent } from './welcome-page/components/team-card/team-card.component';
+import { DescriptionComponent } from './welcome-page/components/description/description.component';
 import { BoardsPageComponent } from './boards-page/boards-page.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -20,7 +19,7 @@ import { BoardCardComponent } from './boards-page/components/board-card/board-ca
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomPageComponent,
+    WelcomePageComponent,
     TitleComponent,
     TeamComponent,
     TeamCardComponent,
@@ -30,13 +29,7 @@ import { BoardCardComponent } from './boards-page/components/board-card/board-ca
     FooterComponent,
     BoardCardComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, SharedModule],
   providers: [],
   bootstrap: [AppComponent],
 })
