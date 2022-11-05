@@ -25,11 +25,11 @@
       @include add-btn;
       margin-right: 1rem;
     }
+  }
 
-    &_tasks {
-      display: grid;
-      grid-auto-rows: 10rem;
-      row-gap: 1rem;
-    }
+  &_tasks {
+    display: grid;
+    grid-auto-rows: 10rem;
+    row-gap: 1rem;
   }
 }
