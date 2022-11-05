@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { PAGES } from '../../models/pages';
 
 @Component({
   selector: 'app-title',
@@ -7,6 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class TitleComponent {
   @Output() newPageEvent = new EventEmitter<number>();
+
+  public nextPage: number = PAGES.SECOND;
 
   public changePageNumber(value: number) {
     this.newPageEvent.emit(value);
