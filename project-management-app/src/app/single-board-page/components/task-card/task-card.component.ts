@@ -7,5 +7,5 @@ import { TaskModel } from 'src/app/boards-page/models/board.model';
   styleUrls: ['./task-card.component.scss'],
 })
 export class TaskCardComponent {
-  @Input() task!: TaskModel;
+  @Input() task: TaskModel;
 }

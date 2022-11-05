@@ -7,5 +7,5 @@ import { ColumnModel } from 'src/app/boards-page/models/board.model';
   styleUrls: ['./board-column.component.scss'],
 })
 export class BoardColumnComponent {
-  @Input() column!: ColumnModel;
+  @Input() column: ColumnModel;
 }

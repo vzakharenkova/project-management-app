@@ -9,7 +9,7 @@ import { boardList } from '../shared/boardsList';
   styleUrls: ['./single-board-page.component.scss'],
 })
 export class SingleBoardPageComponent implements OnInit {
-  public board!: BoardModel;
+  public board: BoardModel;
 
   constructor(public route: ActivatedRoute) {}
 

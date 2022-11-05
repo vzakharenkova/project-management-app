@@ -8,7 +8,7 @@ import { BoardModel } from '../../models/board.model';
   styleUrls: ['./board-card.component.scss'],
 })
 export class BoardCardComponent {
-  @Input() board!: BoardModel;
+  @Input() board: BoardModel;
 
   constructor(private router: Router) {}
 
