@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { PAGES } from '../../models/pages';
 import { MemberModel } from '../../models/team-members.model';
 
 @Component({
@@ -26,6 +27,10 @@ export class TeamComponent {
       contribution: 'AAAAAA',
     },
   ];
+
+  public nextPage: number = PAGES.THIRD;
+
+  public prevPage: number = PAGES.FIRST;
 
   public changePageNumber(value: number) {
     this.newPageEvent.emit(value);
