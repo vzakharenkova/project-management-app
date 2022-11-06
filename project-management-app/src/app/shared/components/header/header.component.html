@@ -1,6 +1,6 @@
-<header class="header">
+<header class="header" [ngStyle]="isScrolled ? { height: '100px' } : {}">
   <div class="header-left">
-    <img src="../../../../assets/cat.svg" class="logo" />
+    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg" /></a>
     <div class="lang">
       <span class="lang_en">EN</span>
       <span class="slash">|</span>

@@ -1,10 +1,14 @@
-@import '../../../../shared/styles/variables';
-@import '../../../../shared/styles/mixins';
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
 
 .column {
   background-color: $white;
   border-radius: 6px;
   padding: $card_padding-x;
+  font-family: inherit;
+  cursor: grab;
+  margin-bottom: 1rem;
+  width: 25rem;
 
   &_heading {
     display: flex;
@@ -20,11 +24,24 @@
 
     .delete_btn {
       @include delete-btn;
+
+      &:hover {
+        @include hover-element;
+      }
     }
 
     .add_btn {
       @include add-btn;
       margin-right: 1rem;
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+
+    .mat-raised-button {
+      min-width: unset;
+      line-height: 0;
     }
   }
 
@@ -32,5 +49,9 @@
     display: grid;
     grid-auto-rows: 10rem;
     row-gap: 1rem;
+  }
+
+  &:hover {
+    @include hover-element;
   }
 }

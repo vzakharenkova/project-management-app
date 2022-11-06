@@ -18,7 +18,7 @@ export interface TaskModel {
 export enum TaskPriority {
   LOW = 'Low',
   MEDIUM = 'Medium',
-  HEIGHT = 'Height',
+  HIGH = 'High',
   URGENT = 'Urgent',
 }
 

@@ -1,0 +1,57 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.form-wrapper {
+  height: 100%;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    &_field {
+      font-family: inherit;
+      width: 25rem;
+      font-size: 1rem;
+
+      &:not(:last-child) {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+
+  .action-btns {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    .btn {
+      width: 5rem;
+
+      &:enabled {
+        font-family: inherit;
+        height: $btn-height;
+        font-size: $btn-fontSize;
+      }
+    }
+    .login_btn:enabled {
+      background-color: $btn_purple;
+      color: $white;
+    }
+    .reg_btn {
+      color: $btn_purple;
+      text-decoration: underline;
+    }
+  }
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $background-dark !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: $background-dark !important;
+}

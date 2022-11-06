@@ -1,39 +1,43 @@
-@import '../../styles/variables';
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
 
-:host {
-  .footer {
-    height: $header-height;
-    background-color: $background-dark;
+.footer {
+  height: $header-height;
+  background-color: $background-dark;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $padding-x;
+  align-items: center;
+  color: $white;
+
+  .gh_list {
     display: flex;
     justify-content: space-between;
-    padding: 0 $padding-x;
-    align-items: center;
-    color: $white;
+    width: 30%;
+    font-size: 1.2rem;
 
-    .gh_list {
-      display: flex;
-      justify-content: space-between;
-      width: 30%;
-      font-size: 1.2rem;
-
-      .list_item {
-        display: flex;
-        align-items: center;
-        .gh_logo {
-          margin-right: 0.5rem;
-          height: 1.7rem;
-        }
-      }
-    }
-
-    .year {
+    .list_item {
       display: flex;
       align-items: center;
-      font-size: 1.2rem;
-
-      &_icon {
+      transition: $hover-transition;
+      .gh_logo {
         margin-right: 0.5rem;
+        height: 1.7rem;
       }
+
+      &:hover {
+        @include hover-text;
+      }
+    }
+  }
+
+  .year {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+
+    &_icon {
+      margin-right: 0.5rem;
     }
   }
 }

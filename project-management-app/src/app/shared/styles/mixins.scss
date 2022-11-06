@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 @mixin nav-arrow {
   position: absolute;
@@ -38,4 +38,12 @@
   @include action-btn();
   background-color: $background-add;
   color: $heading-purple;
+}
+
+@mixin hover-element {
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+@mixin hover-text {
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
 }

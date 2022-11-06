@@ -5,6 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -13,6 +14,7 @@ const MaterialComponents = [
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatCardModule,
 ];
 
 @NgModule({

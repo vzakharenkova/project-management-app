@@ -1,11 +1,11 @@
-<div class="task">
+<mat-card class="task">
   <div class="task_heading">
     <div class="task_props">
       <div class="task_priority" appTaskPriority [task]="task">{{ task.priority }}</div>
       <div class="task_size">{{ task.size }}</div>
     </div>
-    <div class="delete_btn"><mat-icon>clear</mat-icon></div>
+    <button mat-raised-button class="delete_btn"><mat-icon>clear</mat-icon></button>
   </div>
   <div class="task_title">{{ task.title }}</div>
-  <div class="edit_btn">Edit Task</div>
-</div>
+  <div mat-raised-button class="edit_btn">Edit Task</div>
+</mat-card>

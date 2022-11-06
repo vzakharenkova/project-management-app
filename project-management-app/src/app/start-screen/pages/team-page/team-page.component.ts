@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { PAGES } from '../../models/pages';
+import { Component } from '@angular/core';
 import { MemberModel } from '../../models/team-members.model';
 
 @Component({
@@ -8,8 +7,6 @@ import { MemberModel } from '../../models/team-members.model';
   styleUrls: ['./team-page.component.scss'],
 })
 export class TeamPageComponent {
-  @Output() newPageEvent = new EventEmitter<number>();
-
   public teamMembers: MemberModel[] = [
     {
       name: 'Pavel Kizhlo',
@@ -27,12 +24,4 @@ export class TeamPageComponent {
       contribution: 'AAAAAA',
     },
   ];
-
-  public nextPage: number = PAGES.THIRD;
-
-  public prevPage: number = PAGES.FIRST;
-
-  public changePageNumber(value: number) {
-    this.newPageEvent.emit(value);
-  }
 }

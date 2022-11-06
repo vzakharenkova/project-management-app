@@ -1,4 +1,5 @@
-@import '../../../../shared/styles/variables';
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
 
 .task {
   display: flex;
@@ -8,6 +9,8 @@
   padding: $card_padding-x;
   border-radius: 6px;
   height: 100%;
+  font-family: inherit;
+  cursor: grab;
 
   &_heading {
     display: flex;
@@ -21,6 +24,14 @@
       background-color: $white;
       padding: 0.3rem;
       cursor: pointer;
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+    .mat-raised-button {
+      min-width: unset;
+      line-height: 0;
     }
   }
 
@@ -46,6 +57,15 @@
   .edit_btn {
     color: $btn_purple;
     font-weight: bold;
+    transition: $hover-transition;
     cursor: pointer;
+
+    &:hover {
+      @include hover-text;
+    }
+  }
+
+  &:hover {
+    @include hover-element;
   }
 }
