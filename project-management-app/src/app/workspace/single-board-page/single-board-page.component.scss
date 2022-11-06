@@ -1,12 +1,13 @@
-@import '../../shared/styles/variables';
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
 
 .page {
   min-height: $main_content_height;
   padding: 0 $padding-x;
-  padding-bottom: $padding-x;
+  padding-bottom: 1.5rem;
   background-color: $background-light;
   overflow-x: auto;
-  min-width: 100vw;
+  width: 100vw;
 
   &_heading {
     padding: 2rem 0;
@@ -20,6 +21,11 @@
 
       .common_title {
         font-size: $heading-fontSize;
+        transition: $hover-transition;
+
+        &:hover {
+          @include hover-text;
+        }
       }
 
       .arrow {
@@ -40,15 +46,20 @@
       font-family: inherit;
       height: $btn-height;
       font-size: $btn-fontSize;
+
+      &:hover {
+        @include hover-element;
+      }
     }
   }
 
   .board-columns {
-    display: grid;
-    grid-auto-columns: minmax(25rem, auto);
+    display: inline-flex;
     column-gap: 2rem;
-    grid-auto-flow: column;
-    width: fit-content;
+    overflow-x: auto;
+    width: 100%;
+    height: fit-content;
+    white-space: nowrap;
   }
 }
 

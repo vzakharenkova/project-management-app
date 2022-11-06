@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
+    RouterModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

@@ -4,7 +4,7 @@ import { TaskModel, TaskPriority } from 'src/app/workspace/board-list-page/model
 enum PriorityClass {
   LOW = 'low',
   MEDIUM = 'medium',
-  HEIGH = 'heigh',
+  HIGH = 'high',
   URGENT = 'urgent',
 }
 
@@ -28,8 +28,8 @@ export class TaskPriorityDirective implements OnInit {
       case TaskPriority.MEDIUM: {
         return PriorityClass.MEDIUM;
       }
-      case TaskPriority.HEIGHT: {
-        return PriorityClass.HEIGH;
+      case TaskPriority.HIGH: {
+        return PriorityClass.HIGH;
       }
       case TaskPriority.URGENT: {
         return PriorityClass.URGENT;
