@@ -13,7 +13,7 @@ export const boardList: BoardModel[] = [
         tasks: [
           {
             title: 'Htvv',
-            priority: TaskPriority.HEIGHT,
+            priority: TaskPriority.HIGH,
             size: TaskSize.MEDIUM,
             description: 'Duvbfewb',
           },
@@ -42,7 +42,7 @@ export const boardList: BoardModel[] = [
         tasks: [
           {
             title: 'Htvv',
-            priority: TaskPriority.HEIGHT,
+            priority: TaskPriority.HIGH,
             size: TaskSize.MEDIUM,
             description: 'Duvbfewb',
           },
@@ -71,7 +71,7 @@ export const boardList: BoardModel[] = [
         tasks: [
           {
             title: 'Htvv',
-            priority: TaskPriority.HEIGHT,
+            priority: TaskPriority.HIGH,
             size: TaskSize.MEDIUM,
             description: 'Duvbfewb',
           },

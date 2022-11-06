@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { PAGES } from '../../models/pages';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-description',
@@ -7,11 +7,9 @@ import { PAGES } from '../../models/pages';
   styleUrls: ['./description-page.component.scss'],
 })
 export class DescriptionPageComponent {
-  @Output() newPageEvent = new EventEmitter<number>();
+  constructor(private router: Router) {}
 
-  public prevPage: number = PAGES.SECOND;
-
-  public changePageNumber(value: number) {
-    this.newPageEvent.emit(value);
+  public navigate(url: string) {
+    this.router.navigateByUrl(url);
   }
 }
