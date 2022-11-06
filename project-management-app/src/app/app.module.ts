@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { StartScreenModule } from './start-screen/start-screen.module';
 import { WorkspaceModule } from './workspace/workspace.module';
+import { AuthModule } from './authorization/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { WorkspaceModule } from './workspace/workspace.module';
     AppRoutingModule,
     StartScreenModule,
     WorkspaceModule,
+    AuthModule,
     HttpClientModule,
     SharedModule,
     CoreModule,

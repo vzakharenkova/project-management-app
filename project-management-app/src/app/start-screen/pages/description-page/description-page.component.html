@@ -1,7 +1,9 @@
 <div class="page">
   <div class="page_buttons">
-    <button mat-raised-button color="primary">Log in</button>
-    <button mat-raised-button color="primary">Sign up</button>
+    <button mat-raised-button color="primary" (click)="navigate('/auth/login')">Log in</button>
+    <button mat-raised-button color="primary" (click)="navigate('/auth/registration')">
+      Sign up
+    </button>
   </div>
   <div class="page_content">
     <div class="description">
