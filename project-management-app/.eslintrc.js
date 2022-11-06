@@ -12,6 +12,7 @@ module.exports = {
       extends: [
         'plugin:import/recommended',
         'plugin:@angular-eslint/recommended',
+        'plugin:@ngrx/all-requiring-type-checking',
         'airbnb-typescript/base',
         'plugin:@angular-eslint/template/process-inline-templates',
         'prettier',
