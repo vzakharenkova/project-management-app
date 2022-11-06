@@ -1,0 +1,66 @@
+@import '../../shared/styles/variables';
+
+.page {
+  min-height: $main_content_height;
+  padding: 0 $padding-x;
+  padding-bottom: $padding-x;
+  background-color: $background-light;
+  overflow-x: auto;
+  min-width: 100vw;
+
+  &_heading {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    .page_title {
+      display: flex;
+      align-items: baseline;
+      font-weight: bold;
+
+      .common_title {
+        font-size: $heading-fontSize;
+      }
+
+      .arrow {
+        height: fit-content;
+        width: fit-content;
+        font-size: 2rem;
+        padding: 0 0.5rem;
+      }
+
+      .board_title {
+        font-size: $subheading-fontSize;
+      }
+    }
+
+    .create_btn {
+      background-color: $btn_purple;
+      color: $white;
+      font-family: inherit;
+      height: $btn-height;
+      font-size: $btn-fontSize;
+    }
+  }
+
+  .board-columns {
+    display: grid;
+    grid-auto-columns: minmax(25rem, auto);
+    column-gap: 2rem;
+    grid-auto-flow: column;
+    width: fit-content;
+  }
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $btn_purple;
+  border-radius: 10px;
+}

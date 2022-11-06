@@ -9,7 +9,7 @@
 @include mat.core();
 
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
-@import 'src/app/shared/shared.scss';
+@import 'app/shared/styles/variables';
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -71,9 +71,9 @@ a {
   background-color: $background-medium;
 }
 
-.heigh {
-  color: $color-heigh;
-  background-color: $background-heigh;
+.height {
+  color: $color-height;
+  background-color: $background-height;
 }
 
 .urgent {

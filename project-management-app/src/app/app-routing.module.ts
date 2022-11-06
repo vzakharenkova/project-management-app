@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BoardsPageComponent } from './boards-page/boards-page.component';
-import { SingleBoardPageComponent } from './single-board-page/single-board-page.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { BoardsPageComponent } from './workspace/board-list-page/boards-page.component';
+import { SingleBoardPageComponent } from './workspace/single-board-page/single-board-page.component';
+import { StartScreenLayoutComponent } from './start-screen/start-screen-layout.component';
 
 const routes: Routes = [
-  { path: 'welcome', component: WelcomePageComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: StartScreenLayoutComponent },
   {
     path: 'boards',
     component: BoardsPageComponent,

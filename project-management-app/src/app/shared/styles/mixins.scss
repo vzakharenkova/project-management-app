@@ -1,0 +1,41 @@
+@import "variables";
+
+@mixin nav-arrow {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5%;
+  font-size: 4rem;
+  height: fit-content;
+  width: fit-content;
+  color: $white;
+}
+
+@mixin next-page {
+  @include nav-arrow();
+  left: 93%;
+}
+
+@mixin prev-page {
+  @include nav-arrow();
+  right: 93%;
+}
+
+@mixin action-btn {
+  display: flex;
+  border-radius: 6px;
+  padding: 0.4rem;
+  height: fit-content;
+  cursor: pointer;
+}
+
+@mixin delete-btn {
+  @include action-btn();
+  background-color: $background-delete;
+  color: $red;
+}
+
+@mixin add-btn {
+  @include action-btn();
+  background-color: $background-add;
+  color: $heading-purple;
+}

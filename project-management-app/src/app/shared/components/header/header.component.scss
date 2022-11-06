@@ -1,0 +1,61 @@
+@import '../../styles/variables';
+
+:host {
+  .header {
+    height: $header-height;
+    background-color: $background-dark;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $padding-x;
+    align-items: center;
+
+    &-left {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        margin-right: 2rem;
+      }
+      .lang {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $white;
+
+        .slash {
+          margin: 0 0.5rem;
+        }
+
+        &_en,
+        &_ru {
+          cursor: pointer;
+        }
+      }
+    }
+
+    &-right {
+      display: flex;
+      align-items: center;
+
+      .settings {
+        margin: 0 1rem;
+      }
+
+      .settings,
+      .logout {
+        height: fit-content;
+        width: fit-content;
+        font-size: 2.5rem;
+        color: $btn-yellow;
+        cursor: pointer;
+      }
+
+      .create_btn {
+        background-color: $btn-yellow;
+        font-family: inherit;
+        font-size: larger;
+        color: $white;
+        padding: 0.2rem 0.8rem;
+      }
+    }
+  }
+}

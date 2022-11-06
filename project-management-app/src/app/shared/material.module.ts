@@ -6,23 +6,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+const MaterialComponents = [
+  MatButtonModule,
+  MatIconModule,
+  MatNativeDateModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+];
+
 @NgModule({
   declarations: [],
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
-  exports: [
-    MatButtonModule,
-    MatIconModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-  ],
+  imports: [MaterialComponents],
+  exports: [MaterialComponents],
 })
 export class MaterialModule {}
