@@ -28,7 +28,7 @@ export class BoardService {
     return this.http.delete<void>(`${this.URL}/${boardId}`);
   }
 
-  updateBoard(newData: Omit<BoardModel, 'id'>, boardId: string): Observable<BoardModel> {
+  updateBoard(boardId: string, newData: Omit<BoardModel, 'id'>): Observable<BoardModel> {
     return this.http.put<BoardModel>(`${this.URL}/${boardId}`, newData);
   }
 }
