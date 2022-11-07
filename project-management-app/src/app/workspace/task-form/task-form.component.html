@@ -1,35 +1,43 @@
 <div class="form">
   <div class="close-container">
-    <mat-icon (click)="closeForm()" class="form__close" aria-label="Close icon" fontIcon="close"></mat-icon>
+    <mat-icon (click)="closeTaskForm()" class="form__close" aria-label="Close icon" fontIcon="close"></mat-icon>
   </div>
   <h1 class="form__title">Create Task</h1>
-  <form class="task" [formGroup]="taskForm" (ngSubmit)="submit()">
-    <div class="task__name name">
-      <label class="form__label name__label" for="taskName">Task Name</label>
-      <input formControlName="taskName" [ngStyle]="addWarningStyle(taskForm.controls['taskName'])" class="form__input name__input" id="taskName" type="text" autocomplete="off" autofocus="">
-    </div>
+  <form class="task" [formGroup]="taskForm" (ngSubmit)="submitTaskForm()">
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Task Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Task Name"
+        formControlName="taskName"
+      />
+      <mat-error>{{taskNameErrMsg}}</mat-error>
+    </mat-form-field>
+
     <div class="select-container">
-      <div class="task__size size">
-        <label class="form__label size__label" for="taskSize">Task Size</label>
-        <select formControlName="taskSize" class="form__select size__select" id="taskSize">
-          <option value="small">Small</option>
-          <option value="mid">Medium</option>
-          <option value="big">Big</option>
-        </select>
-      </div>
-      <div class="task__priority size">
-        <label class="form__label size__label" for="taskPriority">Task Size</label>
-        <select formControlName="taskPriority" class="form__select size__select" id="taskPriority">
-          <option value="high">High</option>
-          <option value="mid">Medium</option>
-          <option value="low">Low</option>
-        </select>
-      </div>
+        <mat-form-field appearance="outline" class="form__selector">
+          <mat-label>Task Size</mat-label>
+          <mat-select formControlName="taskSize" class="form_field">
+            <mat-option value="small">Small</mat-option>
+            <mat-option value="mid">Medium</mat-option>
+            <mat-option value="big">Big</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="form__selector">
+          <mat-label>Task Priority</mat-label>
+          <mat-select formControlName="taskPriority" class="form_field">
+            <mat-option value="high">High</mat-option>
+            <mat-option value="mid">Medium</mat-option>
+            <mat-option value="low">Low</mat-option>
+          </mat-select>
+        </mat-form-field>
     </div>
 
     <div class="task__description description">
-      <label class="form__label description__label">Task Description</label>
-      <textarea formControlName="taskDescription" class="form__input description__text"></textarea>
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput formControlName="taskDescription"></textarea>
+      </mat-form-field>
     </div>
     <button mat-raised-button type="submit" class="form__btn">Create Task</button>
   </form>

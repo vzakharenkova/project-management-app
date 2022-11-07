@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   Validators,
@@ -16,7 +15,7 @@ import { FormFields } from './models/task-form.models';
 export class TaskFormComponent implements OnInit {
   taskForm!: FormGroup;
 
-  redBorder = { border: 'red 1px solid' };
+  taskNameErrMsg: string = 'Please enter a task name';
 
   constructor(public dialog: MatDialog) {}
 
@@ -29,7 +28,7 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  submit() {
+  submitTaskForm() {
     let formValue: FormFields;
     if (this.taskForm.valid) {
       formValue = this.getFormValue();
@@ -40,12 +39,8 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  closeForm() {
+  closeTaskForm() {
     this.dialog.closeAll();
-  }
-
-  addWarningStyle(target: AbstractControl<any, any> | null): {} {
-    return target?.invalid && (target?.touched || target?.dirty) ? this.redBorder : {};
   }
 
   private getFormValue(): FormFields {
