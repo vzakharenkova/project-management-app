@@ -13,7 +13,7 @@ import { FormFields } from './models/task-form.models';
   styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
-  taskForm!: FormGroup;
+  taskForm: FormGroup;
 
   taskNameErrMsg: string = 'Please enter a task name';
 
