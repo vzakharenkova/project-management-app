@@ -10,7 +10,6 @@ import { BoardsPageComponent } from './board-list-page/boards-page.component';
 import { BoardCardComponent } from './board-list-page/components/board-card/board-card.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { WorkspaceComponent } from './workspace.component';
-import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -34,7 +33,7 @@ const routes: Routes = [
     TaskPriorityDirective,
     TaskFormComponent,
   ],
-    imports: [SharedModule, RouterModule.forChild(routes), MatSelectModule],
+    imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
     SingleBoardPageComponent,
