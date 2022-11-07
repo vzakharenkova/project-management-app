@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { StartScreenModule } from '../start-screen/start-screen.module';
 import { WorkspaceModule } from '../workspace/workspace.module';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthModule } from '../authorization/auth.module';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
     SharedModule,
     StartScreenModule,
     WorkspaceModule,
+    AuthModule,
   ],
   exports: [StoreModule, StartScreenModule, WorkspaceModule],
 })

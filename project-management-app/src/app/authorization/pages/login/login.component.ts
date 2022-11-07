@@ -49,10 +49,13 @@ export class LoginComponent implements OnInit {
     if (this._login?.invalid && (this._login?.touched || this._login?.dirty)) {
       if (this._login?.errors?.['pattern']) {
         return 'The login email is invalid';
-      } else if (this._login?.errors?.['required']) {
+      }
+      if (this._login?.errors?.['required']) {
         return 'Please enter a login email';
-      } else return '';
-    } else return '';
+      }
+      return '';
+    }
+    return '';
   }
 
   public disableBtn() {

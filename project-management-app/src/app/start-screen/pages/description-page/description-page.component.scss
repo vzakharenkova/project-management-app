@@ -12,7 +12,7 @@
     display: flex;
     justify-content: end;
 
-    button[mat-raised-button] {
+    a[mat-raised-button] {
       background-color: $btn_purple;
       width: 6rem;
       margin-left: 1rem;

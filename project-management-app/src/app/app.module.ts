@@ -6,22 +6,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { StartScreenModule } from './start-screen/start-screen.module';
-import { WorkspaceModule } from './workspace/workspace.module';
-import { AuthModule } from './authorization/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StartScreenModule,
-    WorkspaceModule,
-    AuthModule,
-    HttpClientModule,
-    SharedModule,
-    CoreModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, SharedModule, CoreModule],
   providers: [],
   bootstrap: [AppComponent],
 })
