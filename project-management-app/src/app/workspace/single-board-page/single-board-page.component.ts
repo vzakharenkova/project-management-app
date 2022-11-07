@@ -4,6 +4,8 @@ import { BoardModel, ColumnModel } from '../board-list-page/models/board.model';
 import { boardList } from '../../shared/mocks/boardsList';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+import { BoardModel } from '../../shared/models/board.model';
+
 @Component({
   selector: 'app-single-board-page',
   templateUrl: './single-board-page.component.html',

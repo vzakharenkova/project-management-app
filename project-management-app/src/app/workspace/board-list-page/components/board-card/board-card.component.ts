@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { boardList } from 'src/app/shared/mocks/boardsList';
-import { BoardModel } from '../../models/board.model';
+import { BoardModel } from '../../../../shared/models/board.model';
 
 @Component({
   selector: 'app-board-card',
