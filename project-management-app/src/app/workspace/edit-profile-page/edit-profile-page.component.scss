@@ -1,0 +1,83 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.edit {
+  display: flex;
+  height: 100vh;
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45vw;
+    justify-content: center;
+    height: 100%;
+    background-color: $background-dark;
+    padding: $padding-x;
+    font-size: 1.5rem;
+    color: $white;
+
+    .back-link {
+      position: absolute;
+      top: 3rem;
+      left: 9rem;
+    }
+
+    .back {
+      @include prev-page;
+      top: 2rem;
+    }
+  }
+
+  &_img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.form-wrapper {
+  height: 100%;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .heading {
+    font-size: $heading-fontSize;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    &_field {
+      width: 25rem;
+      font-size: 1rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .action-btns {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    .btn {
+      width: 10rem;
+      &:enabled {
+        font-family: inherit;
+        height: $btn-height;
+        font-size: $btn-fontSize;
+        @include purple-btn;
+      }
+    }
+    .btn.delete_btn {
+      background-color: $background-delete;
+      color: $color-urgent;
+    }
+  }
+}

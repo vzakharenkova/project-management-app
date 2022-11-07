@@ -4,9 +4,9 @@
   position: absolute;
   cursor: pointer;
   bottom: 5%;
-  font-size: 4rem;
-  height: fit-content;
-  width: fit-content;
+  font-size: 4rem !important;
+  height: fit-content !important;
+  width: fit-content !important;
   color: $white;
 
   &:hover {
@@ -52,7 +52,6 @@
   font-size: $btn-fontSize;
   background-color: $btn_purple;
   color: $white;
-  width: 5rem;
 }
 
 @mixin hover-element {
