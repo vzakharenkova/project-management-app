@@ -17,10 +17,7 @@
       font-family: inherit;
       width: 25rem;
       font-size: 1rem;
-
-      &:not(:last-child) {
-        padding-bottom: 1rem;
-      }
+      padding-bottom: 0.5rem;
     }
   }
 
@@ -28,6 +25,7 @@
     width: 20%;
     display: flex;
     justify-content: space-between;
+    margin-top: 1rem;
     .btn {
       width: 5rem;
 

@@ -36,24 +36,11 @@ export class LoginComponent implements OnInit {
   }
 
   public getPasswordErrorMessage() {
-    if (this._password?.invalid && (this._password?.touched || this._password?.dirty)) {
-      if (this._password?.errors?.['minlength'] || this._password?.errors?.['pattern']) {
-        return "Your password isn't strong enough";
-      } else if (this._password?.errors?.['required']) {
-        return 'Please enter a password';
-      } else return '';
-    } else return '';
-  }
-
-  public getLoginErrorMessage() {
-    if (this._login?.invalid && (this._login?.touched || this._login?.dirty)) {
-      if (this._login?.errors?.['pattern']) {
-        return 'The login email is invalid';
-      }
-      if (this._login?.errors?.['required']) {
-        return 'Please enter a login email';
-      }
-      return '';
+    if (this._password?.errors?.['minlength'] || this._password?.errors?.['pattern']) {
+      return "Your password isn't strong enough";
+    }
+    if (this._password?.errors?.['required']) {
+      return 'Please enter a password';
     }
     return '';
   }
@@ -68,11 +55,11 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  private get _login() {
+  public get _login() {
     return this.loginForm.get('login');
   }
 
-  private get _password() {
+  public get _password() {
     return this.loginForm.get('password');
   }
 }
