@@ -22,6 +22,7 @@ $main_content_height: calc(100vh - 11rem);
 $btn-height: 2.5rem;
 $padding-x: 3rem;
 $card_padding-x: 1rem;
+$card-dorder-radius: 0.8rem;
 
 $heading-fontSize: 2.3rem;
 $subheading-fontSize: 1.5rem;
@@ -32,3 +33,33 @@ $hover-transition: all 0.3s;
 //FORM
 $background-form-elements: #f6f8fd;
 $border-color: #2746d8;
+
+@keyframes next {
+  0% {
+    right: 6rem;
+    opacity: 0;
+  }
+  50% {
+    right: 4rem;
+    opacity: 0.5;
+  }
+  100% {
+    right: 2rem;
+    opacity: 1;
+  }
+}
+
+@keyframes prev {
+  0% {
+    left: 6rem;
+    opacity: 0;
+  }
+  50% {
+    left: 4rem;
+    opacity: 0.5;
+  }
+  100% {
+    left: 2rem;
+    opacity: 1;
+  }
+}

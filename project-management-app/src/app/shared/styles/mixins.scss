@@ -8,21 +8,27 @@
   height: fit-content;
   width: fit-content;
   color: $white;
+
+  &:hover {
+    animation: none;
+  }
 }
 
 @mixin next-page {
   @include nav-arrow();
-  left: 93%;
+  right: 4rem;
+  animation: next 1.5s infinite linear;
 }
 
 @mixin prev-page {
   @include nav-arrow();
-  right: 93%;
+  left: 4rem;
+  animation: prev 1.5s infinite linear;
 }
 
 @mixin action-btn {
   display: flex;
-  border-radius: 6px;
+  border-radius: $card-dorder-radius;
   padding: 0.4rem;
   height: fit-content;
   cursor: pointer;

@@ -85,3 +85,18 @@ html,
 body {
   height: 100%;
 }
+
+.mat-icon {
+  height: 1.8rem !important;
+  width: 1.8rem !important;
+}
+
+.material-icons {
+  font-size: 1.8rem !important;
+}
+
+@media (min-width: 3500px) {
+  html {
+    font-size: 45px;
+  }
+}
