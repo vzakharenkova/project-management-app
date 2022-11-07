@@ -36,13 +36,14 @@ $project-management-app-theme: mat.define-light-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($project-management-app-theme);
-
+* {
+  font-family: 'Jost', sans-serif;
+}
 html * {
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  font-family: 'Jost', sans-serif;
 }
 h1,
 h2,
