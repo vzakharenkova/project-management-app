@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardModel } from '../board-list-page/models/board.model';
-import { boardList } from '../../shared/mocks/boardsList';
+
+import { BoardModel } from '../../shared/models/board.model';
 
 @Component({
   selector: 'app-single-board-page',
@@ -15,8 +15,7 @@ export class SingleBoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const boardTitle = params['title'];
-      this.board = <BoardModel>boardList.find((item) => item.title === boardTitle);
+      console.log(params);
     });
   }
 }
