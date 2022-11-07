@@ -6,20 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
-export interface TaskForm {
-  title: string;
-  formFields: FormFields;
-  submitBtn: string;
-  btnName: string;
-}
-
-export interface FormFields {
-  taskName: string;
-  taskSize: string;
-  taskPriority: string;
-  taskDescription: string;
-}
+import { FormFields } from './models/task-form.models';
 
 @Component({
   selector: 'app-task-form',
@@ -62,11 +49,6 @@ export class TaskFormComponent implements OnInit {
   }
 
   private getFormValue(): FormFields {
-    return {
-      taskName: this.taskForm.controls['taskName'].value,
-      taskSize: this.taskForm.controls['taskSize'].value,
-      taskPriority: this.taskForm.controls['taskPriority'].value,
-      taskDescription: this.taskForm.controls['taskDescription'].value,
-    }
+    return this.taskForm.value;
   }
 }
