@@ -40,6 +40,15 @@
   color: $heading-purple;
 }
 
+@mixin purple-btn {
+  font-family: inherit;
+  height: $btn-height;
+  font-size: $btn-fontSize;
+  background-color: $btn_purple;
+  color: $white;
+  width: 5rem;
+}
+
 @mixin hover-element {
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
