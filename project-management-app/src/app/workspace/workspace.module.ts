@@ -33,7 +33,7 @@ const routes: Routes = [
     TaskPriorityDirective,
     TaskFormComponent,
   ],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+    imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
     SingleBoardPageComponent,
