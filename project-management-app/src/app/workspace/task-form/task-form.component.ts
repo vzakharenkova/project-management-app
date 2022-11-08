@@ -1,25 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-
-export interface TaskForm {
-  title: string;
-  formFields: FormFields;
-  submitBtn: string;
-  btnName: string;
-}
-
-export interface FormFields {
-  taskName: string;
-  taskSize: string;
-  taskPriority: string;
-  taskDescription: string;
-}
+import { FormFields } from './models/task-form.models';
 
 @Component({
   selector: 'app-task-form',
@@ -27,9 +13,9 @@ export interface FormFields {
   styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
-  taskForm!: FormGroup;
+  taskForm: FormGroup;
 
-  redBorder = { border: 'red 1px solid' };
+  taskNameErrMsg: string = 'Please enter a task name';
 
   constructor(public dialog: MatDialog) {}
 
@@ -42,7 +28,7 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  submit() {
+  submitTaskForm() {
     let formValue: FormFields;
     if (this.taskForm.valid) {
       formValue = this.getFormValue();
@@ -53,20 +39,11 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  closeForm() {
+  closeTaskForm() {
     this.dialog.closeAll();
   }
 
-  addWarningStyle(target: AbstractControl<any, any> | null): {} {
-    return target?.invalid && (target?.touched || target?.dirty) ? this.redBorder : {};
-  }
-
   private getFormValue(): FormFields {
-    return {
-      taskName: this.taskForm.controls['taskName'].value,
-      taskSize: this.taskForm.controls['taskSize'].value,
-      taskPriority: this.taskForm.controls['taskPriority'].value,
-      taskDescription: this.taskForm.controls['taskDescription'].value,
-    }
+    return this.taskForm.value;
   }
 }

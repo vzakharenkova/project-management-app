@@ -36,7 +36,7 @@ const routes: Routes = [
     TaskFormComponent,
     EditProfilePageComponent,
   ],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+    imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
     SingleBoardPageComponent,
