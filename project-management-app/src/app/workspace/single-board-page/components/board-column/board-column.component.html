@@ -8,8 +8,10 @@
       readonly
     />
     <div class="column_actions">
-      <button mat-raised-button class="add_btn" (click)="openTaskForm()"><mat-icon>add</mat-icon></button>
-      <button mat-raised-button class="delete_btn" (click)="openDialog($event)">
+      <button mat-raised-button class="add_btn" (click)="openTaskForm()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-raised-button class="delete_btn" (click)="openConfirmationDialog($event)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
