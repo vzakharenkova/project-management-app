@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ColumnModel, TaskPriority, TaskSize, BoardModel } from 'src/app/workspace/board-list-page/models/board.model';
 import { MatDialog } from '@angular/material/dialog';
-import { BoardModel, ColumnModel } from 'src/app/workspace/board-list-page/models/board.model';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { TaskForm } from '../../../task-form/models/task-form.models';
 
 @Component({
   selector: 'app-board-column',
@@ -15,6 +16,8 @@ export class BoardColumnComponent implements OnInit {
   @Input() board: BoardModel;
 
   public title: string;
+
+  private taskFormConfig: TaskForm;
 
   constructor(public dialog: MatDialog) {}
 
@@ -47,6 +50,17 @@ export class BoardColumnComponent implements OnInit {
   }
 
   openTaskForm() {
-    this.dialog.open(TaskFormComponent);
+    this.taskFormConfig = {
+      title: 'Create Task',
+      btnName: 'Create Task',
+      submitBtn: () => console.log('Создано!'),
+      formFields: {
+        taskSize: TaskSize.TINY,
+        taskPriority: TaskPriority.HIGH,
+      }
+    };
+    this.dialog.open(TaskFormComponent, {
+      data: this.taskFormConfig,
+    });
   }
 }
