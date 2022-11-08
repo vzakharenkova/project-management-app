@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { FormFields } from './models/task-form.models';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { FormFields, TaskForm } from './models/task-form.models';
 
 @Component({
   selector: 'app-task-form',
@@ -17,14 +17,14 @@ export class TaskFormComponent implements OnInit {
 
   taskNameErrMsg: string = 'Please enter a task name';
 
-  constructor(public dialog: MatDialog) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskForm, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.taskForm = new FormGroup({
-      taskName: new FormControl('', Validators.required),
-      taskSize: new FormControl('small'),
-      taskPriority: new FormControl('high'),
-      taskDescription: new FormControl(),
+      taskName: new FormControl(this.data.formFields.taskName, Validators.required),
+      taskSize: new FormControl(this.data.formFields.taskSize),
+      taskPriority: new FormControl(this.data.formFields.taskPriority),
+      taskDescription: new FormControl(this.data.formFields.taskDescription),
     });
   }
 
@@ -33,7 +33,7 @@ export class TaskFormComponent implements OnInit {
     if (this.taskForm.valid) {
       formValue = this.getFormValue();
       this.dialog.closeAll();
-      console.log(formValue);
+      this.data.submitBtn();
     } else {
       console.log('Заполните название задачи');
     }

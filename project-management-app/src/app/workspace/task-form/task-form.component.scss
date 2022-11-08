@@ -13,9 +13,15 @@
 }
 
 .form__close {
-  background-color: $background-form-elements;
-  border-radius: 50%;
+  min-width: fit-content;
+  line-height: 0;
+  border-radius: 100%;
+  padding: 0.3rem;
   cursor: pointer;
+
+  &:hover {
+    @include hover-element;
+  }
 }
 
 .form__title {
