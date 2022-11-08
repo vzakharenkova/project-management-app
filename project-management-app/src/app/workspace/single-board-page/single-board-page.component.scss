@@ -64,7 +64,7 @@
 }
 
 ::-webkit-scrollbar {
-  height: 10px;
+  height: 0.6rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -73,5 +73,5 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: $btn_purple;
-  border-radius: 10px;
+  border-radius: 0.6rem;
 }
