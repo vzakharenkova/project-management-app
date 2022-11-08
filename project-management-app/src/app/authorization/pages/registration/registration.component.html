@@ -1,1 +1,67 @@
-<p>registration works!</p>
+<div class="form-wrapper">
+  <form class="form" [formGroup]="registrationForm">
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Enter your name" class="input" formControlName="name" />
+      <mat-error *ngIf="name?.hasError('required')">Please enter your name</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Login</mat-label>
+      <input
+        matInput
+        placeholder="Enter your login (email)"
+        class="input"
+        formControlName="login"
+      />
+      <mat-error *ngIf="login?.hasError('required')">Please enter a login email</mat-error>
+      <mat-error *ngIf="login?.hasError('pattern')">The login email is invalid</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        placeholder="Enter your password"
+        class="input"
+        formControlName="password"
+      />
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+        hidePassword ? 'visibility_off' : 'visibility'
+      }}</mat-icon>
+      <mat-error *ngIf="password?.hasError('minlength') || password?.hasError('pattern')"
+        >Your password isn't strong enough</mat-error
+      >
+      <mat-error *ngIf="password?.hasError('required')">Please enter a password</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Confirm password</mat-label>
+      <input
+        matInput
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+        placeholder="Confirm your password"
+        class="input"
+        formControlName="confirmPassword"
+      />
+      <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
+        hideConfirmPassword ? 'visibility_off' : 'visibility'
+      }}</mat-icon>
+      <mat-error *ngIf="confirmPassword?.hasError('mustMatch')"
+        >The entered password doesn't match</mat-error
+      >
+      <mat-error *ngIf="confirmPassword?.hasError('required')">Please enter a password</mat-error>
+    </mat-form-field>
+  </form>
+  <div class="action-btns">
+    <a class="btn reg_btn" mat-button routerLink="/auth/login">Login</a>
+    <a
+      class="btn login_btn"
+      mat-raised-button
+      mat-button
+      routerLink="/boards"
+      color="primary"
+      [disabled]="disableBtn()"
+    >
+      SingUp
+    </a>
+  </div>
+</div>

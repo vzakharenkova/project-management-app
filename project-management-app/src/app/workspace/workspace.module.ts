@@ -10,6 +10,7 @@ import { BoardsPageComponent } from './board-list-page/boards-page.component';
 import { BoardCardComponent } from './board-list-page/components/board-card/board-card.component';
 import { TaskFormComponent } from './task-form/task-form.component';
 import { WorkspaceComponent } from './workspace.component';
+import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: ':title', component: SingleBoardPageComponent },
     ],
   },
+  { path: 'edit', component: EditProfilePageComponent },
 ];
 
 @NgModule({
@@ -32,6 +34,7 @@ const routes: Routes = [
     TaskCardComponent,
     TaskPriorityDirective,
     TaskFormComponent,
+    EditProfilePageComponent,
   ],
     imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
@@ -43,6 +46,7 @@ const routes: Routes = [
     TaskCardComponent,
     TaskPriorityDirective,
     TaskFormComponent,
+    EditProfilePageComponent,
   ],
 })
 export class WorkspaceModule {}

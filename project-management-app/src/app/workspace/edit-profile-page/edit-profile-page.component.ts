@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { passwordMatchingValidatior } from 'src/app/shared/utils/password-match.validator';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  selector: 'app-edit-profile-page',
+  templateUrl: './edit-profile-page.component.html',
+  styleUrls: ['./edit-profile-page.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
-  public registrationForm: FormGroup;
+export class EditProfilePageComponent implements OnInit {
+  public editForm: FormGroup;
 
   public hidePassword = true;
 
   public hideConfirmPassword = true;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private location: Location, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.initForm();
   }
 
   private initForm() {
-    this.registrationForm = this.formBuilder.group(
+    this.editForm = this.formBuilder.group(
       {
         name: [null, [Validators.required]],
         login: [
@@ -54,19 +54,23 @@ export class RegistrationComponent implements OnInit {
     } else return false;
   }
 
+  public navigateBack() {
+    this.location.back();
+  }
+
   public get name() {
-    return this.registrationForm.get('name');
+    return this.editForm.get('name');
   }
 
   public get login() {
-    return this.registrationForm.get('login');
+    return this.editForm.get('login');
   }
 
   public get password() {
-    return this.registrationForm.get('password');
+    return this.editForm.get('password');
   }
 
   public get confirmPassword() {
-    return this.registrationForm.get('confirmPassword');
+    return this.editForm.get('confirmPassword');
   }
 }

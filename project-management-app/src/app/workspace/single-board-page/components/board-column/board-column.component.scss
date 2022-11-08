@@ -3,7 +3,7 @@
 
 .column {
   background-color: $white;
-  border-radius: 6px;
+  border-radius: $card-dorder-radius;
   padding: $card_padding-x;
   font-family: inherit;
   cursor: grab;

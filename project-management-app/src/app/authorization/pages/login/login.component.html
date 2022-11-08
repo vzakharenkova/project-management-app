@@ -8,7 +8,8 @@
         class="input"
         formControlName="login"
       />
-      <mat-error>{{ getLoginErrorMessage() }}</mat-error>
+      <mat-error *ngIf="login?.hasError('required')">Please enter a login email</mat-error>
+      <mat-error *ngIf="login?.hasError('pattern')">The login email is invalid</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>Password</mat-label>
@@ -22,19 +23,22 @@
       <mat-icon matSuffix (click)="hide = !hide">{{
         hide ? 'visibility_off' : 'visibility'
       }}</mat-icon>
-      <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+      <mat-error *ngIf="password?.hasError('minlength') || password?.hasError('pattern')"
+        >Your password isn't strong enough</mat-error
+      >
+      <mat-error *ngIf="password?.hasError('required')">Please enter a password</mat-error>
     </mat-form-field>
   </form>
   <div class="action-btns">
-    <button
+    <a
       class="btn login_btn"
       mat-raised-button
       color="primary"
-      (click)="navigate('/boards')"
+      routerLink="/boards"
       [disabled]="disableBtn()"
     >
       Login
-    </button>
-    <a class="btn reg_btn" mat-button routerLink="/auth/registration">SignUp</a>
+    </a>
+    <a class="btn reg_btn" mat-button routerLink="/auth/registration">SingUp</a>
   </div>
 </div>
