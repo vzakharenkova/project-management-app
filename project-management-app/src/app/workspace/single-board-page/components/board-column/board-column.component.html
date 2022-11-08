@@ -9,10 +9,16 @@
     />
     <div class="column_actions">
       <button mat-raised-button class="add_btn"><mat-icon>add</mat-icon></button>
-      <button mat-raised-button class="delete_btn"><mat-icon>delete</mat-icon></button>
+      <button mat-raised-button class="delete_btn" (click)="openDialog($event)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </div>
   <div class="column_tasks">
-    <app-task-card *ngFor="let task of column.tasks" [task]="task"></app-task-card>
+    <app-task-card
+      *ngFor="let task of column.tasks"
+      [task]="task"
+      [column]="column"
+    ></app-task-card>
   </div>
 </mat-card>

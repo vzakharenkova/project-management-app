@@ -8,9 +8,10 @@ import { MaterialModule } from './material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent],
+  declarations: [FooterComponent, HeaderComponent, ConfirmationModalComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     FooterComponent,
     HeaderComponent,
+    ConfirmationModalComponent,
   ],
 })
 export class SharedModule {}

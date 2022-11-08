@@ -3,9 +3,8 @@
 
 .column {
   background-color: $white;
-  border-radius: $card-dorder-radius;
+  border-radius: $card-border-radius;
   padding: $card_padding-x;
-  font-family: inherit;
   cursor: grab;
   margin-bottom: 1rem;
   width: 25rem;
@@ -30,7 +29,7 @@
       outline: none;
       border: 0.1rem solid $btn_purple;
       padding: 0 0.5rem;
-      border-radius: $card-dorder-radius;
+      border-radius: $card-border-radius;
     }
   }
 
