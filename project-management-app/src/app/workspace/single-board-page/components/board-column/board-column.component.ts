@@ -17,7 +17,11 @@ export class BoardColumnComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  public openDialog(e: Event) {
+  ngOnInit() {
+    this.title = this.column.title;
+  }
+
+  public openConfirmationDialog(e: Event) {
     e.stopPropagation();
 
     this.dialog.open(ConfirmationModalComponent, {
@@ -29,19 +33,13 @@ export class BoardColumnComponent implements OnInit {
     });
   }
 
-  public deleteColumn(board: BoardModel, column: ColumnModel) {
+  private deleteColumn(board: BoardModel, column: ColumnModel) {
     const selctedColumn = board.columns?.find((item) => item.title === column.title);
     board.columns?.splice(board.columns?.indexOf(<ColumnModel>selctedColumn), 1);
     this.dialog.closeAll();
   }
 
-  ngOnInit() {
-    this.title = this.column.title;
-  }
-
-  editColumnTitle(input: EventTarget | null) {
-    if (input) {
-      (<HTMLInputElement>input).readOnly = !(<HTMLInputElement>input).readOnly;
-    }
+  public editColumnTitle(input: EventTarget | null) {
+    (<HTMLInputElement>input).readOnly = !(<HTMLInputElement>input).readOnly;
   }
 }

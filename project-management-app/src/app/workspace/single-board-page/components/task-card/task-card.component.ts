@@ -15,7 +15,7 @@ export class TaskCardComponent {
 
   constructor(public dialog: MatDialog) {}
 
-  public openDialog(e: Event) {
+  public openConfirmationDialog(e: Event) {
     e.stopPropagation();
 
     this.dialog.open(ConfirmationModalComponent, {
@@ -27,7 +27,7 @@ export class TaskCardComponent {
     });
   }
 
-  public deleteTask(column: ColumnModel, task: TaskModel) {
+  private deleteTask(column: ColumnModel, task: TaskModel) {
     const selctedTask = column?.tasks?.find((item) => item.title === task.title);
     column.tasks?.splice(column.tasks?.indexOf(<TaskModel>selctedTask), 1);
     this.dialog.closeAll();

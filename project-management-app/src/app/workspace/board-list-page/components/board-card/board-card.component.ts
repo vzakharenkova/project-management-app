@@ -15,7 +15,7 @@ export class BoardCardComponent {
 
   constructor(private router: Router, public dialog: MatDialog) {}
 
-  public openDialog(e: Event) {
+  public openConfirmationDialog(e: Event) {
     e.stopPropagation();
 
     this.dialog.open(ConfirmationModalComponent, {
@@ -27,7 +27,7 @@ export class BoardCardComponent {
     });
   }
 
-  public deleteBoard(board: BoardModel) {
+  private deleteBoard(board: BoardModel) {
     const selectedBoard = boardList.find((item) => item.title === board.title);
     boardList.splice(boardList.indexOf(<BoardModel>selectedBoard), 1);
     this.dialog.closeAll();

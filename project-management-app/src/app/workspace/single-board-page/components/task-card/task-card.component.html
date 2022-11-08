@@ -4,7 +4,7 @@
       <div class="task_priority" appTaskPriority [task]="task">{{ task.priority }}</div>
       <div class="task_size">{{ task.size }}</div>
     </div>
-    <button mat-raised-button class="delete_btn" (click)="openDialog($event)">
+    <button mat-raised-button class="delete_btn" (click)="openConfirmationDialog($event)">
       <mat-icon>clear</mat-icon>
     </button>
   </div>
