@@ -7,5 +7,5 @@
     <button mat-raised-button class="delete_btn"><mat-icon>clear</mat-icon></button>
   </div>
   <div class="task_title">{{ task.title }}</div>
-  <div mat-raised-button class="edit_btn">Edit Task</div>
+  <div mat-raised-button class="edit_btn" (click)="openTaskForm()">Edit Task</div>
 </mat-card>

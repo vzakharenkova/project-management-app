@@ -1,6 +1,8 @@
 <div class="form">
   <div class="close-container">
-    <mat-icon (click)="closeTaskForm()" class="form__close" aria-label="Close icon" fontIcon="close"></mat-icon>
+    <button mat-raised-button  class="form__close" (click)="closeTaskForm()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
   <h1 class="form__title">Create Task</h1>
   <form class="task" [formGroup]="taskForm" (ngSubmit)="submitTaskForm()">

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ColumnModel } from 'src/app/workspace/board-list-page/models/board.model';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskFormComponent } from '../../../task-form/task-form.component';
 
 @Component({
   selector: 'app-board-column',
@@ -8,4 +10,11 @@ import { ColumnModel } from 'src/app/workspace/board-list-page/models/board.mode
 })
 export class BoardColumnComponent {
   @Input() column: ColumnModel;
+
+  constructor(private dialog: MatDialog) {
+  }
+
+  openTaskForm() {
+    this.dialog.open(TaskFormComponent);
+  }
 }
