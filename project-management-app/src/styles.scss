@@ -82,6 +82,14 @@ a {
   background-color: $background-urgent;
 }
 
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $background-dark !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: $background-dark !important;
+}
+
 html,
 body {
   height: 100%;

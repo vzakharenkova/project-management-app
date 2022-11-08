@@ -44,13 +44,14 @@ export class RegistrationComponent implements OnInit {
   }
 
   public disableBtn() {
-    if (this.login?.invalid || this.password?.invalid) {
+    if (
+      this.name?.invalid ||
+      this.login?.invalid ||
+      this.password?.invalid ||
+      this.confirmPassword?.invalid
+    ) {
       return true;
     } else return false;
-  }
-
-  public navigate(url: string) {
-    this.router.navigateByUrl(url);
   }
 
   public get name() {
@@ -65,7 +66,7 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('password');
   }
 
-  public get confirmePassword() {
+  public get confirmPassword() {
     return this.registrationForm.get('confirmPassword');
   }
 }

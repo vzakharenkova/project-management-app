@@ -52,12 +52,10 @@
         <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
           hideConfirmPassword ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="confirmePassword?.errors?.['mustMatch']"
+        <mat-error *ngIf="confirmPassword?.errors?.['mustMatch']"
           >The entered password doesn't match</mat-error
         >
-        <mat-error *ngIf="confirmePassword?.errors?.['required']"
-          >Please enter a password</mat-error
-        >
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">Please enter a password</mat-error>
       </mat-form-field>
     </form>
     <div class="action-btns">

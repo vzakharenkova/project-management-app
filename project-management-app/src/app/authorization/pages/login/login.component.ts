@@ -51,10 +51,6 @@ export class LoginComponent implements OnInit {
     } else return false;
   }
 
-  public navigate(url: string) {
-    this.router.navigateByUrl(url);
-  }
-
   public get login() {
     return this.loginForm.get('login');
   }

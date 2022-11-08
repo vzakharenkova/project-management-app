@@ -44,7 +44,12 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   public disableBtn() {
-    if (this.login?.invalid || this.password?.invalid) {
+    if (
+      this.name?.invalid ||
+      this.login?.invalid ||
+      this.password?.invalid ||
+      this.confirmPassword?.invalid
+    ) {
       return true;
     } else return false;
   }
@@ -65,7 +70,7 @@ export class EditProfilePageComponent implements OnInit {
     return this.editForm.get('password');
   }
 
-  public get confirmePassword() {
+  public get confirmPassword() {
     return this.editForm.get('confirmPassword');
   }
 }

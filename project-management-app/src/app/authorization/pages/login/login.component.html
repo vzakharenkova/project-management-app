@@ -30,15 +30,15 @@
     </mat-form-field>
   </form>
   <div class="action-btns">
-    <button
+    <a
       class="btn login_btn"
       mat-raised-button
       color="primary"
-      (click)="navigate('/boards')"
+      routerLink="/boards"
       [disabled]="disableBtn()"
     >
       Login
-    </button>
+    </a>
     <a class="btn reg_btn" mat-button routerLink="/auth/registration">SingUp</a>
   </div>
 </div>

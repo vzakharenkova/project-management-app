@@ -45,22 +45,23 @@
       <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
         hideConfirmPassword ? 'visibility_off' : 'visibility'
       }}</mat-icon>
-      <mat-error *ngIf="confirmePassword?.hasError('mustMatch')"
+      <mat-error *ngIf="confirmPassword?.hasError('mustMatch')"
         >The entered password doesn't match</mat-error
       >
-      <mat-error *ngIf="confirmePassword?.hasError('required')">Please enter a password</mat-error>
+      <mat-error *ngIf="confirmPassword?.hasError('required')">Please enter a password</mat-error>
     </mat-form-field>
   </form>
   <div class="action-btns">
     <a class="btn reg_btn" mat-button routerLink="/auth/login">Login</a>
-    <button
+    <a
       class="btn login_btn"
       mat-raised-button
+      mat-button
+      routerLink="/boards"
       color="primary"
-      (click)="navigate('/boards')"
       [disabled]="disableBtn()"
     >
       SingUp
-    </button>
+    </a>
   </div>
 </div>
