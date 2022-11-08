@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 import { UserService } from '../../services/user.service';
 import { deleteUser, getAllUsers, getUserById, updateUser } from '../actions/user.actions';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 export enum UserApiActionsList {
   allUsersLoaded = '[USER API] All users loaded success',

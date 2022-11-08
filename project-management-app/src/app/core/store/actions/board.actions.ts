@@ -12,7 +12,7 @@ export const getAllBoards = createAction(BoardActionsList.getAll);
 
 export const createBoard = createAction(
   BoardActionsList.create,
-  props<{ title: string; description: string }>(),
+  props<{ data: { title: string; description: string } }>(),
 );
 
 export const getBoardById = createAction(BoardActionsList.getById, props<{ boardId: string }>());
