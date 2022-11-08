@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { BoardModel, ColumnModel } from 'src/app/workspace/board-list-page/models/board.model';
+import { TaskFormComponent } from '../../../task-form/task-form.component';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-board-column',
@@ -43,5 +44,9 @@ export class BoardColumnComponent implements OnInit {
     if (input) {
       (<HTMLInputElement>input).readOnly = !(<HTMLInputElement>input).readOnly;
     }
+  }
+
+  openTaskForm() {
+    this.dialog.open(TaskFormComponent);
   }
 }

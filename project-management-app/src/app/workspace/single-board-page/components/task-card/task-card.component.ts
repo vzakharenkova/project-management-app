@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ColumnModel, TaskModel } from 'src/app/workspace/board-list-page/models/board.model';
+import { TaskFormComponent } from '../../../task-form/task-form.component';
 
 @Component({
   selector: 'app-task-card',
@@ -31,5 +32,9 @@ export class TaskCardComponent {
     const selctedTask = column?.tasks?.find((item) => item.title === task.title);
     column.tasks?.splice(column.tasks?.indexOf(<TaskModel>selctedTask), 1);
     this.dialog.closeAll();
+  }
+
+  openTaskForm() {
+    this.dialog.open(TaskFormComponent)
   }
 }
