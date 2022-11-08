@@ -3,9 +3,8 @@
 
 .column {
   background-color: $white;
-  border-radius: $card-dorder-radius;
+  border-radius: $card-border-radius;
   padding: $card_padding-x;
-  font-family: inherit;
   cursor: grab;
   margin-bottom: 1rem;
   width: 25rem;
@@ -14,9 +13,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: 1rem;
+  }
+
+  &_title {
     font-size: $subheading-fontSize;
     font-weight: bold;
-    margin-bottom: 1rem;
+    &:read-only {
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+    &:not(:read-only) {
+      outline: none;
+      border: 0.1rem solid $btn_purple;
+      padding: 0 0.5rem;
+      border-radius: $card-border-radius;
+    }
   }
 
   &_actions {
@@ -49,9 +63,25 @@
     display: grid;
     grid-auto-rows: 10rem;
     row-gap: 1rem;
+    max-height: 50rem;
+    overflow-y: auto;
+    padding: calc($card_padding-x / 2);
   }
 
   &:hover {
     @include hover-element;
   }
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $btn_purple;
+  border-radius: 0.6rem;
 }

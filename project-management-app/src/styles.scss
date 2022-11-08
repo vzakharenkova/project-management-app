@@ -102,6 +102,11 @@ body {
   font-size: 1.8rem !important;
 }
 
+.mat-dialog-container {
+  padding: 1.5rem !important;
+  border-radius: $card-border-radius !important;
+}
+
 @media (min-width: 3500px) {
   html {
     font-size: 45px;

@@ -1,0 +1,8 @@
+<div mat-dialog class="modal">
+  <button mat-raised-button class="close-container" (click)="dialog.closeAll()">
+    <mat-icon>clear</mat-icon>
+  </button>
+  <div class="modal_title">{{ data.title }}</div>
+  <div class="modal_content">{{ data.content }}</div>
+  <button mat-raised-button class="delete_btn" (click)="data.handler()">Delete</button>
+</div>
