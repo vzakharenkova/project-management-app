@@ -46,34 +46,35 @@
     display: flex;
     align-items: center;
 
-    .settings {
-      margin: 0 1rem;
-    }
-
     .settings,
     .logout {
-      height: fit-content;
-      width: fit-content;
-      font-size: 2.5rem;
-      color: $btn-yellow;
-      transition: $hover-transition;
-      cursor: pointer;
-
-      &:hover {
-        @include hover-text;
-      }
+      width: 100% !important;
+      height: 100% !important;
     }
 
-    .create_btn {
+    .btn {
+      display: flex;
+      align-items: center;
       background-color: $btn-yellow;
-      font-family: inherit;
       font-size: larger;
       color: $white;
-      padding: 0.2rem 0.8rem;
+      transition: $hover-transition;
+      cursor: pointer;
+      height: 2.7rem;
+      min-width: unset;
+      line-height: unset;
+
+      &:nth-child(2) {
+        margin: 0 1rem;
+      }
 
       &:hover {
         @include hover-element;
       }
+    }
+
+    .create_btn {
+      padding: 0.2rem 0.8rem;
     }
   }
 }

@@ -8,8 +8,12 @@
     </div>
   </div>
   <div class="header-right">
-    <button mat-raised-button class="create_btn">Create new board</button>
-    <a routerLink="/edit" class="settings"><mat-icon>settings</mat-icon></a>
-    <mat-icon class="logout">exit_to_app</mat-icon>
+    <button mat-raised-button class="create_btn btn" (click)="openDialog()">
+      Create new board
+    </button>
+    <a mat-raised-button routerLink="/edit" class="btn"
+      ><mat-icon class="settings">settings</mat-icon></a
+    >
+    <a mat-raised-button class="btn"><mat-icon class="logout">exit_to_app</mat-icon></a>
   </div>
 </header>
