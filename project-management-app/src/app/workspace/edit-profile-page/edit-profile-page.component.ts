@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { passwordMatchingValidatior } from 'src/app/shared/utils/password-match.validator';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -26,43 +27,24 @@ export class EditProfilePageComponent implements OnInit {
         name: [null, [Validators.required]],
         login: [
           null,
-          [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+          [Validators.required, Validators.pattern('^[a-z0-9.%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
         ],
         password: [
           null,
           [
             Validators.required,
             Validators.minLength(8),
-            Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-])/),
+            Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^-])/),
           ],
         ],
         confirmPassword: [null, [Validators.required]],
       },
-      { validator: this.passwordMatchingValidatior('password', 'confirmPassword') },
+      { validator: passwordMatchingValidatior('password', 'confirmPassword') },
     );
   }
 
-  //https://jasonwatmore.com/post/2020/07/07/angular-10-reactive-forms-validation-example
-
-  private passwordMatchingValidatior(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-        return;
-      }
-
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-  }
-
   public disableBtn() {
-    if (this._login?.invalid || this._password?.invalid) {
+    if (this.login?.invalid || this.password?.invalid) {
       return true;
     } else return false;
   }
@@ -71,19 +53,19 @@ export class EditProfilePageComponent implements OnInit {
     this.location.back();
   }
 
-  public get _name() {
+  public get name() {
     return this.editForm.get('name');
   }
 
-  public get _login() {
+  public get login() {
     return this.editForm.get('login');
   }
 
-  public get _password() {
+  public get password() {
     return this.editForm.get('password');
   }
 
-  public get _confirmePassword() {
+  public get confirmePassword() {
     return this.editForm.get('confirmPassword');
   }
 }

@@ -22,31 +22,31 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       login: [
         null,
-        [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+        [Validators.required, Validators.pattern('^[a-z0-9.%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
       ],
       password: [
         null,
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-])/),
+          Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^-])/),
         ],
       ],
     });
   }
 
   public getPasswordErrorMessage() {
-    if (this._password?.errors?.['minlength'] || this._password?.errors?.['pattern']) {
+    if (this.password?.errors?.['minlength'] || this.password?.errors?.['pattern']) {
       return "Your password isn't strong enough";
     }
-    if (this._password?.errors?.['required']) {
+    if (this.password?.errors?.['required']) {
       return 'Please enter a password';
     }
     return '';
   }
 
   public disableBtn() {
-    if (this._login?.invalid || this._password?.invalid) {
+    if (this.login?.invalid || this.password?.invalid) {
       return true;
     } else return false;
   }
@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  public get _login() {
+  public get login() {
     return this.loginForm.get('login');
   }
 
-  public get _password() {
+  public get password() {
     return this.loginForm.get('password');
   }
 }

@@ -10,7 +10,7 @@
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Name</mat-label>
         <input matInput placeholder="Enter your name" class="input" formControlName="name" />
-        <mat-error *ngIf="_name?.errors?.['required']">Please enter your name</mat-error>
+        <mat-error *ngIf="name?.errors?.['required']">Please enter your name</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Login</mat-label>
@@ -20,8 +20,8 @@
           class="input"
           formControlName="login"
         />
-        <mat-error *ngIf="_login?.errors?.['required']">Please enter a login email</mat-error>
-        <mat-error *ngIf="_login?.errors?.['pattern']">The login email is invalid</mat-error>
+        <mat-error *ngIf="login?.errors?.['required']">Please enter a login email</mat-error>
+        <mat-error *ngIf="login?.errors?.['pattern']">The login email is invalid</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Password</mat-label>
@@ -35,10 +35,10 @@
         <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
           hidePassword ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="_password?.errors?.['minlength'] || _password?.errors?.['pattern']"
+        <mat-error *ngIf="password?.errors?.['minlength'] || password?.errors?.['pattern']"
           >Your password isn't strong enough</mat-error
         >
-        <mat-error *ngIf="_password?.errors?.['required']">Please enter a password</mat-error>
+        <mat-error *ngIf="password?.errors?.['required']">Please enter a password</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Confirm password</mat-label>
@@ -52,10 +52,10 @@
         <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
           hideConfirmPassword ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="_confirmePassword?.errors?.['mustMatch']"
+        <mat-error *ngIf="confirmePassword?.errors?.['mustMatch']"
           >The entered password doesn't match</mat-error
         >
-        <mat-error *ngIf="_confirmePassword?.errors?.['required']"
+        <mat-error *ngIf="confirmePassword?.errors?.['required']"
           >Please enter a password</mat-error
         >
       </mat-form-field>
