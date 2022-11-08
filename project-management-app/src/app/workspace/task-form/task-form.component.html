@@ -4,7 +4,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <h1 class="form__title">Create Task</h1>
+  <h1 class="form__title">{{data.title}}</h1>
   <form class="task" [formGroup]="taskForm" (ngSubmit)="submitTaskForm()">
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>Task Name</mat-label>
@@ -20,17 +20,20 @@
         <mat-form-field appearance="outline" class="form__selector">
           <mat-label>Task Size</mat-label>
           <mat-select formControlName="taskSize" class="form_field">
-            <mat-option value="small">Small</mat-option>
-            <mat-option value="mid">Medium</mat-option>
-            <mat-option value="big">Big</mat-option>
+            <mat-option value="Tiny">Tiny</mat-option>
+            <mat-option value="Small">Small</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="Large">Large</mat-option>
+            <mat-option value="X-large">X-large</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline" class="form__selector">
           <mat-label>Task Priority</mat-label>
           <mat-select formControlName="taskPriority" class="form_field">
-            <mat-option value="high">High</mat-option>
-            <mat-option value="mid">Medium</mat-option>
-            <mat-option value="low">Low</mat-option>
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
+            <mat-option value="Urgent">Urgent</mat-option>
           </mat-select>
         </mat-form-field>
     </div>
@@ -38,9 +41,9 @@
     <div class="task__description description">
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Textarea</mat-label>
-        <textarea matInput formControlName="taskDescription"></textarea>
+        <textarea matInput formControlName="taskDescription">{{data.formFields.taskDescription}}</textarea>
       </mat-form-field>
     </div>
-    <button mat-raised-button type="submit" class="form__btn">Create Task</button>
+    <button mat-raised-button type="submit" class="form__btn">{{data.btnName}}</button>
   </form>
 </div>
