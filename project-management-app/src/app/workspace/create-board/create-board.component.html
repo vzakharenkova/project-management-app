@@ -1,0 +1,21 @@
+<div class="form">
+  <div class="close-container">
+    <button mat-raised-button  class="form__close" (click)="closeTaskForm()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h1 class="form__title">{{formTitle}}</h1>
+  <form class="task" [formGroup]="boardNameForm" (ngSubmit)="submitTaskForm()">
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Board Name</mat-label>
+      <input
+        matInput
+        placeholder="Enter Board Name"
+        formControlName="boardName"
+      />
+      <mat-error>{{boardNameErrMsg}}</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" class="form__btn">{{formTitle}}</button>
+  </form>
+</div>

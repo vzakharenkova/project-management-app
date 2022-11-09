@@ -11,6 +11,7 @@ import { BoardCardComponent } from './board-list-page/components/board-card/boar
 import { TaskFormComponent } from './task-form/task-form.component';
 import { WorkspaceComponent } from './workspace.component';
 import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
+import { CreateBoardComponent } from './create-board/create-board.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     TaskPriorityDirective,
     TaskFormComponent,
     EditProfilePageComponent,
+    CreateBoardComponent,
   ],
     imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
