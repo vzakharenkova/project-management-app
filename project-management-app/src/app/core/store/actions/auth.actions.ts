@@ -1,11 +1,12 @@
 import { createAction, props } from '@ngrx/store';
+import { AuthDataModel } from '../../../shared/models/user.model';
 
 export const signUp = createAction(
   '[AUTH] Create new account',
-  props<{ name: string; login: string; password: string }>(),
+  props<{ newUserData: AuthDataModel }>(),
 );
 
 export const signIn = createAction(
   '[AUTH] Create token',
-  props<{ login: string; password: string }>(),
+  props<{ userData: Omit<AuthDataModel, 'name'> }>(),
 );

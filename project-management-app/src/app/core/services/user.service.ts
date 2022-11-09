@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { UserModel } from '../../shared/models/user.model';
+import { AuthDataModel, UserModel } from '../../shared/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,10 +24,7 @@ export class UserService {
     return this.http.delete<void>(`${this.URL}/${userId}`);
   }
 
-  updateUser(
-    userId: string,
-    newData: Omit<UserModel, 'id'> & { password: string },
-  ): Observable<UserModel> {
+  updateUser(userId: string, newData: AuthDataModel): Observable<UserModel> {
     return this.http.put<UserModel>(`${this.URL}/${userId}`, newData);
   }
 }

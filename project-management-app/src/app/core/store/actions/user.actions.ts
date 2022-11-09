@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { UserModel } from '../../../shared/models/user.model';
+
+import { AuthDataModel } from '../../../shared/models/user.model';
 
 export enum UserActionsList {
   getAll = '[USER] Get all users',
@@ -16,5 +17,5 @@ export const deleteUser = createAction(UserActionsList.delete, props<{ userId: s
 
 export const updateUser = createAction(
   UserActionsList.update,
-  props<{ userId: string; data: Omit<UserModel, 'id'> & { password: string } }>(),
+  props<{ userId: string; data: AuthDataModel }>(),
 );
