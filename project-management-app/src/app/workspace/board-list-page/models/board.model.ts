@@ -6,6 +6,7 @@ export interface BoardModel {
 export interface ColumnModel {
   title: string;
   tasks: TaskModel[] | null;
+  id: string;
 }
 
 export interface TaskModel {
