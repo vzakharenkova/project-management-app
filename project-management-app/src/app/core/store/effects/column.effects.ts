@@ -46,7 +46,7 @@ export class ColumnEffects {
       switchMap((action) =>
         this.columnService.createColumn(action.boardId, action.data).pipe(
           map((column) => ({ type: ColumnApiActionsList.columnCreated, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnCreatedError, payload: err })),
+          catchError((err) => of({ type: ColumnApiActionsList.columnCreatedError, err })),
         ),
       ),
     );
@@ -58,7 +58,7 @@ export class ColumnEffects {
       switchMap((action) =>
         this.columnService.getColumnById(action.boardId, action.columnId).pipe(
           map((column) => ({ type: ColumnApiActionsList.columnLoaded, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnLoadedError, payload: err })),
+          catchError((err) => of({ type: ColumnApiActionsList.columnLoadedError, err })),
         ),
       ),
     );
@@ -70,7 +70,7 @@ export class ColumnEffects {
       switchMap((action) =>
         this.columnService.deleteColumn(action.boardId, action.columnId).pipe(
           map(() => ({ type: ColumnApiActionsList.columnDeleted })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnDeletedError, payload: err })),
+          catchError((err) => of({ type: ColumnApiActionsList.columnDeletedError, err })),
         ),
       ),
     );
@@ -82,7 +82,7 @@ export class ColumnEffects {
       switchMap((action) =>
         this.columnService.updateColumn(action.boardId, action.columnId, action.data).pipe(
           map((column) => ({ type: ColumnApiActionsList.columnUpdated, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnUpdatedError, payload: err })),
+          catchError((err) => of({ type: ColumnApiActionsList.columnUpdatedError, err })),
         ),
       ),
     );

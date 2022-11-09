@@ -38,7 +38,7 @@ export class UserEffects {
       switchMap((action) =>
         this.userService.getUserById(action.userId).pipe(
           map((user) => ({ type: UserApiActionsList.userLoaded, user })),
-          catchError((err) => of({ type: UserApiActionsList.userLoadedError, payload: err })),
+          catchError((err) => of({ type: UserApiActionsList.userLoadedError, err })),
         ),
       ),
     );
@@ -50,7 +50,7 @@ export class UserEffects {
       switchMap((action) =>
         this.userService.deleteUser(action.userId).pipe(
           map(() => ({ type: UserApiActionsList.userDeleted })),
-          catchError((err) => of({ type: UserApiActionsList.userDeletedError, payload: err })),
+          catchError((err) => of({ type: UserApiActionsList.userDeletedError, err })),
         ),
       ),
     );
@@ -62,7 +62,7 @@ export class UserEffects {
       switchMap((action) =>
         this.userService.updateUser(action.userId, action.data).pipe(
           map((user) => ({ type: UserApiActionsList.userUpdated, user })),
-          catchError((err) => of({ type: UserApiActionsList.userUpdatedError, payload: err })),
+          catchError((err) => of({ type: UserApiActionsList.userUpdatedError, err })),
         ),
       ),
     );
