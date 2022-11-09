@@ -16,7 +16,10 @@ export class ColumnService {
     return this.http.get<ColumnModel[]>(`${this.URL}/${boardId}/columns`);
   }
 
-  createColumn(boardId: string, newColumnData: Omit<ColumnModel, 'id'>): Observable<ColumnModel> {
+  createColumn(
+    boardId: string,
+    newColumnData: Omit<ColumnModel, 'id' | 'order'>,
+  ): Observable<ColumnModel> {
     return this.http.post<ColumnModel>(`${this.URL}/${boardId}/columns`, newColumnData);
   }
 

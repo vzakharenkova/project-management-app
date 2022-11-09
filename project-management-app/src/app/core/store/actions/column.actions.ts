@@ -12,7 +12,7 @@ export const getAllColumns = createAction(ColumnActionsList.getAll, props<{ boar
 
 export const createColumn = createAction(
   ColumnActionsList.create,
-  props<{ boardId: string; title: string }>(),
+  props<{ boardId: string; data: { title: string } }>(),
 );
 
 export const getColumnById = createAction(
