@@ -7,8 +7,9 @@
     </div>
     <button mat-raised-button class="create_btn">Create a column</button>
   </div>
-  <div class="board-columns example-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+  <div class="board-columns" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
     <app-board-column
+      cdkDragLockAxis="x"
       *ngFor="let column of board.columns"
       [column]="column"
       [board]="board"

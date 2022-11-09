@@ -9,6 +9,7 @@ export const boardList: BoardModel[] = [
     title: 'Agrthyr',
     columns: [
       {
+        id: '1',
         title: 'Aygbvf',
         tasks: [
           {
@@ -38,6 +39,7 @@ export const boardList: BoardModel[] = [
         ],
       },
       {
+        id: '2',
         title: 'Aygbvf',
         tasks: [
           {
@@ -67,6 +69,7 @@ export const boardList: BoardModel[] = [
         ],
       },
       {
+        id: '3',
         title: 'Aygbvf',
         tasks: [
           {
@@ -90,6 +93,7 @@ export const boardList: BoardModel[] = [
         ],
       },
       {
+        id: '12',
         title: 'Aygbvf',
         tasks: [
           {
@@ -103,7 +107,7 @@ export const boardList: BoardModel[] = [
     ],
   },
 
-  { title: 'Fhfjhvdf', columns: [{ title: 'Test', tasks: null }] },
+  { title: 'Fhfjhvdf', columns: [{ id: '0', title: 'Test', tasks: null }] },
   { title: 'Sgregherh', columns: null },
   { title: 'Bfwegfer', columns: null },
   { title: 'Wgrgherh', columns: null },
