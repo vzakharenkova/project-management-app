@@ -46,7 +46,7 @@ export class TaskEffects {
       switchMap((action) =>
         this.taskService.createTask(action.boardId, action.columnId, action.data).pipe(
           map((task) => ({ type: TaskApiActionsList.taskCreated, task })),
-          catchError((err) => of({ type: TaskApiActionsList.taskCreatedError, payload: err })),
+          catchError((err) => of({ type: TaskApiActionsList.taskCreatedError, err })),
         ),
       ),
     );
@@ -58,7 +58,7 @@ export class TaskEffects {
       switchMap((action) =>
         this.taskService.getTaskById(action.boardId, action.columnId, action.taskId).pipe(
           map((task) => ({ type: TaskApiActionsList.taskLoaded, task })),
-          catchError((err) => of({ type: TaskApiActionsList.taskLoadedError, payload: err })),
+          catchError((err) => of({ type: TaskApiActionsList.taskLoadedError, err })),
         ),
       ),
     );
@@ -70,7 +70,7 @@ export class TaskEffects {
       switchMap((action) =>
         this.taskService.deleteTask(action.boardId, action.columnId, action.taskId).pipe(
           map(() => ({ type: TaskApiActionsList.taskDeleted })),
-          catchError((err) => of({ type: TaskApiActionsList.taskDeletedError, payload: err })),
+          catchError((err) => of({ type: TaskApiActionsList.taskDeletedError, err })),
         ),
       ),
     );
@@ -84,7 +84,7 @@ export class TaskEffects {
           .updateTask(action.boardId, action.columnId, action.taskId, action.data)
           .pipe(
             map((task) => ({ type: TaskApiActionsList.taskUpdated, task })),
-            catchError((err) => of({ type: TaskApiActionsList.taskUpdatedError, payload: err })),
+            catchError((err) => of({ type: TaskApiActionsList.taskUpdatedError, err })),
           ),
       ),
     );

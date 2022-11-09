@@ -46,7 +46,7 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardService.createBoard(action.data).pipe(
           map((board) => ({ type: BoardApiActionsList.boardCreated, board })),
-          catchError((err) => of({ type: BoardApiActionsList.boardCreatedError, payload: err })),
+          catchError((err) => of({ type: BoardApiActionsList.boardCreatedError, err })),
         ),
       ),
     );
@@ -58,7 +58,7 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardService.getBoardById(action.boardId).pipe(
           map((board) => ({ type: BoardApiActionsList.boardLoaded, board })),
-          catchError((err) => of({ type: BoardApiActionsList.boardLoadedError, payload: err })),
+          catchError((err) => of({ type: BoardApiActionsList.boardLoadedError, err })),
         ),
       ),
     );
@@ -70,7 +70,7 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardService.deleteBoard(action.boardId).pipe(
           map(() => ({ type: BoardApiActionsList.boardDeleted })),
-          catchError((err) => of({ type: BoardApiActionsList.boardDeletedError, payload: err })),
+          catchError((err) => of({ type: BoardApiActionsList.boardDeletedError, err })),
         ),
       ),
     );
@@ -82,7 +82,7 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardService.updateBoard(action.boardId, action.data).pipe(
           map((board) => ({ type: BoardApiActionsList.boardUpdated, board })),
-          catchError((err) => of({ type: BoardApiActionsList.boardUpdatedError, payload: err })),
+          catchError((err) => of({ type: BoardApiActionsList.boardUpdatedError, err })),
         ),
       ),
     );
