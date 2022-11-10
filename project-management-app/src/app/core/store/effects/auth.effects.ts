@@ -4,13 +4,7 @@ import { catchError, map, of, switchMap } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { signIn, signUp } from '../actions/auth.actions';
-
-export enum AuthApiActionsList {
-  signedIn = '[AUTH API] Sign in success',
-  signedInError = '[AUTH API] Sign in error',
-  signedUp = '[AUTH API] Sign up success',
-  signedUpError = '[AUTH API] Sign up error',
-}
+import { signedIn, signedInError, signedUp, signedUpError } from '../actions/auth-api.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -21,8 +15,8 @@ export class AuthEffects {
       ofType(signIn),
       switchMap((action) =>
         this.authService.signIn(action.userData).pipe(
-          map((tokenObj) => ({ type: AuthApiActionsList.signedIn, tokenObj })),
-          catchError((err) => of({ type: AuthApiActionsList.signedInError, err })),
+          map((tokenObj) => signedIn({ tokenObj })),
+          catchError((err) => of(signedInError({ err }))),
         ),
       ),
     );
@@ -33,8 +27,8 @@ export class AuthEffects {
       ofType(signUp),
       switchMap((action) =>
         this.authService.signUp(action.newUserData).pipe(
-          map((user) => ({ type: AuthApiActionsList.signedUp, user })),
-          catchError((err) => of({ type: AuthApiActionsList.signedUpError, err })),
+          map((user) => signedUp({ user })),
+          catchError((err) => of(signedUpError({ err }))),
         ),
       ),
     );

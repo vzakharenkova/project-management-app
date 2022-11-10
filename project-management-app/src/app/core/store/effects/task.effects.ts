@@ -10,19 +10,18 @@ import {
   getTaskById,
   updateTask,
 } from '../actions/task.actions';
-
-export enum TaskApiActionsList {
-  allTasksLoaded = '[TASK API] All tasks loaded success',
-  allTasksError = '[TASK API] All tasks loaded error',
-  taskCreated = '[TASK API] New task created success',
-  taskCreatedError = '[TASK API] New task created error',
-  taskLoaded = '[TASK API] Single task loaded success',
-  taskLoadedError = '[TASK API] Single task loaded error',
-  taskDeleted = '[TASK API]  Task deleted success',
-  taskDeletedError = '[TASK API] Task deleted error',
-  taskUpdated = '[TASK API] Task updated success',
-  taskUpdatedError = '[TASK API] Task updated error',
-}
+import {
+  allTasksError,
+  allTasksLoaded,
+  taskCreated,
+  taskCreatedError,
+  taskDeleted,
+  taskDeletedError,
+  taskLoaded,
+  taskLoadedError,
+  taskUpdated,
+  taskUpdatedError,
+} from '../actions/task-api.actions';
 
 @Injectable()
 export class TaskEffects {
@@ -33,8 +32,8 @@ export class TaskEffects {
       ofType(getAllTasks),
       switchMap((action) =>
         this.taskService.getAllTasks(action.boardId, action.columnId).pipe(
-          map((tasks) => ({ type: TaskApiActionsList.allTasksLoaded, tasks })),
-          catchError((err) => of({ type: TaskApiActionsList.allTasksError, err })),
+          map((tasks) => allTasksLoaded({ tasks })),
+          catchError((err) => of(allTasksError({ err }))),
         ),
       ),
     );
@@ -45,8 +44,8 @@ export class TaskEffects {
       ofType(createTask),
       switchMap((action) =>
         this.taskService.createTask(action.boardId, action.columnId, action.data).pipe(
-          map((task) => ({ type: TaskApiActionsList.taskCreated, task })),
-          catchError((err) => of({ type: TaskApiActionsList.taskCreatedError, err })),
+          map((task) => taskCreated({ task })),
+          catchError((err) => of(taskCreatedError({ err }))),
         ),
       ),
     );
@@ -57,8 +56,8 @@ export class TaskEffects {
       ofType(getTaskById),
       switchMap((action) =>
         this.taskService.getTaskById(action.boardId, action.columnId, action.taskId).pipe(
-          map((task) => ({ type: TaskApiActionsList.taskLoaded, task })),
-          catchError((err) => of({ type: TaskApiActionsList.taskLoadedError, err })),
+          map((task) => taskLoaded({ task })),
+          catchError((err) => of(taskLoadedError({ err }))),
         ),
       ),
     );
@@ -69,8 +68,8 @@ export class TaskEffects {
       ofType(deleteTask),
       switchMap((action) =>
         this.taskService.deleteTask(action.boardId, action.columnId, action.taskId).pipe(
-          map(() => ({ type: TaskApiActionsList.taskDeleted })),
-          catchError((err) => of({ type: TaskApiActionsList.taskDeletedError, err })),
+          map(() => taskDeleted()),
+          catchError((err) => of(taskDeletedError({ err }))),
         ),
       ),
     );
@@ -83,8 +82,8 @@ export class TaskEffects {
         this.taskService
           .updateTask(action.boardId, action.columnId, action.taskId, action.data)
           .pipe(
-            map((task) => ({ type: TaskApiActionsList.taskUpdated, task })),
-            catchError((err) => of({ type: TaskApiActionsList.taskUpdatedError, err })),
+            map((task) => taskUpdated({ task })),
+            catchError((err) => of(taskUpdatedError({ err }))),
           ),
       ),
     );

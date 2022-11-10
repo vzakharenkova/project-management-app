@@ -4,17 +4,16 @@ import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 
 import { UserService } from '../../services/user.service';
 import { deleteUser, getAllUsers, getUserById, updateUser } from '../actions/user.actions';
-
-export enum UserApiActionsList {
-  allUsersLoaded = '[USER API] All users loaded success',
-  allUsersError = '[USER API] All users loaded error',
-  userLoaded = '[USER API] Single user loaded success',
-  userLoadedError = '[USER API] Single user loaded error',
-  userDeleted = '[USER API]  User deleted success',
-  userDeletedError = '[USER API] User deleted error',
-  userUpdated = '[USER API] User updated success',
-  userUpdatedError = '[USER API] User updated error',
-}
+import {
+  allUsersError,
+  allUsersLoaded,
+  userDeleted,
+  userDeletedError,
+  userLoaded,
+  userLoadedError,
+  userUpdated,
+  userUpdatedError,
+} from '../actions/user-api.actions';
 
 @Injectable()
 export class UserEffects {
@@ -25,8 +24,10 @@ export class UserEffects {
       ofType(getAllUsers),
       mergeMap(() =>
         this.userService.getAllUsers().pipe(
-          map((users) => ({ type: UserApiActionsList.allUsersLoaded, users })),
-          catchError((err) => of({ type: UserApiActionsList.allUsersError, err })),
+          map(
+            (users) => allUsersLoaded({ users }),
+            catchError((err: Error) => of(allUsersError({ err }))),
+          ),
         ),
       ),
     );
@@ -37,8 +38,8 @@ export class UserEffects {
       ofType(getUserById),
       switchMap((action) =>
         this.userService.getUserById(action.userId).pipe(
-          map((user) => ({ type: UserApiActionsList.userLoaded, user })),
-          catchError((err) => of({ type: UserApiActionsList.userLoadedError, err })),
+          map((user) => userLoaded({ user })),
+          catchError((err) => of(userLoadedError({ err }))),
         ),
       ),
     );
@@ -49,8 +50,8 @@ export class UserEffects {
       ofType(deleteUser),
       switchMap((action) =>
         this.userService.deleteUser(action.userId).pipe(
-          map(() => ({ type: UserApiActionsList.userDeleted })),
-          catchError((err) => of({ type: UserApiActionsList.userDeletedError, err })),
+          map(() => userDeleted()),
+          catchError((err) => of(userDeletedError({ err }))),
         ),
       ),
     );
@@ -61,8 +62,8 @@ export class UserEffects {
       ofType(updateUser),
       switchMap((action) =>
         this.userService.updateUser(action.userId, action.data).pipe(
-          map((user) => ({ type: UserApiActionsList.userUpdated, user })),
-          catchError((err) => of({ type: UserApiActionsList.userUpdatedError, err })),
+          map((user) => userUpdated({ user })),
+          catchError((err) => of(userUpdatedError({ err }))),
         ),
       ),
     );
