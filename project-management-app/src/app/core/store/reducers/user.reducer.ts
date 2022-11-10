@@ -8,13 +8,10 @@ export const userReducer = createReducer(
   initialState,
   on(allUsersLoaded, (state, { users }): StateModel => ({ ...state, users })),
 
-  on(
-    userDeleted,
-    (state, { userId }): StateModel => ({
-      ...state,
-      users: state.users.filter((user) => user.id === userId),
-    }),
-  ),
+  on(userDeleted, (state, { userId }): StateModel => {
+    state.users.filter((user) => user.id === userId);
+    return { ...state };
+  }),
 
   on(userUpdated, (state, { user }): StateModel => {
     const newUsers = state.users.map((currentUser) => {

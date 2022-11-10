@@ -44,7 +44,10 @@ export const boardLoadedError = createAction(
   props<{ err: Error }>(),
 );
 
-export const boardDeleted = createAction(BoardApiActionsList.boardDeleted);
+export const boardDeleted = createAction(
+  BoardApiActionsList.boardDeleted,
+  props<{ boardId: string }>(),
+);
 
 export const boardDeletedError = createAction(
   BoardApiActionsList.boardDeletedError,

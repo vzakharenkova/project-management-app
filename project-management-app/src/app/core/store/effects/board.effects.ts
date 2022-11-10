@@ -68,7 +68,7 @@ export class BoardEffects {
       ofType(deleteBoard),
       switchMap((action) =>
         this.boardService.deleteBoard(action.boardId).pipe(
-          map(() => boardDeleted()),
+          map(() => boardDeleted({ boardId: action.boardId })),
           catchError((err) => of(boardDeletedError({ err }))),
         ),
       ),
