@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardModel } from '../board-list-page/models/board.model';
+import { BoardModel, ColumnModel } from '../board-list-page/models/board.model';
 import { boardList } from '../../shared/mocks/boardsList';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-single-board-page',
@@ -18,5 +19,9 @@ export class SingleBoardPageComponent implements OnInit {
       const boardTitle = params['title'];
       this.board = <BoardModel>boardList.find((item) => item.title === boardTitle);
     });
+  }
+
+  drop(event: CdkDragDrop<ColumnModel[]>) {
+    moveItemInArray(this.board.columns!, event.previousIndex, event.currentIndex);
   }
 }
