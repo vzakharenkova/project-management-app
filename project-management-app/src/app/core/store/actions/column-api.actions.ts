@@ -16,7 +16,7 @@ export enum ColumnApiActionsList {
 
 export const allColumnsLoaded = createAction(
   ColumnApiActionsList.allColumnsLoaded,
-  props<{ columns: ColumnModel[] }>(),
+  props<{ columns: ColumnModel[]; boardId: string }>(),
 );
 
 export const allColumnsError = createAction(
@@ -26,7 +26,7 @@ export const allColumnsError = createAction(
 
 export const columnCreated = createAction(
   ColumnApiActionsList.columnCreated,
-  props<{ column: ColumnModel }>(),
+  props<{ column: ColumnModel; boardId: string }>(),
 );
 
 export const columnCreatedError = createAction(
@@ -36,7 +36,7 @@ export const columnCreatedError = createAction(
 
 export const columnLoaded = createAction(
   ColumnApiActionsList.columnLoaded,
-  props<{ column: ColumnModel }>(),
+  props<{ column: ColumnModel; boardId: string }>(),
 );
 
 export const columnLoadedError = createAction(
@@ -44,7 +44,10 @@ export const columnLoadedError = createAction(
   props<{ err: Error }>(),
 );
 
-export const columnDeleted = createAction(ColumnApiActionsList.columnDeleted);
+export const columnDeleted = createAction(
+  ColumnApiActionsList.columnDeleted,
+  props<{ boardId: string; columnId: string }>(),
+);
 
 export const columnDeletedError = createAction(
   ColumnApiActionsList.columnDeletedError,
@@ -53,7 +56,7 @@ export const columnDeletedError = createAction(
 
 export const columnUpdated = createAction(
   ColumnApiActionsList.columnUpdated,
-  props<{ column: ColumnModel }>(),
+  props<{ column: ColumnModel; boardId: string }>(),
 );
 
 export const columnUpdatedError = createAction(

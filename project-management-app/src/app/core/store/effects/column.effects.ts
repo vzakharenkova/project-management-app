@@ -32,7 +32,7 @@ export class ColumnEffects {
       ofType(getAllColumns),
       switchMap((action) =>
         this.columnService.getAllColumns(action.boardId).pipe(
-          map((columns) => allColumnsLoaded({ columns })),
+          map((columns) => allColumnsLoaded({ columns, boardId: action.boardId })),
           catchError((err) => of(allColumnsError({ err }))),
         ),
       ),
@@ -44,7 +44,7 @@ export class ColumnEffects {
       ofType(createColumn),
       switchMap((action) =>
         this.columnService.createColumn(action.boardId, action.data).pipe(
-          map((column) => columnCreated({ column })),
+          map((column) => columnCreated({ column, boardId: action.boardId })),
           catchError((err) => of(columnCreatedError({ err }))),
         ),
       ),
@@ -56,7 +56,7 @@ export class ColumnEffects {
       ofType(getColumnById),
       switchMap((action) =>
         this.columnService.getColumnById(action.boardId, action.columnId).pipe(
-          map((column) => columnLoaded({ column })),
+          map((column) => columnLoaded({ column, boardId: action.boardId })),
           catchError((err) => of(columnLoadedError({ err }))),
         ),
       ),
@@ -68,7 +68,7 @@ export class ColumnEffects {
       ofType(deleteColumn),
       switchMap((action) =>
         this.columnService.deleteColumn(action.boardId, action.columnId).pipe(
-          map(() => columnDeleted()),
+          map(() => columnDeleted({ boardId: action.columnId, columnId: action.columnId })),
           catchError((err) => of(columnDeletedError({ err }))),
         ),
       ),
@@ -80,7 +80,7 @@ export class ColumnEffects {
       ofType(updateColumn),
       switchMap((action) =>
         this.columnService.updateColumn(action.boardId, action.columnId, action.data).pipe(
-          map((column) => columnUpdated({ column })),
+          map((column) => columnUpdated({ column, boardId: action.boardId })),
           catchError((err) => of(columnUpdatedError({ err }))),
         ),
       ),
