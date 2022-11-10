@@ -15,7 +15,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 @Component({
   selector: 'app-board-column',
   templateUrl: './board-column.component.html',
-  styleUrls: ['./board-column.component.scss'],
+  styleUrls: ['./board-column.component.scss', '../../drag&drop.scss'],
 })
 export class BoardColumnComponent implements OnInit {
   @Input() column: ColumnModel;
