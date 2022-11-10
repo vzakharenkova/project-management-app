@@ -50,7 +50,7 @@ export class UserEffects {
       ofType(deleteUser),
       switchMap((action) =>
         this.userService.deleteUser(action.userId).pipe(
-          map(() => userDeleted()),
+          map(() => userDeleted({ userId: action.userId })),
           catchError((err) => of(userDeletedError({ err }))),
         ),
       ),
