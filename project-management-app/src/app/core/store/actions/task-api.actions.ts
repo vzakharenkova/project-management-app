@@ -16,7 +16,7 @@ export enum TaskApiActionsList {
 
 export const allTasksLoaded = createAction(
   TaskApiActionsList.allTasksLoaded,
-  props<{ tasks: TaskModel[] }>(),
+  props<{ tasks: TaskModel[]; boardId: string; columnId: string }>(),
 );
 
 export const allTasksError = createAction(
@@ -26,7 +26,7 @@ export const allTasksError = createAction(
 
 export const taskCreated = createAction(
   TaskApiActionsList.taskCreated,
-  props<{ task: TaskModel }>(),
+  props<{ task: TaskModel; boardId: string; columnId: string }>(),
 );
 
 export const taskCreatedError = createAction(
@@ -34,14 +34,20 @@ export const taskCreatedError = createAction(
   props<{ err: Error }>(),
 );
 
-export const taskLoaded = createAction(TaskApiActionsList.taskLoaded, props<{ task: TaskModel }>());
+export const taskLoaded = createAction(
+  TaskApiActionsList.taskLoaded,
+  props<{ task: TaskModel; boardId: string; columnId: string }>(),
+);
 
 export const taskLoadedError = createAction(
   TaskApiActionsList.taskLoadedError,
   props<{ err: Error }>(),
 );
 
-export const taskDeleted = createAction(TaskApiActionsList.taskDeleted);
+export const taskDeleted = createAction(
+  TaskApiActionsList.taskDeleted,
+  props<{ boardId: string; columnId: string; taskId: string }>(),
+);
 
 export const taskDeletedError = createAction(
   TaskApiActionsList.taskDeletedError,
@@ -50,7 +56,7 @@ export const taskDeletedError = createAction(
 
 export const taskUpdated = createAction(
   TaskApiActionsList.taskUpdated,
-  props<{ task: TaskModel }>(),
+  props<{ task: TaskModel; boardId: string; columnId: string }>(),
 );
 
 export const taskUpdatedError = createAction(

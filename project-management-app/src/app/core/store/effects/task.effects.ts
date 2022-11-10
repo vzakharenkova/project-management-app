@@ -32,7 +32,9 @@ export class TaskEffects {
       ofType(getAllTasks),
       switchMap((action) =>
         this.taskService.getAllTasks(action.boardId, action.columnId).pipe(
-          map((tasks) => allTasksLoaded({ tasks })),
+          map((tasks) =>
+            allTasksLoaded({ tasks, boardId: action.boardId, columnId: action.columnId }),
+          ),
           catchError((err) => of(allTasksError({ err }))),
         ),
       ),
@@ -44,7 +46,7 @@ export class TaskEffects {
       ofType(createTask),
       switchMap((action) =>
         this.taskService.createTask(action.boardId, action.columnId, action.data).pipe(
-          map((task) => taskCreated({ task })),
+          map((task) => taskCreated({ task, boardId: action.boardId, columnId: action.columnId })),
           catchError((err) => of(taskCreatedError({ err }))),
         ),
       ),
@@ -56,7 +58,7 @@ export class TaskEffects {
       ofType(getTaskById),
       switchMap((action) =>
         this.taskService.getTaskById(action.boardId, action.columnId, action.taskId).pipe(
-          map((task) => taskLoaded({ task })),
+          map((task) => taskLoaded({ task, boardId: action.boardId, columnId: action.columnId })),
           catchError((err) => of(taskLoadedError({ err }))),
         ),
       ),
@@ -68,7 +70,13 @@ export class TaskEffects {
       ofType(deleteTask),
       switchMap((action) =>
         this.taskService.deleteTask(action.boardId, action.columnId, action.taskId).pipe(
-          map(() => taskDeleted()),
+          map(() =>
+            taskDeleted({
+              boardId: action.boardId,
+              columnId: action.columnId,
+              taskId: action.taskId,
+            }),
+          ),
           catchError((err) => of(taskDeletedError({ err }))),
         ),
       ),
@@ -82,7 +90,9 @@ export class TaskEffects {
         this.taskService
           .updateTask(action.boardId, action.columnId, action.taskId, action.data)
           .pipe(
-            map((task) => taskUpdated({ task })),
+            map((task) =>
+              taskUpdated({ task, boardId: action.boardId, columnId: action.columnId }),
+            ),
             catchError((err) => of(taskUpdatedError({ err }))),
           ),
       ),
