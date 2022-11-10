@@ -30,7 +30,10 @@ export const userLoadedError = createAction(
   props<{ err: Error }>(),
 );
 
-export const userDeleted = createAction(UserApiActionsList.userDeleted);
+export const userDeleted = createAction(
+  UserApiActionsList.userDeleted,
+  props<{ userId: string }>(),
+);
 
 export const userDeletedError = createAction(
   UserApiActionsList.userDeletedError,
