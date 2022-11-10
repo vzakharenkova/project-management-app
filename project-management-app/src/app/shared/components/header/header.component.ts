@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateBoardComponent } from '../../../workspace/create-board/create-board.component';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public isScrolled: boolean;
+
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.animateHeader();
@@ -20,5 +25,9 @@ export class HeaderComponent implements OnInit {
         this.isScrolled = false;
       }
     };
+  }
+
+  openFormCreateBoard() {
+    this.dialog.open(CreateBoardComponent);
   }
 }
