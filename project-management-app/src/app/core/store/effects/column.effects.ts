@@ -10,19 +10,18 @@ import {
   getColumnById,
   updateColumn,
 } from '../actions/column.actions';
-
-export enum ColumnApiActionsList {
-  allColumnsLoaded = '[COLUMN API] All columns loaded success',
-  allColumnsError = '[COLUMN API] All columns loaded error',
-  columnCreated = '[COLUMN API] New column created success',
-  columnCreatedError = '[COLUMN API] New column created error',
-  columnLoaded = '[COLUMN API] Single column loaded success',
-  columnLoadedError = '[COLUMN API] Single column loaded error',
-  columnDeleted = '[COLUMN API]  Column deleted success',
-  columnDeletedError = '[COLUMN API] Column deleted error',
-  columnUpdated = '[COLUMN API] Column updated success',
-  columnUpdatedError = '[COLUMN API] Column updated error',
-}
+import {
+  allColumnsError,
+  allColumnsLoaded,
+  columnCreated,
+  columnCreatedError,
+  columnDeleted,
+  columnDeletedError,
+  columnLoaded,
+  columnLoadedError,
+  columnUpdated,
+  columnUpdatedError,
+} from '../actions/column-api.actions';
 
 @Injectable()
 export class ColumnEffects {
@@ -33,8 +32,8 @@ export class ColumnEffects {
       ofType(getAllColumns),
       switchMap((action) =>
         this.columnService.getAllColumns(action.boardId).pipe(
-          map((columns) => ({ type: ColumnApiActionsList.allColumnsLoaded, columns })),
-          catchError((err) => of({ type: ColumnApiActionsList.allColumnsError, err })),
+          map((columns) => allColumnsLoaded({ columns })),
+          catchError((err) => of(allColumnsError({ err }))),
         ),
       ),
     );
@@ -45,8 +44,8 @@ export class ColumnEffects {
       ofType(createColumn),
       switchMap((action) =>
         this.columnService.createColumn(action.boardId, action.data).pipe(
-          map((column) => ({ type: ColumnApiActionsList.columnCreated, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnCreatedError, err })),
+          map((column) => columnCreated({ column })),
+          catchError((err) => of(columnCreatedError({ err }))),
         ),
       ),
     );
@@ -57,8 +56,8 @@ export class ColumnEffects {
       ofType(getColumnById),
       switchMap((action) =>
         this.columnService.getColumnById(action.boardId, action.columnId).pipe(
-          map((column) => ({ type: ColumnApiActionsList.columnLoaded, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnLoadedError, err })),
+          map((column) => columnLoaded({ column })),
+          catchError((err) => of(columnLoadedError({ err }))),
         ),
       ),
     );
@@ -69,8 +68,8 @@ export class ColumnEffects {
       ofType(deleteColumn),
       switchMap((action) =>
         this.columnService.deleteColumn(action.boardId, action.columnId).pipe(
-          map(() => ({ type: ColumnApiActionsList.columnDeleted })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnDeletedError, err })),
+          map(() => columnDeleted()),
+          catchError((err) => of(columnDeletedError({ err }))),
         ),
       ),
     );
@@ -81,8 +80,8 @@ export class ColumnEffects {
       ofType(updateColumn),
       switchMap((action) =>
         this.columnService.updateColumn(action.boardId, action.columnId, action.data).pipe(
-          map((column) => ({ type: ColumnApiActionsList.columnUpdated, column })),
-          catchError((err) => of({ type: ColumnApiActionsList.columnUpdatedError, err })),
+          map((column) => columnUpdated({ column })),
+          catchError((err) => of(columnUpdatedError({ err }))),
         ),
       ),
     );
