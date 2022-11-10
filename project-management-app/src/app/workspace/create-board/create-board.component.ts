@@ -8,27 +8,27 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-board.component.scss'],
 })
 export class CreateBoardComponent implements OnInit {
-  boardNameForm: FormGroup;
+  boardForm: FormGroup;
 
   formTitle: string = 'Create Board';
 
   boardNameErrMsg: string = 'Please enter a board name';
 
   constructor(public dialog: MatDialog) {
-    this.boardNameForm = new FormGroup({
+    this.boardForm = new FormGroup({
       boardName: new FormControl('', Validators.required),
     });
   }
 
   ngOnInit(): void {}
 
-  closeTaskForm() {
+  closeBoardForm() {
     this.dialog.closeAll();
   }
 
-  submitTaskForm() {
-    if (this.boardNameForm.valid) {
-      console.log(this.boardNameForm.value);
+  submitCreateBoardForm() {
+    if (this.boardForm.valid) {
+      console.log(this.boardForm.value);
       this.dialog.closeAll();
     } else {
       console.log('Please enter a board name');

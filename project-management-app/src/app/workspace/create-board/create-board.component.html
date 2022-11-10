@@ -1,11 +1,11 @@
 <div class="form">
   <div class="close-container">
-    <button mat-raised-button  class="form__close" (click)="closeTaskForm()">
+    <button mat-raised-button  class="form__close" (click)="closeBoardForm()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <h1 class="form__title">{{formTitle}}</h1>
-  <form class="task" [formGroup]="boardNameForm" (ngSubmit)="submitTaskForm()">
+  <form class="task" [formGroup]="boardForm" (ngSubmit)="submitCreateBoardForm()">
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>Board Name</mat-label>
       <input
