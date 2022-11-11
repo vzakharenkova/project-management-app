@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { BoardActionsList } from 'src/app/core/store/actions/board.actions';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { BoardModel } from '../../../../shared/models/board.model';
 
 @Component({
@@ -10,7 +15,8 @@ import { BoardModel } from '../../../../shared/models/board.model';
 export class BoardCardComponent {
   @Input() board: BoardModel;
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  // eslint-disable-next-line @ngrx/no-typed-global-store
+  constructor(private router: Router, public dialog: MatDialog, private store: Store<StateModel>) {}
 
   public openConfirmationDialog(e: Event) {
     e.stopPropagation();
@@ -25,12 +31,13 @@ export class BoardCardComponent {
   }
 
   private deleteBoard(board: BoardModel) {
-    const selectedBoard = boardList.find((item) => item.title === board.title);
-    boardList.splice(boardList.indexOf(<BoardModel>selectedBoard), 1);
+    // const selectedBoard = this.store.select(selectBoardById(board.id));
+    // eslint-disable-next-line @ngrx/prefer-action-creator-in-dispatch
+    this.store.dispatch({ type: BoardActionsList.delete, props: { boardId: board.id } });
     this.dialog.closeAll();
   }
 
   public openBoard() {
-    this.router.navigate(['boards', this.board.title]);
+    this.router.navigate(['boards', this.board.id]);
   }
 }

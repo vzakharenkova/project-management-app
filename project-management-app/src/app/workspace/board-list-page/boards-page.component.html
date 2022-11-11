@@ -1,6 +1,6 @@
 <main class="page">
   <h2 class="page_title">Boards</h2>
   <div class="board-card_list">
-    <app-board-card></app-board-card>
+    <app-board-card *ngFor="let board of boards" [board]="board"></app-board-card>
   </div>
 </main>

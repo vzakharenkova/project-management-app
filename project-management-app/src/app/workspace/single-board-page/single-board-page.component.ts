@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardModel, ColumnModel } from '../board-list-page/models/board.model';
-import { boardList } from '../../shared/mocks/boardsList';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { BoardModel } from '../../shared/models/board.model';
+import { Store } from '@ngrx/store';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { selectBoardById } from 'src/app/core/store/selectos/app.selectors';
+import { BoardModel } from 'src/app/shared/models/board.model';
+import { ColumnModel } from 'src/app/shared/models/column.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-single-board-page',
   templateUrl: './single-board-page.component.html',
   styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
-export class SingleBoardPageComponent implements OnInit {
+export class SingleBoardPageComponent implements OnInit, OnDestroy {
   public board: BoardModel;
 
-  constructor(public route: ActivatedRoute) {}
+  private boardSubscribtion: Subscription;
+
+  // eslint-disable-next-line @ngrx/no-typed-global-store
+  constructor(public route: ActivatedRoute, private store: Store<StateModel>) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const boardTitle = params['title'];
-      this.board = <BoardModel>boardList.find((item) => item.title === boardTitle);
+      const boardId = params['id'];
+      // eslint-disable-next-line @ngrx/no-store-subscription
+      this.store.select(selectBoardById(boardId)).subscribe((board) => this.board === board);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.boardSubscribtion.unsubscribe();
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>) {

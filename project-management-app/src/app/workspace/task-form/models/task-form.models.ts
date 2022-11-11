@@ -1,5 +1,3 @@
-import { TaskPriority, TaskSize } from '../../board-list-page/models/board.model';
-
 export interface TaskForm {
   title: string;
   formFields: FormFields;
@@ -8,8 +6,8 @@ export interface TaskForm {
 }
 
 export interface FormFields {
-  taskSize: TaskSize;
-  taskPriority: TaskPriority;
+  taskSize: string;
+  taskPriority: string;
   taskName?: string;
   taskDescription?: string;
 }

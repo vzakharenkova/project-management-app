@@ -1,16 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  ColumnModel,
-  TaskPriority,
-  TaskSize,
-  BoardModel,
-  TaskModel,
-} from 'src/app/workspace/board-list-page/models/board.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ColumnModel } from 'src/app/shared/models/column.model';
+import { BoardModel } from 'src/app/shared/models/board.model';
+import { TaskModel } from 'src/app/shared/models/task.model';
 
 @Component({
   selector: 'app-board-column',
@@ -63,8 +59,8 @@ export class BoardColumnComponent implements OnInit {
       btnName: 'Create Task',
       submitBtn: () => console.log('Создано!'),
       formFields: {
-        taskSize: TaskSize.TINY,
-        taskPriority: TaskPriority.HIGH,
+        taskSize: 'Small',
+        taskPriority: 'High',
       },
     };
     this.dialog.open(TaskFormComponent, {
@@ -72,7 +68,7 @@ export class BoardColumnComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<TaskModel[] | null>) {
+  drop(event: CdkDragDrop<TaskModel[] | undefined>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
     } else {

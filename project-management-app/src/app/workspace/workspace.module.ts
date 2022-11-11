@@ -18,7 +18,7 @@ const routes: Routes = [
     component: WorkspaceComponent,
     children: [
       { path: '', component: BoardsPageComponent },
-      { path: ':title', component: SingleBoardPageComponent },
+      { path: ':id', component: SingleBoardPageComponent },
     ],
   },
   { path: 'edit', component: EditProfilePageComponent },
@@ -36,7 +36,7 @@ const routes: Routes = [
     EditProfilePageComponent,
     CreateBoardComponent,
   ],
-    imports: [SharedModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
     SingleBoardPageComponent,
