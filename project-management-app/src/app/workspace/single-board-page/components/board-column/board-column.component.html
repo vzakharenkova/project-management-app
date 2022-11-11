@@ -16,11 +16,19 @@
       </button>
     </div>
   </div>
-  <div class="column_tasks">
+  <div
+    class="column_tasks"
+    cdkDropList
+    id="{{ column.id }}"
+    [cdkDropListData]="column.tasks"
+    [cdkDropListConnectedTo]="columnsId"
+    (cdkDropListDropped)="drop($event)"
+  >
     <app-task-card
       *ngFor="let task of column.tasks"
       [task]="task"
       [column]="column"
+      cdkDrag
     ></app-task-card>
   </div>
 </mat-card>

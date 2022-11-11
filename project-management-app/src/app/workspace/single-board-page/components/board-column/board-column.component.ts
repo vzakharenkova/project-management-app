@@ -1,14 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ColumnModel, TaskPriority, TaskSize, BoardModel } from 'src/app/workspace/board-list-page/models/board.model';
+import {
+  ColumnModel,
+  TaskPriority,
+  TaskSize,
+  BoardModel,
+  TaskModel,
+} from 'src/app/workspace/board-list-page/models/board.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board-column',
   templateUrl: './board-column.component.html',
-  styleUrls: ['./board-column.component.scss'],
+  styleUrls: ['./board-column.component.scss', '../../drag&drop.scss'],
 })
 export class BoardColumnComponent implements OnInit {
   @Input() column: ColumnModel;
@@ -17,12 +24,15 @@ export class BoardColumnComponent implements OnInit {
 
   public title: string;
 
+  public columnsId: string[] = [];
+
   private taskFormConfig: TaskForm;
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.title = this.column.title;
+    this.board.columns!.forEach((item) => this.columnsId.push(item.id));
   }
 
   public openConfirmationDialog(e: Event) {
@@ -38,8 +48,8 @@ export class BoardColumnComponent implements OnInit {
   }
 
   private deleteColumn(board: BoardModel, column: ColumnModel) {
-    const selctedColumn = board.columns?.find((item) => item.title === column.title);
-    board.columns?.splice(board.columns?.indexOf(<ColumnModel>selctedColumn), 1);
+    const selectedColumn = board.columns?.find((item) => item.title === column.title);
+    board.columns?.splice(board.columns?.indexOf(<ColumnModel>selectedColumn), 1);
     this.dialog.closeAll();
   }
 
@@ -55,10 +65,23 @@ export class BoardColumnComponent implements OnInit {
       formFields: {
         taskSize: TaskSize.TINY,
         taskPriority: TaskPriority.HIGH,
-      }
+      },
     };
     this.dialog.open(TaskFormComponent, {
       data: this.taskFormConfig,
     });
+  }
+
+  drop(event: CdkDragDrop<TaskModel[] | null>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data!,
+        event.container.data!,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

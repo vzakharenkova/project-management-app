@@ -7,7 +7,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-single-board-page',
   templateUrl: './single-board-page.component.html',
-  styleUrls: ['./single-board-page.component.scss'],
+  styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
 export class SingleBoardPageComponent implements OnInit {
   public board: BoardModel;
