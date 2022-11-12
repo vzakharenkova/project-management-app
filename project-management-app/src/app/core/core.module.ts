@@ -16,11 +16,9 @@ import { UserEffects } from './store/effects/user.effects';
 import { authReducer } from './store/reducers/auth.reducer';
 import { userReducer } from './store/reducers/user.reducer';
 import { boardReducer } from './store/reducers/board.reducer';
-// import { columnReducer } from './store/reducers/column.reducer';
-// import { taskReducer } from './store/reducers/task.reducer';
+import { columnReducer } from './store/reducers/column.reducer';
+import { taskReducer } from './store/reducers/task.reducer';
 import { localizationReducer } from './store/reducers/localization.reducer';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'src/environments/environment';
 import { TokenInterceptor } from './services/token.interceptor';
 
 const COMMON_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true };
@@ -31,19 +29,14 @@ const TOKEN_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: TokenIntercept
   imports: [
     HttpClientModule,
     StoreModule.forRoot({
-      token: authReducer,
-      users: userReducer,
-      boards: boardReducer,
-      // column: columnReducer,
-      // task: taskReducer,
+      auth: authReducer,
+      user: userReducer,
+      board: boardReducer,
+      column: columnReducer,
+      task: taskReducer,
       localization: localizationReducer,
     }),
     EffectsModule.forRoot([AuthEffects, BoardEffects, ColumnEffects, TaskEffects, UserEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      name: 'PM App',
-      logOnly: environment.production,
-    }),
     SharedModule,
     StartScreenModule,
     WorkspaceModule,
