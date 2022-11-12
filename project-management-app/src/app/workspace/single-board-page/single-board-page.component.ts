@@ -26,7 +26,7 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       const boardId = params['id'];
       // eslint-disable-next-line @ngrx/no-store-subscription
-      this.store.select(selectBoardById(boardId)).subscribe((board) => this.board === board);
+      this.store.select(selectBoardById(boardId)).subscribe((board) => (this.board = board));
     });
   }
 
