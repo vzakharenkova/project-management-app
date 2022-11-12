@@ -61,8 +61,9 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthApiActionsList.signedIn),
-        tap(() => {
+        tap((action: { tokenObj: { token: string }; type: AuthApiActionsList.signedIn }) => {
           this.router.navigateByUrl('/boards');
+          localStorage.setItem('token', action.tokenObj.token);
         }),
       );
     },
