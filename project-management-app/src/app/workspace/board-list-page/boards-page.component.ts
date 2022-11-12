@@ -13,7 +13,6 @@ import { BoardModel } from 'src/app/shared/models/board.model';
 export class BoardsPageComponent implements OnInit {
   boards$: Observable<BoardModel[]>;
 
-  // eslint-disable-next-line @ngrx/no-typed-global-store
   constructor(private store: Store<StateModel>) {}
 
   ngOnInit(): void {
