@@ -1,4 +1,4 @@
-<main class="page" cdkDropListGroup>
+<main class="page" cdkDropListGroup *ngIf="board$ | async as board">
   <div class="page_heading">
     <div class="page_title">
       <a routerLink="/boards"><h2 class="common_title">Boards</h2></a>
@@ -11,7 +11,7 @@
     class="board-columns"
     cdkDropList
     cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)"
+    (cdkDropListDropped)="drop($event, board)"
   >
     <app-board-column
       cdkDragLockAxis="x"
