@@ -19,8 +19,10 @@ import { boardReducer } from './store/reducers/board.reducer';
 import { columnReducer } from './store/reducers/column.reducer';
 import { taskReducer } from './store/reducers/task.reducer';
 import { localizationReducer } from './store/reducers/localization.reducer';
+import { TokenInterceptor } from './services/token.interceptor';
 
 const COMMON_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true };
+const TOKEN_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true };
 
 @NgModule({
   declarations: [],
@@ -41,6 +43,6 @@ const COMMON_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: CommonInterce
     AuthModule,
   ],
   exports: [StoreModule, StartScreenModule, WorkspaceModule],
-  providers: [COMMON_INTERCEPTOR],
+  providers: [COMMON_INTERCEPTOR, TOKEN_INTERCEPTOR],
 })
 export class CoreModule {}

@@ -6,6 +6,8 @@ import { StateModel } from '../state/state.model';
 
 export const selectBoards = (state: StateModel) => state.boards;
 
+export const selectToken = (state: StateModel) => state.token;
+
 export const selectBoardById = (boardId: string) =>
   createSelector(
     selectBoards,
