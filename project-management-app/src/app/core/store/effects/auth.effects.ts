@@ -12,12 +12,6 @@ import {
   signedUpError,
 } from '../actions/auth-api.actions';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
-import {
-  notificationConfigBasic,
-  notificationConfigErr,
-} from 'src/app/shared/utils/noticationConfig';
 
 @Injectable()
 export class AuthEffects {
@@ -25,7 +19,6 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private _notification: MatSnackBar,
   ) {}
 
   signIn$ = createEffect(() => {
@@ -57,7 +50,6 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthApiActionsList.signedUp),
         tap(() => {
-          this._notification.open('Sign up successfully', '', notificationConfigBasic);
           this.router.navigateByUrl('/auth/login');
         }),
       );
@@ -69,57 +61,8 @@ export class AuthEffects {
     () => {
       return this.actions$.pipe(
         ofType(AuthApiActionsList.signedIn),
-        tap((action: { tokenObj: { token: string }; type: AuthApiActionsList.signedIn }) => {
+        tap(() => {
           this.router.navigateByUrl('/boards');
-          localStorage.setItem('token', action.tokenObj.token);
-        }),
-      );
-    },
-    { dispatch: false },
-  );
-
-  signUpError$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthApiActionsList.signedUpError),
-        tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedUpError }) => {
-          if (action.err.error.statusCode === 409) {
-            this._notification.open(
-              'User login already exists. Please change login and try again',
-              '',
-              notificationConfigErr,
-            );
-          } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
-          }
-        }),
-      );
-    },
-    { dispatch: false },
-  );
-
-  signInError$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthApiActionsList.signedInError),
-        tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedInError }) => {
-          if (action.err.error.statusCode === 403) {
-            this._notification.open(
-              'This user does not exist. Please sing up',
-              '',
-              notificationConfigErr,
-            );
-          } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
-          }
         }),
       );
     },
