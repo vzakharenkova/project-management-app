@@ -19,6 +19,8 @@ import { boardReducer } from './store/reducers/board.reducer';
 import { columnReducer } from './store/reducers/column.reducer';
 import { taskReducer } from './store/reducers/task.reducer';
 import { localizationReducer } from './store/reducers/localization.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 const COMMON_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: CommonInterceptor, multi: true };
 
@@ -35,6 +37,11 @@ const COMMON_INTERCEPTOR = { provide: HTTP_INTERCEPTORS, useClass: CommonInterce
       localization: localizationReducer,
     }),
     EffectsModule.forRoot([AuthEffects, BoardEffects, ColumnEffects, TaskEffects, UserEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      name: 'PM App',
+      logOnly: environment.production,
+    }),
     SharedModule,
     StartScreenModule,
     WorkspaceModule,

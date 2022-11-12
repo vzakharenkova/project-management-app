@@ -34,8 +34,8 @@
       class="btn login_btn"
       mat-raised-button
       color="primary"
-      routerLink="/boards"
       [disabled]="disableBtn()"
+      (click)="signIn()"
     >
       Login
     </a>

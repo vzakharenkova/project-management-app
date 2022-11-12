@@ -1,14 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
 import { signIn, signUp } from '../actions/auth.actions';
-import { signedIn, signedInError, signedUp, signedUpError } from '../actions/auth-api.actions';
+import {
+  AuthApiActionsList,
+  signedIn,
+  signedInError,
+  signedUp,
+  signedUpError,
+} from '../actions/auth-api.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   signIn$ = createEffect(() => {
     return this.actions$.pipe(
@@ -33,4 +44,28 @@ export class AuthEffects {
       ),
     );
   });
+
+  signUpRedirect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthApiActionsList.signedUp),
+        tap(() => {
+          this.router.navigateByUrl('/auth/login');
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
+  signInRedirect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AuthApiActionsList.signedIn),
+        tap(() => {
+          this.router.navigateByUrl('/boards');
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 }
