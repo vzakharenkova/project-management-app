@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { ColumnModel, TaskModel } from 'src/app/workspace/board-list-page/models/board.model';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
+import { ColumnModel } from 'src/app/shared/models/column.model';
+import { TaskModel } from 'src/app/shared/models/task.model';
 
 @Component({
   selector: 'app-task-card',
@@ -44,13 +45,13 @@ export class TaskCardComponent {
       submitBtn: () => console.log('Отредактировано!'),
       formFields: {
         taskName: this.task.title,
-        taskSize: this.task.size,
-        taskPriority: this.task.priority,
-        taskDescription: this.task.description
-      }
+        taskSize: 'Small',
+        taskPriority: 'High',
+        taskDescription: this.task.description,
+      },
     };
     this.dialog.open(TaskFormComponent, {
       data: this.taskFormConfig,
-    })
+    });
   }
 }

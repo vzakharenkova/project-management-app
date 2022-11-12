@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BoardModel, ColumnModel } from '../board-list-page/models/board.model';
-import { boardList } from '../../shared/mocks/boardsList';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { BoardModel } from '../../shared/models/board.model';
+import { Store } from '@ngrx/store';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { selectBoardById } from 'src/app/core/store/selectos/app.selectors';
+import { BoardModel } from 'src/app/shared/models/board.model';
+import { ColumnModel } from 'src/app/shared/models/column.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-single-board-page',
@@ -12,18 +15,18 @@ import { BoardModel } from '../../shared/models/board.model';
   styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
 export class SingleBoardPageComponent implements OnInit {
-  public board: BoardModel;
+  public board$: Observable<BoardModel>;
 
-  constructor(public route: ActivatedRoute) {}
+  constructor(public route: ActivatedRoute, private store: Store<StateModel>) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const boardTitle = params['title'];
-      this.board = <BoardModel>boardList.find((item) => item.title === boardTitle);
+      const boardId = params['id'];
+      this.board$ = this.store.select(selectBoardById(boardId));
     });
   }
 
-  drop(event: CdkDragDrop<ColumnModel[]>) {
-    moveItemInArray(this.board.columns!, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<ColumnModel[]>, board: BoardModel) {
+    moveItemInArray(board.columns!, event.previousIndex, event.currentIndex);
   }
 }
