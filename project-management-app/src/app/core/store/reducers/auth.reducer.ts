@@ -9,7 +9,8 @@ export const authReducer = createReducer(
   on(signedIn, (state, { tokenObj }): StateModel => ({ ...state, token: tokenObj.token })),
 
   on(signedUp, (state, { user }): StateModel => {
-    state.users.push(user);
-    return { ...state };
+    const users = [...state.users];
+    users.push(user);
+    return { ...state, users };
   }),
 );

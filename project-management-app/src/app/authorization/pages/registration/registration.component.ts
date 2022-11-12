@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { signUp } from 'src/app/core/store/actions/auth.actions';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { AuthDataModel } from 'src/app/shared/models/user.model';
 import { passwordMatchingValidatior } from 'src/app/shared/utils/password-match.validator';
 
 @Component({
@@ -15,7 +18,8 @@ export class RegistrationComponent implements OnInit {
 
   public hideConfirmPassword = true;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  // eslint-disable-next-line @ngrx/no-typed-global-store
+  constructor(private formBuilder: FormBuilder, private store: Store<StateModel>) {}
 
   ngOnInit() {
     this.initForm();
@@ -52,6 +56,15 @@ export class RegistrationComponent implements OnInit {
     ) {
       return true;
     } else return false;
+  }
+
+  public signUp() {
+    const userData: AuthDataModel = {
+      name: this.name?.value,
+      login: this.login?.value,
+      password: this.password?.value,
+    };
+    this.store.dispatch(signUp({ newUserData: userData }));
   }
 
   public get name() {
