@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { logOut } from 'src/app/core/store/actions/auth.actions';
 import { CreateBoardComponent } from '../../../workspace/create-board/create-board.component';
 
 @Component({
@@ -10,8 +13,7 @@ import { CreateBoardComponent } from '../../../workspace/create-board/create-boa
 export class HeaderComponent implements OnInit {
   public isScrolled: boolean;
 
-  constructor(public dialog: MatDialog) {
-  }
+  constructor(public dialog: MatDialog, private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.animateHeader();
@@ -27,7 +29,13 @@ export class HeaderComponent implements OnInit {
     };
   }
 
-  openFormCreateBoard() {
+  public openFormCreateBoard() {
     this.dialog.open(CreateBoardComponent);
+  }
+
+  public logout() {
+    localStorage.removeItem('token');
+    this.store.dispatch(logOut());
+    this.router.navigateByUrl('/welcome');
   }
 }
