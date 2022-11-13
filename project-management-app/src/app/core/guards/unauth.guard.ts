@@ -11,6 +11,7 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
 import { selectToken } from '../store/selectos/app.selectors';
 import { StateModel } from '../store/state/state.model';
 
@@ -20,21 +21,27 @@ import { StateModel } from '../store/state/state.model';
 export class UnauthGuard implements CanLoad, CanActivate {
   constructor(private router: Router, private store: Store<StateModel>) {}
 
-  canLoad(_route: Route, _segments: UrlSegment[]): boolean {
-    const token = this.store.select(selectToken);
-    if (token) {
-      this.router.navigateByUrl('/boards');
-    }
-
-    return !token;
+  canLoad(_route: Route, _segments: UrlSegment[]): Observable<boolean> {
+    return this.store.select(selectToken).pipe(
+      map((token) => {
+        if (token !== null) {
+          this.router.navigateByUrl('/boards');
+          return false;
+        }
+        return true;
+      }),
+    );
   }
 
-  canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): boolean {
-    const token = this.store.select(selectToken);
-    if (token) {
-      this.router.navigateByUrl('/boards');
-    }
-
-    return !token;
+  canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
+    return this.store.select(selectToken).pipe(
+      map((token) => {
+        if (token !== null) {
+          this.router.navigateByUrl('/boards');
+          return false;
+        }
+        return true;
+      }),
+    );
   }
 }
