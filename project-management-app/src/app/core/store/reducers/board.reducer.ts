@@ -18,17 +18,17 @@ const initialState: BoardModel[] = [];
 
 export const boardReducer = createReducer(
   initialState,
-  on(allBoardsLoaded, (state, { boards }): BoardModel[] => ({ ...state, ...boards })),
+  on(allBoardsLoaded, (state, { boards }): BoardModel[] => boards),
 
   on(boardCreated, (state, { board }): BoardModel[] => {
     const boards = [...state];
     boards.push(board);
-    return { ...boards };
+    return boards;
   }),
 
   on(boardDeleted, (state, { boardId }): BoardModel[] => {
     state.filter((board) => board.id === boardId);
-    return { ...state };
+    return state;
   }),
 
   on(boardUpdated, (state, { board }): BoardModel[] => {
@@ -39,14 +39,14 @@ export const boardReducer = createReducer(
       return currentBoard;
     });
 
-    return { ...newBoards };
+    return newBoards;
   }),
 
   on(allColumnsLoaded, (state, { columns, boardId }): BoardModel[] => {
     const currentBoard = state.find((board) => board.id === boardId)!;
     currentBoard.columns = columns;
 
-    return { ...state };
+    return state;
   }),
 
   on(columnCreated, (state, { column, boardId }): BoardModel[] => {
@@ -57,14 +57,14 @@ export const boardReducer = createReducer(
     }
     currentBoard.columns.push(column);
 
-    return { ...state };
+    return state;
   }),
 
   on(columnDeleted, (state, { boardId, columnId }): BoardModel[] => {
     const currentBoard = state.find((board) => board.id === boardId)!;
     currentBoard.columns!.filter((column) => column.id === columnId);
 
-    return { ...state };
+    return state;
   }),
 
   on(columnUpdated, (state, { column, boardId }): BoardModel[] => {
@@ -76,7 +76,7 @@ export const boardReducer = createReducer(
       return currentColumn;
     });
 
-    return { ...state };
+    return state;
   }),
 
   on(allTasksLoaded, (state, { tasks, boardId, columnId }): BoardModel[] => {
@@ -84,7 +84,7 @@ export const boardReducer = createReducer(
     const currentColumn = currentBoard.columns!.find((column) => column.id === columnId)!;
     currentColumn.tasks = tasks;
 
-    return { ...state };
+    return state;
   }),
 
   on(taskCreated, (state, { task, boardId, columnId }): BoardModel[] => {
@@ -96,7 +96,7 @@ export const boardReducer = createReducer(
     }
     currentColumn.tasks.push(task);
 
-    return { ...state };
+    return state;
   }),
 
   on(taskDeleted, (state, { boardId, columnId, taskId }): BoardModel[] => {
@@ -105,7 +105,7 @@ export const boardReducer = createReducer(
 
     currentColumn.tasks!.filter((task) => task.id === taskId);
 
-    return { ...state };
+    return state;
   }),
 
   on(taskUpdated, (state, { task, boardId, columnId }): BoardModel[] => {
@@ -119,6 +119,6 @@ export const boardReducer = createReducer(
       return currentTask;
     });
 
-    return { ...state };
+    return state;
   }),
 );
