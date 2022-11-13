@@ -1,0 +1,19 @@
+<div class="form">
+  <div class="close-container">
+    <button mat-raised-button class="form__close" (click)="closeColumnForm()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h1 class="form__title">{{ formTitle }}</h1>
+  <form class="task" [formGroup]="columnForm" (ngSubmit)="submitCreateColumnForm()">
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>Board Name</mat-label>
+      <input matInput placeholder="Enter Column Name" formControlName="columnName" />
+      <mat-error>{{ columnNameErrMsg }}</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" class="form__btn" [disabled]="columnForm.invalid">
+      {{ formTitle }}
+    </button>
+  </form>
+</div>
