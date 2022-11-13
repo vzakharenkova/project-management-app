@@ -43,7 +43,7 @@ export const selectedBoardReducer = createReducer(
 
   on(columnDeleted, (state, { columnId }): BoardModel | null => {
     if (state !== null) {
-      const columns = state.columns!.filter((column) => column.id === columnId);
+      const columns = state.columns!.filter((column) => column.id !== columnId);
 
       return { ...state, columns };
     }
