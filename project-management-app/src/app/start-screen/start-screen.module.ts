@@ -7,6 +7,7 @@ import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { TeamCardComponent } from './components/team-card/team-card.component';
 import { TitlePageComponent } from './pages/title-page/title-page.component';
 import { StartScreenLayoutComponent } from './start-screen-layout.component';
+import { UnauthGuard } from '../core/guards/unauth.guard';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'team', component: TeamPageComponent },
       { path: 'description', component: DescriptionPageComponent },
     ],
+    canActivate: [UnauthGuard],
   },
 ];
 
