@@ -31,14 +31,6 @@ export class AuthGuard implements CanLoad, CanActivate {
         return true;
       }),
     );
-
-    // let i: string | null;
-    // token.pipe(tap(a => i = a));
-    // if (!i) {
-    //   this.router.navigateByUrl('/welcom');
-    // }
-
-    // return !!token;
   }
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
