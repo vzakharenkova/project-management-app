@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { signedIn } from './core/store/actions/auth-api.actions';
 import { StateModel } from './core/store/state/state.model';
@@ -8,7 +8,7 @@ import { StateModel } from './core/store/state/state.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'project-management-app';
 
   constructor(private store: Store<StateModel>) {}

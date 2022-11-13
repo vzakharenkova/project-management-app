@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { Store } from '@ngrx/store';
+import { createBoard } from 'src/app/core/store/actions/board.actions';
 
 @Component({
   selector: 'app-create-board',
   templateUrl: './create-board.component.html',
   styleUrls: ['./create-board.component.scss'],
 })
-export class CreateBoardComponent implements OnInit {
+export class CreateBoardComponent {
   boardForm: FormGroup;
 
   formTitle: string = 'Create Board';
 
   boardNameErrMsg: string = 'Please enter a board name';
 
-  constructor(public dialog: MatDialog) {
+  boardDescriptionErrMsg: string = 'Please enter a board description';
+
+  constructor(public dialog: MatDialog, private store: Store<StateModel>) {
     this.boardForm = new FormGroup({
       boardName: new FormControl('', Validators.required),
+      boardDescription: new FormControl('', Validators.required),
     });
   }
-
-  ngOnInit(): void {}
 
   closeBoardForm() {
     this.dialog.closeAll();
@@ -28,10 +32,15 @@ export class CreateBoardComponent implements OnInit {
 
   submitCreateBoardForm() {
     if (this.boardForm.valid) {
-      console.log(this.boardForm.value);
+      this.store.dispatch(
+        createBoard({
+          data: {
+            title: this.boardForm.get('boardName')?.value,
+            description: this.boardForm.get('boardDescription')?.value,
+          },
+        }),
+      );
       this.dialog.closeAll();
-    } else {
-      console.log('Please enter a board name');
     }
   }
 }
