@@ -11,6 +11,7 @@ import {
   UrlSegment,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map, Observable, tap } from 'rxjs';
 import { selectToken } from '../store/selectos/app.selectors';
 import { StateModel } from '../store/state/state.model';
 
@@ -20,21 +21,35 @@ import { StateModel } from '../store/state/state.model';
 export class AuthGuard implements CanLoad, CanActivate {
   constructor(private router: Router, private store: Store<StateModel>) {}
 
-  canLoad(_route: Route, _segments: UrlSegment[]): boolean {
-    const token = this.store.select(selectToken);
-    if (!token) {
-      this.router.navigateByUrl('/welcom');
-    }
+  canLoad(_route: Route, _segments: UrlSegment[]): Observable<boolean> {
+    return this.store.select(selectToken).pipe(
+      map((token) => {
+        if (token === null) {
+          this.router.navigateByUrl('/welcome');
+          return false;
+        }
+        return true;
+      }),
+    );
 
-    return !!token;
+    // let i: string | null;
+    // token.pipe(tap(a => i = a));
+    // if (!i) {
+    //   this.router.navigateByUrl('/welcom');
+    // }
+
+    // return !!token;
   }
 
-  canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): boolean {
-    const token = this.store.select(selectToken);
-    if (!token) {
-      this.router.navigateByUrl('/welcom');
-    }
-
-    return !!token;
+  canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
+    return this.store.select(selectToken).pipe(
+      map((token) => {
+        if (token === null) {
+          this.router.navigateByUrl('/welcome');
+          return false;
+        }
+        return true;
+      }),
+    );
   }
 }
