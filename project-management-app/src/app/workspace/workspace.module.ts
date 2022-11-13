@@ -11,6 +11,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
 import { WorkspaceComponent } from './workspace.component';
 import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
 import { CreateBoardComponent } from './create-board/create-board.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -20,8 +21,9 @@ const routes: Routes = [
       { path: '', component: BoardsPageComponent },
       { path: ':id', component: SingleBoardPageComponent },
     ],
+    canActivate: [AuthGuard],
   },
-  { path: 'edit', component: EditProfilePageComponent },
+  { path: 'edit', component: EditProfilePageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
