@@ -13,11 +13,14 @@ import {
   columnUpdated,
 } from '../actions/column-api.actions';
 import { allTasksLoaded, taskCreated, taskDeleted, taskUpdated } from '../actions/task-api.actions';
+import { logOut } from '../actions/auth.actions';
 
 const initialState: BoardModel[] = [];
 
 export const boardReducer = createReducer(
   initialState,
+  on(logOut, (): BoardModel[] => []),
+
   on(allBoardsLoaded, (state, { boards }): BoardModel[] => boards),
 
   on(boardCreated, (state, { board }): BoardModel[] => {
