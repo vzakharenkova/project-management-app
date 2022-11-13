@@ -27,8 +27,7 @@ export const boardReducer = createReducer(
   }),
 
   on(boardDeleted, (state, { boardId }): BoardModel[] => {
-    state.filter((board) => board.id === boardId);
-    return state;
+    return state.filter((board) => board.id !== boardId);
   }),
 
   on(boardUpdated, (state, { board }): BoardModel[] => {

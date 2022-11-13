@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BoardActionsList } from 'src/app/core/store/actions/board.actions';
+import { deleteBoard } from 'src/app/core/store/actions/board.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { BoardModel } from '../../../../shared/models/board.model';
@@ -31,9 +31,7 @@ export class BoardCardComponent {
   }
 
   private deleteBoard(board: BoardModel) {
-    // const selectedBoard = this.store.select(selectBoardById(board.id));
-    // eslint-disable-next-line @ngrx/prefer-action-creator-in-dispatch
-    this.store.dispatch({ type: BoardActionsList.delete, props: { boardId: board.id } });
+    this.store.dispatch(deleteBoard({ boardId: board.id }));
     this.dialog.closeAll();
   }
 
