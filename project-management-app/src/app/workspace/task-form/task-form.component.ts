@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormFields, TaskForm } from './models/task-form.models';
 
@@ -29,13 +25,13 @@ export class TaskFormComponent implements OnInit {
   }
 
   submitTaskForm() {
-    let formValue: FormFields;
     if (this.taskForm.valid) {
-      formValue = this.getFormValue();
+      const taskData = {
+        title: this.taskForm.get('taskName')?.value,
+        description: this.taskForm.get('taskDescription')?.value,
+      };
       this.dialog.closeAll();
-      this.data.submitBtn();
-    } else {
-      console.log('Заполните название задачи');
+      this.data.submitBtn(taskData);
     }
   }
 
