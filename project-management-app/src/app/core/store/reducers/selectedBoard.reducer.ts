@@ -70,8 +70,12 @@ export const selectedBoardReducer = createReducer(
 
   on(allTasksLoaded, (state, { tasks, columnId }): BoardModel | null => {
     if (state !== null) {
-      const currentColumn = state.columns!.find((column) => column.id === columnId)!;
+      const board: BoardModel = JSON.parse(JSON.stringify(state));
+      const currentColumn = board.columns!.find((column) => column.id === columnId)!;
       currentColumn.tasks = tasks;
+      currentColumn.tasks.sort((task_1, task_2) => task_1.order - task_2.order);
+
+      return board;
     }
 
     return state;
@@ -79,12 +83,15 @@ export const selectedBoardReducer = createReducer(
 
   on(taskCreated, (state, { task, columnId }): BoardModel | null => {
     if (state !== null) {
-      const currentColumn = state.columns!.find((column) => column.id === columnId)!;
+      const board: BoardModel = JSON.parse(JSON.stringify(state));
+      const currentColumn = board.columns!.find((column) => column.id === columnId)!;
 
       if (!currentColumn.tasks) {
         currentColumn.tasks = [];
       }
       currentColumn.tasks.push(task);
+
+      return board;
     }
 
     return state;
@@ -92,11 +99,15 @@ export const selectedBoardReducer = createReducer(
 
   on(taskDeleted, (state, { columnId, taskId }): BoardModel | null => {
     if (state !== null) {
-      const currentColumn = state.columns!.find((column) => column.id === columnId)!;
+      const board: BoardModel = JSON.parse(JSON.stringify(state));
 
-      const tasks = currentColumn.tasks!.filter((task) => task.id === taskId);
+      const currentColumn = board.columns!.find((column) => column.id === columnId)!;
+
+      const tasks = currentColumn.tasks!.filter((task) => task.id !== taskId);
 
       currentColumn.tasks = tasks;
+
+      return board;
     }
 
     return state;
@@ -104,7 +115,9 @@ export const selectedBoardReducer = createReducer(
 
   on(taskUpdated, (state, { task, columnId }): BoardModel | null => {
     if (state !== null) {
-      const currentColumn = state.columns!.find((column) => column.id === columnId)!;
+      const board: BoardModel = JSON.parse(JSON.stringify(state));
+
+      const currentColumn = board.columns!.find((column) => column.id === columnId)!;
 
       currentColumn.tasks = currentColumn.tasks!.map((currentTask) => {
         if (currentTask.id === task.id) {
@@ -112,6 +125,8 @@ export const selectedBoardReducer = createReducer(
         }
         return currentTask;
       });
+
+      return board;
     }
 
     return state;

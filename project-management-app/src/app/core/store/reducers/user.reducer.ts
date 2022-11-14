@@ -8,27 +8,24 @@ const initialState: UserModel[] = [];
 
 export const userReducer = createReducer(
   initialState,
-  on(allUsersLoaded, (state, { users }): UserModel[] => ({ ...state, ...users })),
+  on(allUsersLoaded, (state, { users }): UserModel[] => users),
 
   on(userDeleted, (state, { userId }): UserModel[] => {
-    state.filter((user) => user.id === userId);
-    return { ...state };
+    return state.filter((user) => user.id === userId);
   }),
 
   on(userUpdated, (state, { user }): UserModel[] => {
-    const newUsers = state.map((currentUser) => {
+    return state.map((currentUser) => {
       if (currentUser.id === user.id) {
         currentUser = user;
       }
       return currentUser;
     });
-
-    return { ...newUsers };
   }),
 
   on(signedUp, (state, { user }): UserModel[] => {
     const users = [...state];
     users.push(user);
-    return { ...users };
+    return users;
   }),
 );
