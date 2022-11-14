@@ -14,7 +14,9 @@ const initialState: BoardModel | null = null;
 export const selectedBoardReducer = createReducer(
   <BoardModel | null>initialState,
   on(boardLoaded, (state, { board }): BoardModel => {
-    return board;
+    const columns = board.columns && [...board.columns];
+    columns?.sort((col_1, col_2) => col_1.order - col_2.order);
+    return { ...board, columns };
   }),
 
   on(allColumnsLoaded, (state, { columns }): BoardModel | null => {
