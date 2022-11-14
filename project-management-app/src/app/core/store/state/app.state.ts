@@ -4,6 +4,7 @@ export const initialState: StateModel = {
   users: [],
   boards: [],
   localization: 'ru',
-  authData: null,
+  currentUser: null,
+  selectedBoard: null,
   token: null,
 };
