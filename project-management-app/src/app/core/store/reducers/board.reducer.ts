@@ -6,11 +6,14 @@ import {
   boardUpdated,
 } from '../actions/board-api.actions';
 import { BoardModel } from 'src/app/shared/models/board.model';
+import { logOut } from '../actions/auth.actions';
 
 const initialState: BoardModel[] = [];
 
 export const boardReducer = createReducer(
   initialState,
+  on(logOut, (): BoardModel[] => []),
+
   on(allBoardsLoaded, (state, { boards }): BoardModel[] => boards),
 
   on(boardCreated, (state, { board }): BoardModel[] => {
