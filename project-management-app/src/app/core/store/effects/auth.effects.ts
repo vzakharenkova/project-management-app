@@ -24,6 +24,7 @@ export class AuthEffects {
   signIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(signIn),
+      tap((action) => localStorage.setItem('login', action.userData.login)),
       switchMap((action) =>
         this.authService.signIn(action.userData).pipe(
           map((tokenObj) => signedIn({ tokenObj })),
