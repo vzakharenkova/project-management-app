@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { signedIn } from './core/store/actions/auth-api.actions';
-import { StateModel } from './core/store/state/state.model';
+import { getDataFromLS } from './core/store/actions/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +10,9 @@ import { StateModel } from './core/store/state/state.model';
 export class AppComponent implements OnInit {
   title = 'project-management-app';
 
-  constructor(private store: Store<StateModel>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      this.store.dispatch(
-        signedIn({
-          tokenObj: { token },
-        }),
-      );
-    }
+    this.store.dispatch(getDataFromLS());
   }
 }
