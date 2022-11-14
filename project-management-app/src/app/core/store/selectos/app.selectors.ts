@@ -11,6 +11,8 @@ export const selectCurrentBoard = (state: StateModel) => state.selectedBoard;
 
 export const selectToken = (state: StateModel) => state.token;
 
+export const selectCurrentUser = (state: StateModel) => state.currentUser;
+
 export const selectBoardById = (boardId: string) =>
   createSelector(
     selectBoards,
