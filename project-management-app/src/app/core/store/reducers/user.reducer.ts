@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserModel } from 'src/app/shared/models/user.model';
 import { signedUp } from '../actions/auth-api.actions';
+import { logOut } from '../actions/auth.actions';
 
 import { allUsersLoaded, userDeleted, userUpdated } from '../actions/user-api.actions';
 
@@ -28,4 +29,6 @@ export const userReducer = createReducer(
     users.push(user);
     return users;
   }),
+
+  on(logOut, (): UserModel[] => []),
 );
