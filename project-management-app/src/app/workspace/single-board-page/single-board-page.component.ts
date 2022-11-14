@@ -9,8 +9,13 @@ import { ColumnModel } from 'src/app/shared/models/column.model';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
-import { selectCurrentBoard } from 'src/app/core/store/selectos/app.selectors';
+import {
+  selectCurrentBoard,
+  selectCurrentUser,
+  selectUsers,
+} from 'src/app/core/store/selectos/app.selectors';
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
+import { UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-single-board-page',
@@ -21,6 +26,10 @@ export class SingleBoardPageComponent implements OnInit {
   public board$: Observable<BoardModel>;
 
   private boardId: string;
+
+  public userLogin$: Observable<string | null>;
+
+  public users$: Observable<UserModel[]>;
 
   constructor(
     public route: ActivatedRoute,
@@ -34,7 +43,10 @@ export class SingleBoardPageComponent implements OnInit {
       this.boardId = boardId;
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
-    this.board$ = this.store.select(selectCurrentBoard);
+    this.board$ = <Observable<BoardModel>>this.store.select(selectCurrentBoard);
+    this.userLogin$ = this.store.select(selectCurrentUser);
+    this.users$ = this.store.select(selectUsers);
+    this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>, board: BoardModel) {

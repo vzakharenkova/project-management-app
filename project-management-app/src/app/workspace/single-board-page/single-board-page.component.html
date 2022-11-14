@@ -21,6 +21,8 @@
         *ngFor="let column of board.columns"
         [column]="column"
         [board]="board"
+        [users]="users$ | async"
+        [userLogin]="userLogin$ | async"
         cdkDrag
       ></app-board-column>
     </div>
