@@ -7,6 +7,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ColumnModel } from 'src/app/shared/models/column.model';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
+import { Store } from '@ngrx/store';
+import { deleteColumn } from 'src/app/core/store/actions/column.actions';
+import { createTask } from 'src/app/core/store/actions/task.actions';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-board-column',
@@ -18,13 +23,19 @@ export class BoardColumnComponent implements OnInit {
 
   @Input() board: BoardModel;
 
+  @Input() users: UserModel[] | null;
+
+  @Input() userLogin: string | null;
+
   public title: string;
 
   public columnsId: string[] = [];
 
   private taskFormConfig: TaskForm;
 
-  constructor(public dialog: MatDialog) {}
+  private userId: string;
+
+  constructor(public dialog: MatDialog, private store: Store<StateModel>) {}
 
   ngOnInit() {
     this.title = this.column.title;
@@ -44,8 +55,7 @@ export class BoardColumnComponent implements OnInit {
   }
 
   private deleteColumn(board: BoardModel, column: ColumnModel) {
-    const selectedColumn = board.columns?.find((item) => item.title === column.title);
-    board.columns?.splice(board.columns?.indexOf(<ColumnModel>selectedColumn), 1);
+    this.store.dispatch(deleteColumn({ boardId: board.id, columnId: column.id }));
     this.dialog.closeAll();
   }
 
@@ -54,10 +64,18 @@ export class BoardColumnComponent implements OnInit {
   }
 
   openTaskForm() {
+    this.userId = <string>this.users?.find((user) => this.userLogin === user.login)?.id;
     this.taskFormConfig = {
       title: 'Create Task',
       btnName: 'Create Task',
-      submitBtn: () => console.log('Создано!'),
+      submitBtn: (data: { title: string; description: string }) =>
+        this.store.dispatch(
+          createTask({
+            boardId: this.board.id,
+            columnId: this.column.id,
+            data: { ...data, userId: this.userId },
+          }),
+        ),
       formFields: {
         taskSize: 'Small',
         taskPriority: 'High',

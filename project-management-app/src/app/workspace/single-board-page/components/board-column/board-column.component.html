@@ -28,6 +28,7 @@
       *ngFor="let task of column.tasks"
       [task]="task"
       [column]="column"
+      [boardId]="board.id"
       cdkDrag
     ></app-task-card>
   </div>

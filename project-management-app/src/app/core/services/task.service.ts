@@ -13,7 +13,7 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   getAllTasks(boardId: string, columnId: string): Observable<TaskModel[]> {
-    return this.http.get<TaskModel[]>(`${this.URL}/${boardId}/columns/${columnId}`);
+    return this.http.get<TaskModel[]>(`${this.URL}/${boardId}/columns/${columnId}/tasks`);
   }
 
   createTask(
@@ -21,15 +21,18 @@ export class TaskService {
     columnId: string,
     newTaskData: Omit<TaskModel, 'id' | 'order' | 'boardId' | 'columnId'>,
   ): Observable<TaskModel> {
-    return this.http.post<TaskModel>(`${this.URL}/${boardId}/columns/${columnId}`, newTaskData);
+    return this.http.post<TaskModel>(
+      `${this.URL}/${boardId}/columns/${columnId}/tasks`,
+      newTaskData,
+    );
   }
 
   getTaskById(boardId: string, columnId: string, taskId: string): Observable<TaskModel> {
-    return this.http.get<TaskModel>(`${this.URL}/${boardId}/columns/${columnId}/${taskId}`);
+    return this.http.get<TaskModel>(`${this.URL}/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
   deleteTask(boardId: string, columnId: string, taskId: string): Observable<void> {
-    return this.http.delete<void>(`${this.URL}/${boardId}/columns/${columnId}/${taskId}`);
+    return this.http.delete<void>(`${this.URL}/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
   updateTask(
@@ -39,7 +42,7 @@ export class TaskService {
     newData: Omit<TaskModel, 'id'>,
   ): Observable<TaskModel> {
     return this.http.put<TaskModel>(
-      `${this.URL}/${boardId}/columns/${columnId}/${taskId}`,
+      `${this.URL}/${boardId}/columns/${columnId}/tasks/${taskId}`,
       newData,
     );
   }

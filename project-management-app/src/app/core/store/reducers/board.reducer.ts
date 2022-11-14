@@ -1,36 +1,39 @@
 import { createReducer, on } from '@ngrx/store';
-
-import { initialState } from '../state/app.state';
 import {
   allBoardsLoaded,
   boardCreated,
   boardDeleted,
   boardUpdated,
 } from '../actions/board-api.actions';
-import { StateModel } from '../state/state.model';
+import { BoardModel } from 'src/app/shared/models/board.model';
+import { logOut } from '../actions/auth.actions';
+
+const initialState: BoardModel[] = [];
 
 export const boardReducer = createReducer(
   initialState,
-  on(allBoardsLoaded, (state, { boards }): StateModel => ({ ...state, boards })),
+  on(logOut, (): BoardModel[] => []),
 
-  on(boardCreated, (state, { board }): StateModel => {
-    state.boards.push(board);
-    return { ...state };
+  on(allBoardsLoaded, (state, { boards }): BoardModel[] => boards),
+
+  on(boardCreated, (state, { board }): BoardModel[] => {
+    const boards = [...state];
+    boards.push(board);
+    return boards;
   }),
 
-  on(boardDeleted, (state, { boardId }): StateModel => {
-    state.boards.filter((board) => board.id === boardId);
-    return { ...state };
+  on(boardDeleted, (state, { boardId }): BoardModel[] => {
+    return state.filter((board) => board.id !== boardId);
   }),
 
-  on(boardUpdated, (state, { board }): StateModel => {
-    const newBoards = state.boards.map((currentBoard) => {
+  on(boardUpdated, (state, { board }): BoardModel[] => {
+    const newBoards = state.map((currentBoard) => {
       if (currentBoard.id === board.id) {
         currentBoard = board;
       }
       return currentBoard;
     });
 
-    return { ...state, boards: newBoards };
+    return newBoards;
   }),
 );

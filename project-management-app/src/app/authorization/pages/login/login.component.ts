@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { signIn } from 'src/app/core/store/actions/auth.actions';
+import { StateModel } from 'src/app/core/store/state/state.model';
+import { AuthDataModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   public hide = true;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  // eslint-disable-next-line @ngrx/no-typed-global-store
+  constructor(private formBuilder: FormBuilder, private store: Store<StateModel>) {}
 
   ngOnInit() {
     this.initForm();
@@ -49,6 +53,14 @@ export class LoginComponent implements OnInit {
     if (this.login?.invalid || this.password?.invalid) {
       return true;
     } else return false;
+  }
+
+  public signIn() {
+    const userData: Omit<AuthDataModel, 'name'> = {
+      login: this.login?.value,
+      password: this.password?.value,
+    };
+    this.store.dispatch(signIn({ userData }));
   }
 
   public get login() {

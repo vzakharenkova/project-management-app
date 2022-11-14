@@ -80,6 +80,16 @@ a {
   background-color: $background-urgent;
 }
 
+.err-snackbar {
+  background-color: $background-delete;
+  color: $red;
+}
+
+.basic-snackbar {
+  background-color: $background-light;
+  color: $heading-purple;
+}
+
 ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: $background-dark !important;
 }

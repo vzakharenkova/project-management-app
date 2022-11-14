@@ -5,6 +5,13 @@ import { ColumnModel } from 'src/app/shared/models/column.model';
 import { StateModel } from '../state/state.model';
 
 export const selectBoards = (state: StateModel) => state.boards;
+export const selectUsers = (state: StateModel) => state.users;
+
+export const selectCurrentBoard = (state: StateModel) => state.selectedBoard;
+
+export const selectToken = (state: StateModel) => state.token;
+
+export const selectCurrentUser = (state: StateModel) => state.currentUser;
 
 export const selectBoardById = (boardId: string) =>
   createSelector(

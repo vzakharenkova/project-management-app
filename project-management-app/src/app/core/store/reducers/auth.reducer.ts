@@ -1,15 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
+import { signedIn } from '../actions/auth-api.actions';
 
-import { initialState } from '../state/app.state';
-import { signedIn, signedUp } from '../actions/auth-api.actions';
-import { StateModel } from '../state/state.model';
+import { getDataFromLS, logOut } from '../actions/auth.actions';
+
+const tokenInitState: string | null = null;
 
 export const authReducer = createReducer(
-  initialState,
-  on(signedIn, (state, { tokenObj }): StateModel => ({ ...state, token: tokenObj.token })),
-
-  on(signedUp, (state, { user }): StateModel => {
-    state.users.push(user);
-    return { ...state };
-  }),
+  <string | null>tokenInitState,
+  on(getDataFromLS, (): string | null => localStorage.getItem('token')),
+  on(signedIn, (_state, { tokenObj }): string => tokenObj.token),
+  on(logOut, (): null => null),
 );

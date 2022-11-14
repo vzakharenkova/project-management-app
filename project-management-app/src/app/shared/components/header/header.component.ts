@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBoardComponent } from '../../../workspace/create-board/create-board.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,7 @@ import { CreateBoardComponent } from '../../../workspace/create-board/create-boa
 export class HeaderComponent implements OnInit {
   public isScrolled: boolean;
 
-  constructor(public dialog: MatDialog) {
-  }
+  constructor(public dialog: MatDialog, private authService: AuthService) {}
 
   ngOnInit() {
     this.animateHeader();
@@ -27,7 +27,11 @@ export class HeaderComponent implements OnInit {
     };
   }
 
-  openFormCreateBoard() {
+  public openFormCreateBoard() {
     this.dialog.open(CreateBoardComponent);
+  }
+
+  public logout() {
+    this.authService.logout();
   }
 }

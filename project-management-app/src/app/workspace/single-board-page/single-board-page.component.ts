@@ -4,10 +4,18 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Store } from '@ngrx/store';
 import { StateModel } from 'src/app/core/store/state/state.model';
-import { selectBoardById } from 'src/app/core/store/selectos/app.selectors';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { ColumnModel } from 'src/app/shared/models/column.model';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateColumnComponent } from './components/create-column/create-column.component';
+import {
+  selectCurrentBoard,
+  selectCurrentUser,
+  selectUsers,
+} from 'src/app/core/store/selectos/app.selectors';
+import { getBoardById } from 'src/app/core/store/actions/board.actions';
+import { UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-single-board-page',
@@ -17,16 +25,39 @@ import { Observable } from 'rxjs';
 export class SingleBoardPageComponent implements OnInit {
   public board$: Observable<BoardModel>;
 
-  constructor(public route: ActivatedRoute, private store: Store<StateModel>) {}
+  private boardId: string;
+
+  public userLogin$: Observable<string | null>;
+
+  public users$: Observable<UserModel[]>;
+
+  constructor(
+    public route: ActivatedRoute,
+    private store: Store<StateModel>,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const boardId = params['id'];
-      this.board$ = this.store.select(selectBoardById(boardId));
+      this.boardId = boardId;
     });
+    this.store.dispatch(getBoardById({ boardId: this.boardId }));
+    this.board$ = <Observable<BoardModel>>this.store.select(selectCurrentBoard);
+    this.userLogin$ = this.store.select(selectCurrentUser);
+    this.users$ = this.store.select(selectUsers);
+    this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>, board: BoardModel) {
     moveItemInArray(board.columns!, event.previousIndex, event.currentIndex);
+  }
+
+  openCreateColumnForm() {
+    this.dialog.open(CreateColumnComponent, {
+      data: {
+        boardId: this.boardId,
+      },
+    });
   }
 }
