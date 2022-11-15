@@ -13,11 +13,7 @@ import {
 } from '../actions/auth-api.actions';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
-import {
-  notificationConfigBasic,
-  notificationConfigErr,
-} from 'src/app/shared/utils/noticationConfig';
+import { notificationConfigBasic } from 'src/app/shared/utils/noticationConfig';
 
 @Injectable()
 export class AuthEffects {
@@ -73,54 +69,6 @@ export class AuthEffects {
         tap((action: { tokenObj: { token: string }; type: AuthApiActionsList.signedIn }) => {
           this.router.navigateByUrl('/boards');
           localStorage.setItem('token', action.tokenObj.token);
-        }),
-      );
-    },
-    { dispatch: false },
-  );
-
-  signUpError$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthApiActionsList.signedUpError),
-        tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedUpError }) => {
-          if (action.err.error.statusCode === 409) {
-            this._notification.open(
-              'User login already exists. Please change login and try again',
-              '',
-              notificationConfigErr,
-            );
-          } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
-          }
-        }),
-      );
-    },
-    { dispatch: false },
-  );
-
-  signInError$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(AuthApiActionsList.signedInError),
-        tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedInError }) => {
-          if (action.err.error.statusCode === 403) {
-            this._notification.open(
-              'This user does not exist. Please sing up',
-              '',
-              notificationConfigErr,
-            );
-          } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
-          }
         }),
       );
     },
