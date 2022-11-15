@@ -17,8 +17,6 @@ export class CreateColumnComponent {
 
   columnNameErrMsg: string = 'Please enter a column name';
 
-  boardDescriptionErrMsg: string = 'Please enter a board description';
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { boardId: string },
     public dialog: MatDialog,

@@ -3,8 +3,8 @@
     <input
       [(ngModel)]="title"
       class="column_title"
-      (dblclick)="editColumnTitle($event.target)"
-      (blur)="editColumnTitle($event.target)"
+      (dblclick)="openEditColumnTitle($event.target)"
+      (blur)="closeEditColumnTitle($event.target)"
       readonly
     />
     <div class="column_actions">
