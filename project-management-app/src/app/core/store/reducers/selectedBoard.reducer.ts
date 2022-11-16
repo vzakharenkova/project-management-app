@@ -23,7 +23,6 @@ export const selectedBoardReducer = createReducer(
     if (state !== null) {
       const board = { ...state };
       board.columns = columns;
-
       return board;
     }
     return state;
@@ -62,7 +61,7 @@ export const selectedBoardReducer = createReducer(
         }
         return currentColumn;
       });
-
+      columns?.sort((col_1, col_2) => col_1.order - col_2.order);
       return { ...state, columns };
     }
 
