@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
 
 import { ColumnService } from '../../services/column.service';
 import {
@@ -8,6 +8,7 @@ import {
   deleteColumn,
   getAllColumns,
   getColumnById,
+  updateAllColumns,
   updateColumn,
 } from '../actions/column.actions';
 import {
@@ -22,6 +23,7 @@ import {
   columnUpdated,
   columnUpdatedError,
 } from '../actions/column-api.actions';
+import { getBoardById } from '../actions/board.actions';
 
 @Injectable()
 export class ColumnEffects {
@@ -84,6 +86,21 @@ export class ColumnEffects {
           catchError((err) => of(columnUpdatedError({ err }))),
         ),
       ),
+    );
+  });
+
+  updateAllColumn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(updateAllColumns),
+      switchMap((action) => {
+        let allObservable = action.columns.map((column) =>
+          this.columnService.updateColumn(action.boardId, column.columnId, column.data),
+        );
+        return forkJoin(allObservable).pipe(
+          map(() => getBoardById({ boardId: action.boardId })),
+          catchError((err) => of(allColumnsError({ err }))),
+        );
+      }),
     );
   });
 }
