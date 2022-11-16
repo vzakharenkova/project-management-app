@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
 
 import { UserService } from '../../services/user.service';
 import { deleteUser, getAllUsers, getUserById, updateUser } from '../actions/user.actions';
@@ -14,10 +14,15 @@ import {
   userUpdated,
   userUpdatedError,
 } from '../actions/user-api.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
-  constructor(private actions$: Actions, private userService: UserService) {}
+  constructor(
+    private actions$: Actions,
+    private userService: UserService,
+    private router: Router,
+  ) {}
 
   getAllUsers$ = createEffect(() => {
     return this.actions$.pipe(
@@ -68,4 +73,31 @@ export class UserEffects {
       ),
     );
   });
+
+  updatedUserRedirect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(userUpdated),
+        tap((action) => {
+          this.router.navigateByUrl('/boards');
+          localStorage.setItem('login', action.user.login);
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
+  deletedUserRedirect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(userDeleted),
+        tap(() => {
+          this.router.navigateByUrl('/welcome');
+          localStorage.removeItem('login');
+          localStorage.removeItem('token');
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 }

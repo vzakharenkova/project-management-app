@@ -18,7 +18,6 @@ export class RegistrationComponent implements OnInit {
 
   public hideConfirmPassword = true;
 
-  // eslint-disable-next-line @ngrx/no-typed-global-store
   constructor(private formBuilder: FormBuilder, private store: Store<StateModel>) {}
 
   ngOnInit() {

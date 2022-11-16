@@ -56,6 +56,7 @@ export const selectedBoardReducer = createReducer(
     if (state !== null) {
       const columns = state.columns!.map((currentColumn) => {
         if (currentColumn.id === column.id) {
+          column.tasks = currentColumn.tasks;
           currentColumn = column;
         }
         return currentColumn;
@@ -102,9 +103,7 @@ export const selectedBoardReducer = createReducer(
 
       const currentColumn = board.columns!.find((column) => column.id === columnId)!;
 
-      const tasks = currentColumn.tasks!.filter((task) => task.id !== taskId);
-
-      currentColumn.tasks = tasks;
+      currentColumn.tasks = currentColumn.tasks!.filter((task) => task.id !== taskId);
 
       return board;
     }

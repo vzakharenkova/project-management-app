@@ -10,3 +10,7 @@ export interface UserModel extends UserDataModel {
 export interface AuthDataModel extends UserDataModel {
   password: string;
 }
+
+export interface SelectedUserModel extends UserModel {
+  password: string;
+}

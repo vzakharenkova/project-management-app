@@ -8,10 +8,10 @@ import { ColumnModel } from 'src/app/shared/models/column.model';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
-import { deleteColumn } from 'src/app/core/store/actions/column.actions';
+import { deleteColumn, updateColumn } from 'src/app/core/store/actions/column.actions';
 import { createTask } from 'src/app/core/store/actions/task.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
-import { UserModel } from 'src/app/shared/models/user.model';
+import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-board-column',
@@ -25,7 +25,7 @@ export class BoardColumnComponent implements OnInit {
 
   @Input() users: UserModel[] | null;
 
-  @Input() userLogin: string | null;
+  @Input() user: AuthDataModel | null;
 
   public title: string;
 
@@ -59,12 +59,27 @@ export class BoardColumnComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  public editColumnTitle(input: EventTarget | null) {
-    (<HTMLInputElement>input).readOnly = !(<HTMLInputElement>input).readOnly;
+  public openEditColumnTitle(input: EventTarget | null) {
+    (<HTMLInputElement>input).readOnly = false;
+  }
+
+  public closeEditColumnTitle(input: EventTarget | null) {
+    (<HTMLInputElement>input).readOnly = true;
+    if (!this.title.length || this.title === this.column.title) {
+      this.title = this.column.title;
+      return;
+    }
+    this.store.dispatch(
+      updateColumn({
+        boardId: this.board.id,
+        columnId: this.column.id,
+        data: { title: this.title, order: this.column.order },
+      }),
+    );
   }
 
   openTaskForm() {
-    this.userId = <string>this.users?.find((user) => this.userLogin === user.login)?.id;
+    this.userId = <string>this.users?.find((user) => this.user?.login === user.login)?.id;
     this.taskFormConfig = {
       title: 'Create Task',
       btnName: 'Create Task',

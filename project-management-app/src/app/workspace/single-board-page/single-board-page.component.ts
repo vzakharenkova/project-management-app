@@ -15,7 +15,7 @@ import {
   selectUsers,
 } from 'src/app/core/store/selectos/app.selectors';
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
-import { UserModel } from 'src/app/shared/models/user.model';
+import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
 
 @Component({
@@ -26,11 +26,13 @@ import { updateColumn } from '../../core/store/actions/column.actions';
 export class SingleBoardPageComponent implements OnInit {
   public board: BoardModel;
 
-  public userLogin$: Observable<string | null>;
-
-  public users$: Observable<UserModel[]>;
+  public board$: Observable<BoardModel>;
 
   private boardId: string;
+
+  public user$: Observable<AuthDataModel | null>;
+
+  public users$: Observable<UserModel[]>;
 
   constructor(
     public route: ActivatedRoute,
@@ -47,9 +49,8 @@ export class SingleBoardPageComponent implements OnInit {
     this.store.select(selectCurrentBoard).subscribe((value) => {
       if (value != null) this.board = JSON.parse(JSON.stringify(value));
     });
-    this.userLogin$ = this.store.select(selectCurrentUser);
+    this.user$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
-    this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>): void {

@@ -35,6 +35,7 @@ module.exports = {
           },
         ],
         'no-console': ['warn', { allow: ['warn', 'error'] }],
+        '@ngrx/no-typed-global-store': 'off',
       },
     },
     {
