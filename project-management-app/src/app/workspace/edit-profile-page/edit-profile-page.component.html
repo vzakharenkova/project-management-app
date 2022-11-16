@@ -9,7 +9,13 @@
     <form class="form" [formGroup]="editForm">
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter your name" class="input" formControlName="name" />
+        <input
+          matInput
+          placeholder="Enter your name"
+          class="input"
+          formControlName="name"
+          [value]="user.name"
+        />
         <mat-error *ngIf="name?.errors?.['required']">Please enter your name</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
@@ -19,6 +25,7 @@
           placeholder="Enter your login (email)"
           class="input"
           formControlName="login"
+          [value]="user.login"
         />
         <mat-error *ngIf="login?.errors?.['required']">Please enter a login email</mat-error>
         <mat-error *ngIf="login?.errors?.['pattern']">The login email is invalid</mat-error>
@@ -63,12 +70,19 @@
         class="btn"
         mat-raised-button
         color="primary"
-        (click)="navigateBack()"
+        (click)="updateUser()"
         [disabled]="disableBtn()"
       >
         Edit
       </button>
-      <button class="btn delete_btn" mat-raised-button color="primary">Delete profile</button>
+      <button
+        class="btn delete_btn"
+        mat-raised-button
+        color="primary"
+        (click)="openConfirmationDialog()"
+      >
+        Delete profile
+      </button>
     </div>
   </div>
 </main>

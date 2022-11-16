@@ -37,6 +37,7 @@ import {
   taskUpdated,
   taskUpdatedError,
 } from '../actions/task-api.actions';
+import { userDeletedError, userUpdated, userUpdatedError } from '../actions/user-api.actions';
 
 @Injectable()
 export class NotificationEffects {
@@ -117,7 +118,7 @@ export class NotificationEffects {
   itemUpdated$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(boardUpdated, columnUpdated, taskUpdated),
+        ofType(boardUpdated, columnUpdated, taskUpdated, userUpdated),
         tap(() => {
           this._notification.open('Updated', '', notificationConfigBasic);
         }),
@@ -143,6 +144,8 @@ export class NotificationEffects {
           taskDeletedError,
           taskUpdatedError,
           allTasksError,
+          userUpdatedError,
+          userDeletedError,
         ),
         tap(() => {
           this._notification.open(
