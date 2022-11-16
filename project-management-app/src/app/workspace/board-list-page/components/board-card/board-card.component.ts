@@ -15,7 +15,6 @@ import { BoardModel } from '../../../../shared/models/board.model';
 export class BoardCardComponent {
   @Input() board: BoardModel;
 
-  // eslint-disable-next-line @ngrx/no-typed-global-store
   constructor(private router: Router, public dialog: MatDialog, private store: Store<StateModel>) {}
 
   public openConfirmationDialog(e: Event) {

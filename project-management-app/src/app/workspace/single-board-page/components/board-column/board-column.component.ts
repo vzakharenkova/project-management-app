@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { deleteColumn, updateColumn } from 'src/app/core/store/actions/column.actions';
 import { createTask } from 'src/app/core/store/actions/task.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
-import { UserModel } from 'src/app/shared/models/user.model';
+import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-board-column',
@@ -25,7 +25,7 @@ export class BoardColumnComponent implements OnInit {
 
   @Input() users: UserModel[] | null;
 
-  @Input() userLogin: string | null;
+  @Input() user: AuthDataModel | null;
 
   public title: string;
 
@@ -79,7 +79,7 @@ export class BoardColumnComponent implements OnInit {
   }
 
   openTaskForm() {
-    this.userId = <string>this.users?.find((user) => this.userLogin === user.login)?.id;
+    this.userId = <string>this.users?.find((user) => this.user?.login === user.login)?.id;
     this.taskFormConfig = {
       title: 'Create Task',
       btnName: 'Create Task',

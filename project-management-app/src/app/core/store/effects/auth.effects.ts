@@ -55,7 +55,6 @@ export class AuthEffects {
         ofType(AuthApiActionsList.signedUp),
         tap(() => {
           this._notification.open('Sign up successfully', '', notificationConfigBasic);
-          this.router.navigateByUrl('/auth/login');
         }),
       );
     },

@@ -15,7 +15,7 @@ import {
   selectUsers,
 } from 'src/app/core/store/selectos/app.selectors';
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
-import { UserModel } from 'src/app/shared/models/user.model';
+import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-single-board-page',
@@ -27,7 +27,7 @@ export class SingleBoardPageComponent implements OnInit {
 
   private boardId: string;
 
-  public userLogin$: Observable<string | null>;
+  public user$: Observable<AuthDataModel | null>;
 
   public users$: Observable<UserModel[]>;
 
@@ -44,9 +44,8 @@ export class SingleBoardPageComponent implements OnInit {
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
     this.board$ = <Observable<BoardModel>>this.store.select(selectCurrentBoard);
-    this.userLogin$ = this.store.select(selectCurrentUser);
+    this.user$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
-    this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>, board: BoardModel) {
