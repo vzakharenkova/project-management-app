@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 import { AuthService } from '../../services/auth.service';
@@ -14,6 +14,9 @@ import {
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { notificationConfigBasic } from 'src/app/shared/utils/noticationConfig';
+import { StateModel } from '../state/state.model';
+import { Store } from '@ngrx/store';
+import { selectCurrentUser } from '../selectos/app.selectors';
 
 @Injectable()
 export class AuthEffects {
@@ -22,6 +25,7 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router,
     private _notification: MatSnackBar,
+    private store: Store<StateModel>,
   ) {}
 
   signIn$ = createEffect(() => {
@@ -33,6 +37,21 @@ export class AuthEffects {
           map((tokenObj) => signedIn({ tokenObj })),
           catchError((err) => of(signedInError({ err }))),
         ),
+      ),
+    );
+  });
+
+  signInAfterSignedUp$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(signedUp),
+      concatLatestFrom(() => this.store.select(selectCurrentUser)),
+      switchMap((action) =>
+        this.authService
+          .signIn({ login: <string>action[1]?.login, password: <string>action[1]?.password })
+          .pipe(
+            map((tokenObj) => signedIn({ tokenObj })),
+            catchError((err) => of(signedInError({ err }))),
+          ),
       ),
     );
   });
