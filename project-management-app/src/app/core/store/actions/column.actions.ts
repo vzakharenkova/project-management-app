@@ -6,6 +6,7 @@ export enum ColumnActionsList {
   getById = '[COLUMN] Get one column',
   delete = '[COLUMN] Delete column',
   update = '[COLUMN] Update column',
+  updateAll = '[COLUMN] Update all columns',
 }
 
 export const getAllColumns = createAction(ColumnActionsList.getAll, props<{ boardId: string }>());
@@ -28,4 +29,12 @@ export const deleteColumn = createAction(
 export const updateColumn = createAction(
   ColumnActionsList.update,
   props<{ boardId: string; columnId: string; data: { title: string; order: number } }>(),
+);
+
+export const updateAllColumns = createAction(
+  ColumnActionsList.updateAll,
+  props<{
+    boardId: string;
+    columns: { columnId: string; data: { title: string; order: number } }[];
+  }>(),
 );

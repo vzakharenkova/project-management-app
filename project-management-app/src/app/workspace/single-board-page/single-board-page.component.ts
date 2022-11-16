@@ -16,6 +16,7 @@ import {
 } from 'src/app/core/store/selectos/app.selectors';
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
 import { UserModel } from 'src/app/shared/models/user.model';
+import { updateColumn } from '../../core/store/actions/column.actions';
 
 @Component({
   selector: 'app-single-board-page',
@@ -23,13 +24,13 @@ import { UserModel } from 'src/app/shared/models/user.model';
   styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
 export class SingleBoardPageComponent implements OnInit {
-  public board$: Observable<BoardModel>;
-
-  private boardId: string;
+  public board: BoardModel;
 
   public userLogin$: Observable<string | null>;
 
   public users$: Observable<UserModel[]>;
+
+  private boardId: string;
 
   constructor(
     public route: ActivatedRoute,
@@ -43,21 +44,47 @@ export class SingleBoardPageComponent implements OnInit {
       this.boardId = boardId;
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
-    this.board$ = <Observable<BoardModel>>this.store.select(selectCurrentBoard);
+    this.store.select(selectCurrentBoard).subscribe((value) => {
+      if (value != null) this.board = JSON.parse(JSON.stringify(value));
+    });
     this.userLogin$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
     this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
-  drop(event: CdkDragDrop<ColumnModel[]>, board: BoardModel) {
-    moveItemInArray(board.columns!, event.previousIndex, event.currentIndex);
+  drop(event: CdkDragDrop<ColumnModel[]>): void {
+    moveItemInArray(this.board.columns!, event.previousIndex, event.currentIndex);
+    this.updateColumnsOrder(event);
   }
 
-  openCreateColumnForm() {
+  openCreateColumnForm(): void {
     this.dialog.open(CreateColumnComponent, {
       data: {
         boardId: this.boardId,
       },
     });
+  }
+
+  private updateColumnsOrder(event: CdkDragDrop<ColumnModel[]>): void {
+    this.store.dispatch(updateColumn(this.createPropsUpdColumn(event)));
+  }
+
+  private createPropsUpdColumn(event: CdkDragDrop<ColumnModel[]>) {
+    let order: number = 1;
+
+    if (event.previousIndex === 0 && event.currentIndex !== 0) {
+      order = event.currentIndex + 1;
+    } else if (event.currentIndex !== 0) {
+      order = event.currentIndex + 1;
+    }
+
+    return {
+      boardId: this.boardId,
+      columnId: this.board.columns![event.currentIndex].id,
+      data: {
+        title: this.board.columns![event.currentIndex].title,
+        order: order,
+      },
+    };
   }
 }
