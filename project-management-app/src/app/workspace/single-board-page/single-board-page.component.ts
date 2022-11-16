@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { ColumnModel } from 'src/app/shared/models/column.model';
-import { never, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import {
@@ -16,14 +16,14 @@ import {
 } from 'src/app/core/store/selectos/app.selectors';
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
 import { UserModel } from 'src/app/shared/models/user.model';
-import { updateAllColumns, updateColumn } from '../../core/store/actions/column.actions';
+import { updateColumn } from '../../core/store/actions/column.actions';
 
 @Component({
   selector: 'app-single-board-page',
   templateUrl: './single-board-page.component.html',
   styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
-export class SingleBoardPageComponent implements OnInit, OnChanges {
+export class SingleBoardPageComponent implements OnInit {
   public board: BoardModel;
 
   public userLogin$: Observable<string | null>;
@@ -52,15 +52,9 @@ export class SingleBoardPageComponent implements OnInit, OnChanges {
     this.userLogin$ = this.store.select(selectCurrentUser);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.store.select(selectCurrentBoard).subscribe((value) => {
-      if (value != null) this.board = JSON.parse(JSON.stringify(value));
-    });
-  }
-
   drop(event: CdkDragDrop<ColumnModel[]>): void {
     moveItemInArray(this.board.columns!, event.previousIndex, event.currentIndex);
-    this.updateAllColumns();
+    this.updateColumnsOrder(event);
   }
 
   openCreateColumnForm(): void {
@@ -71,26 +65,26 @@ export class SingleBoardPageComponent implements OnInit, OnChanges {
     });
   }
 
-  private updateAllColumns(): void {
-    this.store.dispatch(
-      updateAllColumns({
-        boardId: this.board.id,
-        columns: this.updateOrderAllColumns(),
-      }),
-    );
+  private updateColumnsOrder(event: CdkDragDrop<ColumnModel[]>): void {
+    this.store.dispatch(updateColumn(this.createPropsUpdColumn(event)));
   }
 
-  private updateOrderAllColumns() {
-    if (this.board.columns !== undefined) {
-      return this.board.columns!.map((column, index) => {
-        return {
-          columnId: column.id,
-          data: {
-            title: column.title,
-            order: index + 1,
-          },
-        };
-      });
-    } else return [{ columnId: 'string', data: { title: 'string', order: 1 } }];
+  private createPropsUpdColumn(event: CdkDragDrop<ColumnModel[]>) {
+    let order: number = 1;
+
+    if (event.previousIndex === 0 && event.currentIndex !== 0) {
+      order = event.currentIndex + 1;
+    } else if (event.currentIndex !== 0) {
+      order = event.currentIndex + 1;
+    }
+
+    return {
+      boardId: this.boardId,
+      columnId: this.board.columns![event.currentIndex].id,
+      data: {
+        title: this.board.columns![event.currentIndex].title,
+        order: order,
+      },
+    };
   }
 }

@@ -82,25 +82,11 @@ export class ColumnEffects {
       ofType(updateColumn),
       switchMap((action) =>
         this.columnService.updateColumn(action.boardId, action.columnId, action.data).pipe(
-          map((column) => columnUpdated({ column, boardId: action.boardId })),
+          // map((column) => columnUpdated({ column, boardId: action.boardId })),
+          map(() => getBoardById({ boardId: action.boardId })),
           catchError((err) => of(columnUpdatedError({ err }))),
         ),
       ),
-    );
-  });
-
-  updateAllColumn$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(updateAllColumns),
-      switchMap((action) => {
-        let allObservable = action.columns.map((column) =>
-          this.columnService.updateColumn(action.boardId, column.columnId, column.data),
-        );
-        return forkJoin(allObservable).pipe(
-          map(() => getBoardById({ boardId: action.boardId })),
-          catchError((err) => of(allColumnsError({ err }))),
-        );
-      }),
     );
   });
 }
