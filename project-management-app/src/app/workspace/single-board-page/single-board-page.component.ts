@@ -17,6 +17,7 @@ import {
 import { getBoardById } from 'src/app/core/store/actions/board.actions';
 import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
+import { calculateOrder } from '../../shared/utils/calculateOrder';
 
 @Component({
   selector: 'app-single-board-page',
@@ -71,20 +72,12 @@ export class SingleBoardPageComponent implements OnInit {
   }
 
   private createPropsUpdColumn(event: CdkDragDrop<ColumnModel[]>) {
-    let order: number = 1;
-
-    if (event.previousIndex === 0 && event.currentIndex !== 0) {
-      order = event.currentIndex + 1;
-    } else if (event.currentIndex !== 0) {
-      order = event.currentIndex + 1;
-    }
-
     return {
       boardId: this.boardId,
       columnId: this.board.columns![event.currentIndex].id,
       data: {
         title: this.board.columns![event.currentIndex].title,
-        order: order,
+        order: calculateOrder(event),
       },
     };
   }

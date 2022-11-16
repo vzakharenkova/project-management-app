@@ -3,15 +3,21 @@ import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  copyArrayItem,
+} from '@angular/cdk/drag-drop';
 import { ColumnModel } from 'src/app/shared/models/column.model';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
 import { deleteColumn, updateColumn } from 'src/app/core/store/actions/column.actions';
-import { createTask } from 'src/app/core/store/actions/task.actions';
+import { createTask, updateTask } from 'src/app/core/store/actions/task.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
+import { calculateOrder } from '../../../../shared/utils/calculateOrder';
 
 @Component({
   selector: 'app-board-column',
@@ -31,6 +37,8 @@ export class BoardColumnComponent implements OnInit {
 
   public columnsId: string[] = [];
 
+  private dragItem: TaskModel[] = [];
+
   private taskFormConfig: TaskForm;
 
   private userId: string;
@@ -38,6 +46,7 @@ export class BoardColumnComponent implements OnInit {
   constructor(public dialog: MatDialog, private store: Store<StateModel>) {}
 
   ngOnInit() {
+    this.column.tasks?.sort((task_1, task_2) => task_1.order - task_2.order);
     this.title = this.column.title;
     this.board.columns!.forEach((item) => this.columnsId.push(item.id));
   }
@@ -52,11 +61,6 @@ export class BoardColumnComponent implements OnInit {
         handler: () => this.deleteColumn(this.board, this.column),
       },
     });
-  }
-
-  private deleteColumn(board: BoardModel, column: ColumnModel) {
-    this.store.dispatch(deleteColumn({ boardId: board.id, columnId: column.id }));
-    this.dialog.closeAll();
   }
 
   public openEditColumnTitle(input: EventTarget | null) {
@@ -78,7 +82,7 @@ export class BoardColumnComponent implements OnInit {
     );
   }
 
-  openTaskForm() {
+  public openTaskForm() {
     this.userId = <string>this.users?.find((user) => this.user?.login === user.login)?.id;
     this.taskFormConfig = {
       title: 'Create Task',
@@ -101,16 +105,49 @@ export class BoardColumnComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<TaskModel[] | undefined>) {
+  public drop(event: CdkDragDrop<TaskModel[] | undefined>) {
     if (event.previousContainer === event.container) {
+      copyArrayItem(event.container.data!, this.dragItem, event.previousIndex, 0);
       moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
+      this.store.dispatch(updateTask(this.createPropsUpdTask(event, event.container.id)));
     } else {
+      copyArrayItem(event.previousContainer.data!, this.dragItem, event.previousIndex, 0);
       transferArrayItem(
         event.previousContainer.data!,
         event.container.data!,
         event.previousIndex,
         event.currentIndex,
       );
+      this.store.dispatch(updateTask(this.createPropsUpdTask(event, event.previousContainer.id)));
     }
+  }
+
+  private createPropsUpdTask(
+    event: CdkDragDrop<TaskModel[] | undefined>,
+    columnIdForUpd: string,
+  ): {
+    boardId: string;
+    columnId: string;
+    taskId: string;
+    data: Omit<TaskModel, 'id'>;
+  } {
+    return {
+      boardId: this.board.id,
+      columnId: columnIdForUpd,
+      taskId: this.dragItem[0].id,
+      data: {
+        boardId: this.board.id,
+        userId: this.dragItem[0].userId,
+        columnId: event.container.id,
+        title: this.dragItem[0].title,
+        order: calculateOrder(event),
+        description: this.dragItem[0].description,
+      },
+    };
+  }
+
+  private deleteColumn(board: BoardModel, column: ColumnModel) {
+    this.store.dispatch(deleteColumn({ boardId: board.id, columnId: column.id }));
+    this.dialog.closeAll();
   }
 }

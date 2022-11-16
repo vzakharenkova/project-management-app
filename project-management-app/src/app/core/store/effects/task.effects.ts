@@ -19,9 +19,9 @@ import {
   taskDeletedError,
   taskLoaded,
   taskLoadedError,
-  taskUpdated,
   taskUpdatedError,
 } from '../actions/task-api.actions';
+import { getBoardById } from '../actions/board.actions';
 
 @Injectable()
 export class TaskEffects {
@@ -90,9 +90,7 @@ export class TaskEffects {
         this.taskService
           .updateTask(action.boardId, action.columnId, action.taskId, action.data)
           .pipe(
-            map((task) =>
-              taskUpdated({ task, boardId: action.boardId, columnId: action.columnId }),
-            ),
+            map((task) => getBoardById({ boardId: action.boardId })),
             catchError((err) => of(taskUpdatedError({ err }))),
           ),
       ),
