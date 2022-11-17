@@ -1,15 +1,19 @@
-<header class="header" [ngStyle]="isScrolled ? { height: '100px' } : {}">
+<header
+  class="header"
+  [ngStyle]="isScrolled ? { height: '100px' } : {}"
+  *transloco="let t; read: 'header'"
+>
   <div class="header-left">
-    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg" /></a>
+    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg"  alt="logo"/></a>
     <div class="lang">
-      <span class="lang_en">EN</span>
+      <span class="lang_en" (click)="changeLangEn(lang)">{{ t('localization.en') }}</span>
       <span class="slash">|</span>
-      <span class="lang_ru">RU</span>
+      <span class="lang_ru" (click)="changeLangRu(lang)">{{ t('localization.ru') }}</span>
     </div>
   </div>
   <div class="header-right">
     <button mat-raised-button class="create_btn btn" (click)="openFormCreateBoard()">
-      Create new board
+      {{ t('createNewBoardBtn') }}
     </button>
     <a mat-raised-button routerLink="/edit" class="btn"
       ><mat-icon class="settings">settings</mat-icon></a

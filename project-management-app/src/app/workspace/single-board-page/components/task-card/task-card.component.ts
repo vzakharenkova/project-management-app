@@ -7,6 +7,7 @@ import { ColumnModel } from 'src/app/shared/models/column.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/core/store/actions/task.actions';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-task-card',
@@ -22,15 +23,21 @@ export class TaskCardComponent {
 
   private taskFormConfig: TaskForm;
 
-  constructor(public dialog: MatDialog, private store: Store) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store,
+    private transloco: TranslocoService,
+  ) {}
 
   public openConfirmationDialog(e: Event) {
     e.stopPropagation();
 
     this.dialog.open(ConfirmationModalComponent, {
       data: {
-        title: 'Delete task',
-        content: `Do you want to delete ${this.task.title} task?`,
+        title: this.transloco.translateObject('dialogDelTask.title'),
+        content: this.transloco.translateObject('dialogDelTask.content', {
+          name: this.task.title,
+        }),
         handler: () => this.deleteTask(this.column, this.task),
       },
     });
@@ -49,8 +56,8 @@ export class TaskCardComponent {
 
   openTaskForm() {
     this.taskFormConfig = {
-      title: 'Edite Task',
-      btnName: 'Edit Task',
+      title: this.transloco.translateObject('form.editTask.title'),
+      btnName: this.transloco.translateObject('form.editTask.createTaskBtn'),
       submitBtn: (data: { title: string; description: string }) =>
         this.store.dispatch(
           updateTask({

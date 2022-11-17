@@ -1,0 +1,113 @@
+{
+  "header": {
+    "createNewBoardBtn": "Создать доску",
+    "localization": {
+      "en": "Анг",
+      "ru": "Рус"
+    }
+  },
+  "boardPage": {
+    "title": "Доски"
+  },
+  "singleBoardPage": {
+    "title": "Доски",
+    "createColumnBtn": "Создать колонку"
+  },
+  "editProfilePage": {
+    "btnBack": "назад",
+    "title": "Редактировать профиль",
+    "nameFieldLabel": "Имя",
+    "nameFieldPlaceHolder": "Введите имя",
+    "loginFieldLabel": "Логин",
+    "loginFieldPlaceHolder": "Введите логин (email)",
+    "passFieldLabel": "Пароль",
+    "passFieldPlaceHolder": "Введите пароль",
+    "confPassFieldLabel": "Подтвердите пароль",
+    "confPassFieldPlaceHolder": "Подтвердите пароль",
+    "nameFieldErr": "Пожалуйста введите имя",
+    "loginFieldErr1": "Пожалуйста введите логин - email",
+    "loginFieldErr2": "Не верный логин",
+    "passFieldErr": "Ваш пароль недостаточно надежен",
+    "confPassFieldErr1": "Пароли не совпадают",
+    "confPassFieldErr2": "Пожалуйста введите пароль",
+    "editBtn": "Сохранить",
+    "delProfileBtn": "Удалить профиль"
+  },
+  "form": {
+    "btnCreateNewBoard": {
+      "title": "Создать доску",
+      "nameFieldLabel": "Имя доски",
+      "nameFieldErr": "Пожалуйста введите имя доски",
+      "descriptionField": "Описание доски",
+      "descriptionFieldErr": "Пожалуйста введите описание",
+      "formBtn": "Создать доску"
+    },
+    "createColumn": {
+      "title": "Создать колонку",
+      "nameFieldLabel": "Имя колонки",
+      "nameFieldPlaceHolder": "Введите имя колонки",
+      "nameFieldErr": "Пожалуйста введите имя колонки",
+      "btnCreateColumn": "Создать колонку"
+    },
+    "createTask": {
+      "title": "Создать задачу",
+      "nameFieldLabel": "Имя задачи",
+      "nameFieldPlaceHolder": "Введите имя задачи",
+      "nameFieldErr": "Пожалуйста введите имя задачи",
+      "sizeFieldLabel": "Размер задачи",
+      "sizeOptions": {
+        "tiny": "Крошечная",
+        "small": "Маленькая",
+        "medium": "Средняя",
+        "large": "Большая",
+        "xLarge": "Очень большая"
+      },
+      "priorityFieldLabel": "Приоритет",
+      "priorityOptions": {
+        "low": "Низкий",
+        "medium": "Средний",
+        "high": "Высокий",
+        "urgent": "Срочная"
+      },
+      "descriptionFieldLabel": "Описание",
+      "descriptionFieldLabelErr": "Пожалуйста введите описание",
+      "createTaskBtn": "Создать задачу"
+    },
+    "editTask": {
+      "title": "Редактировать задачу",
+      "nameFieldLabel": "Имя задачи",
+      "nameFieldPlaceHolder": "Введите имя задачи",
+      "nameFieldErr": "Пожалуйста введите имя задачи",
+      "sizeFieldLabel": "Размер задачи",
+      "sizeOptions": {
+        "tiny": "Крошечная",
+        "small": "Маленькая",
+        "medium": "Средняя",
+        "large": "Большая",
+        "xLarge": "Очень большая"
+      },
+      "priorityFieldLabel": "Приоритет",
+      "priorityOptions": {
+        "low": "Низкий",
+        "medium": "Средний",
+        "high": "Высокий",
+        "urgent": "Срочная"
+      },
+      "descriptionFieldLabel": "Описание",
+      "createTaskBtn": "Сохранить"
+    }
+  },
+  "dialog": "Удалить",
+  "dialogDelColumn": {
+    "title": "Удалить колонку",
+    "content": "Вы хотите удалить {{ name }} колонку?"
+  },
+  "dialogDelTask": {
+    "title": "Удалить задачу",
+    "content": "Вы хотите удалить {{ name }} задачу?"
+  },
+  "dialogDelBoard": {
+    "title": "Удалить доску",
+    "content": "Вы хотите удалить {{ name }} доску?"
+  }
+}

@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [FooterComponent, HeaderComponent, ConfirmationModalComponent],
@@ -18,6 +19,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    TranslocoModule,
   ],
   exports: [
     CommonModule,

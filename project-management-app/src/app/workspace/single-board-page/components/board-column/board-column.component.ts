@@ -18,6 +18,7 @@ import { createTask, updateTask } from 'src/app/core/store/actions/task.actions'
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 import { calculateOrder } from '../../../../shared/utils/calculateOrder';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-board-column',
@@ -43,7 +44,11 @@ export class BoardColumnComponent implements OnInit {
 
   private userId: string;
 
-  constructor(public dialog: MatDialog, private store: Store<StateModel>) {}
+  constructor(
+    public dialog: MatDialog,
+    private store: Store<StateModel>,
+    private transloco: TranslocoService,
+  ) {}
 
   ngOnInit() {
     this.column.tasks?.sort((task_1, task_2) => task_1.order - task_2.order);
@@ -56,8 +61,10 @@ export class BoardColumnComponent implements OnInit {
 
     this.dialog.open(ConfirmationModalComponent, {
       data: {
-        title: 'Delete column',
-        content: `Do you want to delete ${this.column.title} column?`,
+        title: this.transloco.translateObject('dialogDelColumn.title'),
+        content: this.transloco.translateObject('dialogDelColumn.content', {
+          name: this.column.title,
+        }),
         handler: () => this.deleteColumn(this.board, this.column),
       },
     });
@@ -85,8 +92,8 @@ export class BoardColumnComponent implements OnInit {
   public openTaskForm() {
     this.userId = <string>this.users?.find((user) => this.user?.login === user.login)?.id;
     this.taskFormConfig = {
-      title: 'Create Task',
-      btnName: 'Create Task',
+      title: this.transloco.translateObject('form.createTask.title'),
+      btnName: this.transloco.translateObject('form.createTask.createTaskBtn'),
       submitBtn: (data: { title: string; description: string }) =>
         this.store.dispatch(
           createTask({
