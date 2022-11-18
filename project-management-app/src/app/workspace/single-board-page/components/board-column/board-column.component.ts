@@ -37,7 +37,7 @@ export class BoardColumnComponent implements OnInit {
 
   public columnsId: string[] = [];
 
-  private dragItem: TaskModel[] = [];
+  private dragItems: TaskModel[] = [];
 
   private taskFormConfig: TaskForm;
 
@@ -107,11 +107,11 @@ export class BoardColumnComponent implements OnInit {
 
   public drop(event: CdkDragDrop<TaskModel[] | undefined>) {
     if (event.previousContainer === event.container) {
-      copyArrayItem(event.container.data!, this.dragItem, event.previousIndex, 0);
+      copyArrayItem(event.container.data!, this.dragItems, event.previousIndex, 0);
       moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
       this.store.dispatch(updateTask(this.createPropsUpdTask(event, event.container.id)));
     } else {
-      copyArrayItem(event.previousContainer.data!, this.dragItem, event.previousIndex, 0);
+      copyArrayItem(event.previousContainer.data!, this.dragItems, event.previousIndex, 0);
       transferArrayItem(
         event.previousContainer.data!,
         event.container.data!,
@@ -134,14 +134,14 @@ export class BoardColumnComponent implements OnInit {
     return {
       boardId: this.board.id,
       columnId: columnIdForUpd,
-      taskId: this.dragItem[0].id,
+      taskId: this.dragItems[0].id,
       data: {
         boardId: this.board.id,
-        userId: this.dragItem[0].userId,
+        userId: this.dragItems[0].userId,
         columnId: event.container.id,
-        title: this.dragItem[0].title,
+        title: this.dragItems[0].title,
         order: calculateOrder(event),
-        description: this.dragItem[0].description,
+        description: this.dragItems[0].description,
       },
     };
   }
