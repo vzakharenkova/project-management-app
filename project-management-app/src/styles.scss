@@ -63,21 +63,25 @@ a {
 .low {
   color: $color-low;
   background-color: $background-low;
+  border: 0.05rem solid $color-low;
 }
 
 .medium {
   color: $color-medium;
   background-color: $background-medium;
+  border: 0.05rem solid $color-medium;
 }
 
 .high {
   color: $color-height;
   background-color: $background-height;
+  border: 0.05rem solid $color-height;
 }
 
 .urgent {
   color: $color-urgent;
   background-color: $background-urgent;
+  border: 0.05rem solid $color-urgent;
 }
 
 .err-snackbar {

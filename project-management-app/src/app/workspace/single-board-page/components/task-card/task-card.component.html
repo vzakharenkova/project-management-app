@@ -1,8 +1,8 @@
 <mat-card class="task" (click)="openTask()">
   <div class="task_heading">
     <div class="task_props">
-      <div class="task_priority">{{ 'High' }}</div>
-      <div class="task_size">{{ 'Small' }}</div>
+      <div class="task_priority" appTaskPriority [task]="task">{{ taskDescription.priority }}</div>
+      <div class="task_size">{{ taskDescription.size }}</div>
     </div>
     <button mat-raised-button class="delete_btn" (click)="openConfirmationDialog($event)">
       <mat-icon>clear</mat-icon>

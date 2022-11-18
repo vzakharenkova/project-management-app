@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
 import { ColumnModel } from 'src/app/shared/models/column.model';
-import { TaskModel } from 'src/app/shared/models/task.model';
+import { TaskModel, TaskObjModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/core/store/actions/task.actions';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
@@ -14,16 +14,22 @@ import { TaskModalComponent } from './components/task-modal/task-modal.component
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.scss'],
 })
-export class TaskCardComponent {
+export class TaskCardComponent implements OnInit {
   @Input() task: TaskModel;
 
   @Input() column: ColumnModel;
 
   @Input() boardId: string;
 
+  public taskDescription: TaskObjModel;
+
   private taskFormConfig: TaskForm;
 
   constructor(public dialog: MatDialog, private store: Store) {}
+
+  ngOnInit(): void {
+    this.taskDescription = JSON.parse(this.task.description);
+  }
 
   public openConfirmationDialog(e: Event) {
     e.stopPropagation();
@@ -69,9 +75,9 @@ export class TaskCardComponent {
         ),
       formFields: {
         taskName: this.task.title,
-        taskSize: 'Small',
-        taskPriority: 'High',
-        taskDescription: this.task.description,
+        taskSize: this.taskDescription.size,
+        taskPriority: this.taskDescription.priority,
+        taskDescription: this.taskDescription.description,
       },
     };
   }
