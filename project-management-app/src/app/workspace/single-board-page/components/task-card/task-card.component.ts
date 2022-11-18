@@ -7,6 +7,7 @@ import { ColumnModel } from 'src/app/shared/models/column.model';
 import { TaskModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/core/store/actions/task.actions';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 
 @Component({
   selector: 'app-task-card',
@@ -47,8 +48,8 @@ export class TaskCardComponent {
     this.dialog.closeAll();
   }
 
-  openTaskForm() {
-    this.taskFormConfig = {
+  private createTaskConfig() {
+    return {
       title: 'Edite Task',
       btnName: 'Edit Task',
       submitBtn: (data: { title: string; description: string }) =>
@@ -73,8 +74,22 @@ export class TaskCardComponent {
         taskDescription: this.task.description,
       },
     };
+  }
+
+  openTaskForm() {
+    this.taskFormConfig = this.createTaskConfig();
     this.dialog.open(TaskFormComponent, {
       data: this.taskFormConfig,
+    });
+  }
+
+  openTask() {
+    const taskProps = {
+      task: this.task,
+      config: this.createTaskConfig(),
+    };
+    this.dialog.open(TaskModalComponent, {
+      data: taskProps,
     });
   }
 }

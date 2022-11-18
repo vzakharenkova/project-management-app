@@ -1,0 +1,64 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 20rem;
+  max-width: 30rem;
+
+  .close-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .form__close {
+    min-width: fit-content;
+    line-height: 0;
+    border-radius: 100%;
+    padding: 0.3rem;
+    cursor: pointer;
+
+    &:hover {
+      @include hover-element;
+    }
+  }
+
+  &_props {
+    display: flex;
+  }
+
+  &_priority,
+  &_size {
+    padding: 0.2rem 0.7rem;
+    border-radius: 1rem;
+  }
+
+  &_size {
+    background-color: $white;
+    margin-left: 1rem;
+    border: solid 1px black;
+  }
+
+  &_title {
+    font-weight: bold;
+  }
+
+  &_item {
+    margin-bottom: 1rem;
+  }
+
+  .edit_btn {
+    color: $btn_purple;
+    font-weight: bold;
+    transition: $hover-transition;
+    cursor: pointer;
+
+    &:hover {
+      @include hover-text;
+    }
+  }
+}

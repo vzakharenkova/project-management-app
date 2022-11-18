@@ -69,12 +69,7 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
   }
 
   public disableBtn() {
-    if (
-      this.name?.invalid ||
-      this.login?.invalid ||
-      this.password?.invalid ||
-      this.confirmPassword?.invalid
-    ) {
+    if (this.editForm.invalid) {
       return true;
     } else return false;
   }
