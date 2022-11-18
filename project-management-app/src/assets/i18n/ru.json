@@ -2,8 +2,8 @@
   "header": {
     "createNewBoardBtn": "Создать доску",
     "localization": {
-      "en": "Анг",
-      "ru": "Рус"
+      "en": "EN",
+      "ru": "RU"
     }
   },
   "boardPage": {
@@ -32,6 +32,9 @@
     "confPassFieldErr2": "Пожалуйста введите пароль",
     "editBtn": "Сохранить",
     "delProfileBtn": "Удалить профиль"
+  },
+  "card": {
+    "editBtn": "Редактировать"
   },
   "form": {
     "btnCreateNewBoard": {
@@ -67,7 +70,7 @@
         "low": "Низкий",
         "medium": "Средний",
         "high": "Высокий",
-        "urgent": "Срочная"
+        "urgent": "Срочно"
       },
       "descriptionFieldLabel": "Описание",
       "descriptionFieldLabelErr": "Пожалуйста введите описание",
