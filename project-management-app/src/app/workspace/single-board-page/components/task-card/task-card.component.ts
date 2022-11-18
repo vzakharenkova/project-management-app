@@ -76,7 +76,8 @@ export class TaskCardComponent {
     };
   }
 
-  openTaskForm() {
+  openTaskForm(e: Event) {
+    e.stopPropagation();
     this.taskFormConfig = this.createTaskConfig();
     this.dialog.open(TaskFormComponent, {
       data: this.taskFormConfig,
