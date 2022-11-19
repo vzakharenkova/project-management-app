@@ -2,7 +2,7 @@
 @import 'src/app/shared/styles/mixins';
 
 .page {
-  min-height: $main_content_height;
+  height: 100%;
   padding: 0 $padding-x 1.5rem;
   background-color: $background-light;
   overflow-x: auto;
