@@ -13,6 +13,7 @@ import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.
 import { CreateBoardComponent } from './create-board/create-board.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { CreateColumnComponent } from './single-board-page/components/create-column/create-column.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const routes: Routes = [
   {
@@ -40,7 +41,7 @@ const routes: Routes = [
     CreateBoardComponent,
     CreateColumnComponent,
   ],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],
   exports: [
     RouterModule,
     SingleBoardPageComponent,

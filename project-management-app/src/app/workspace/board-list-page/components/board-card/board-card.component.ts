@@ -6,6 +6,7 @@ import { deleteBoard } from 'src/app/core/store/actions/board.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { BoardModel } from '../../../../shared/models/board.model';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-board-card',
@@ -15,15 +16,22 @@ import { BoardModel } from '../../../../shared/models/board.model';
 export class BoardCardComponent {
   @Input() board: BoardModel;
 
-  constructor(private router: Router, public dialog: MatDialog, private store: Store<StateModel>) {}
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private store: Store<StateModel>,
+    private transloco: TranslocoService,
+  ) {}
 
   public openConfirmationDialog(e: Event) {
     e.stopPropagation();
 
     this.dialog.open(ConfirmationModalComponent, {
       data: {
-        title: 'Delete board',
-        content: `Do you want to delete ${this.board.title} board?`,
+        title: this.transloco.translateObject('dialogDelBoard.title'),
+        content: this.transloco.translateObject('dialogDelBoard.content', {
+          name: this.board.title,
+        }),
         handler: () => this.deleteBoard(this.board),
       },
     });

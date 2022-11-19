@@ -13,12 +13,6 @@ import { createBoard } from 'src/app/core/store/actions/board.actions';
 export class CreateBoardComponent {
   boardForm: FormGroup;
 
-  formTitle: string = 'Create Board';
-
-  boardNameErrMsg: string = 'Please enter a board name';
-
-  boardDescriptionErrMsg: string = 'Please enter a board description';
-
   constructor(public dialog: MatDialog, private store: Store<StateModel>) {
     this.boardForm = new FormGroup({
       boardName: new FormControl('', Validators.required),

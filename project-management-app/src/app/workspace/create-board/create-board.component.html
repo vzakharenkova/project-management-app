@@ -1,25 +1,29 @@
-<div class="form">
+<div class="form" *transloco="let t; read: 'form.btnCreateNewBoard'">
   <div class="close-container">
     <button mat-raised-button class="form__close" (click)="closeBoardForm()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <h1 class="form__title">{{ formTitle }}</h1>
+  <h1 class="form__title">{{ t('title') }}</h1>
   <form class="task" [formGroup]="boardForm" (ngSubmit)="submitCreateBoardForm()">
     <mat-form-field appearance="outline" class="form_field">
-      <mat-label>Board Name</mat-label>
-      <input matInput placeholder="Enter Board Name" formControlName="boardName" />
-      <mat-error>{{ boardNameErrMsg }}</mat-error>
+      <mat-label>{{ t('nameFieldLabel') }}</mat-label>
+      <input matInput placeholder="{{ t('nameFieldErr') }}" formControlName="boardName" />
+      <mat-error>{{ t('nameFieldErr') }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form_field">
-      <mat-label>Board Description</mat-label>
-      <input matInput placeholder="Enter Board Description" formControlName="boardDescription" />
-      <mat-error>{{ boardDescriptionErrMsg }}</mat-error>
+      <mat-label>{{ t('descriptionField') }}</mat-label>
+      <input
+        matInput
+        placeholder="{{ t('descriptionFieldErr') }}"
+        formControlName="boardDescription"
+      />
+      <mat-error>{{ t('descriptionFieldErr') }}</mat-error>
     </mat-form-field>
 
     <button mat-raised-button type="submit" class="form__btn" [disabled]="boardForm.invalid">
-      {{ formTitle }}
+      {{ t('formBtn') }}
     </button>
   </form>
 </div>
