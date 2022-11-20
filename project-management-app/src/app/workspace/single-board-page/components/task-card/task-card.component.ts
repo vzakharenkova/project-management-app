@@ -24,6 +24,8 @@ export class TaskCardComponent implements OnInit {
 
   public taskDescription: TaskObjModel;
 
+  public taskFile: boolean;
+
   private taskFormConfig: TaskForm;
 
   constructor(
@@ -34,6 +36,7 @@ export class TaskCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskDescription = JSON.parse(this.task.description);
+    this.task.files![0] ? (this.taskFile = true) : (this.taskFile = false);
   }
 
   public openConfirmationDialog(e: Event) {

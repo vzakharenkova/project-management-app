@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { TaskModel, TaskObjModel } from 'src/app/shared/models/task.model';
 import { TaskForm } from 'src/app/workspace/task-form/models/task-form.models';
 import { TaskFormComponent } from 'src/app/workspace/task-form/task-form.component';
@@ -30,5 +30,18 @@ export class TaskModalComponent implements OnInit {
 
   closeTask() {
     this.dialog.closeAll();
+  }
+
+  nameHandler(name: string): string {
+    const maxLength = 15;
+    if (name.length > maxLength) {
+      const ext = name.slice(name.lastIndexOf('.'), name.length);
+      return name.slice(0, maxLength) + '...' + ext;
+    } else return name;
+  }
+
+  downloadFile(fileName: string) {
+    console.log(fileName, this.data);
+    let blob = new Blob([]);
   }
 }
