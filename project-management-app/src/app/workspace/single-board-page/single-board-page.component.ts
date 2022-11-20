@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { StateModel } from 'src/app/core/store/state/state.model';
 import { BoardModel } from 'src/app/shared/models/board.model';
 import { ColumnModel } from 'src/app/shared/models/column.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import {
@@ -14,7 +14,7 @@ import {
   selectCurrentUser,
   selectUsers,
 } from 'src/app/core/store/selectos/app.selectors';
-import { getBoardById } from 'src/app/core/store/actions/board.actions';
+import { closeBoard, getBoardById } from 'src/app/core/store/actions/board.actions';
 import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
 import { calculateOrder } from '../../shared/utils/calculateOrder';
@@ -24,16 +24,20 @@ import { calculateOrder } from '../../shared/utils/calculateOrder';
   templateUrl: './single-board-page.component.html',
   styleUrls: ['./single-board-page.component.scss', './drag&drop.scss'],
 })
-export class SingleBoardPageComponent implements OnInit {
+export class SingleBoardPageComponent implements OnInit, OnDestroy {
   public board: BoardModel;
 
   public board$: Observable<BoardModel>;
 
-  private boardId: string;
-
   public user$: Observable<AuthDataModel | null>;
 
   public users$: Observable<UserModel[]>;
+
+  private boardId: string;
+
+  private routeSubscription: Subscription;
+
+  private boardSubscription: Subscription;
 
   constructor(
     public route: ActivatedRoute,
@@ -42,16 +46,22 @@ export class SingleBoardPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.routeSubscription = this.route.params.subscribe((params) => {
       const boardId = params['id'];
       this.boardId = boardId;
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
-    this.store.select(selectCurrentBoard).subscribe((value) => {
+    this.boardSubscription = this.store.select(selectCurrentBoard).subscribe((value) => {
       if (value != null) this.board = JSON.parse(JSON.stringify(value));
     });
     this.user$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+    this.boardSubscription.unsubscribe();
+    this.store.dispatch(closeBoard());
   }
 
   drop(event: CdkDragDrop<ColumnModel[]>): void {

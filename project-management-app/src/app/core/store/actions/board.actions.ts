@@ -6,6 +6,7 @@ export enum BoardActionsList {
   getById = '[BOARD] Get one board',
   delete = '[BOARD] Delete board',
   update = '[BOARD] Update board',
+  close = '[BOARD] Close board',
 }
 
 export const getAllBoards = createAction(BoardActionsList.getAll);
@@ -23,3 +24,5 @@ export const updateBoard = createAction(
   BoardActionsList.update,
   props<{ boardId: string; data: { title: string; description: string } }>(),
 );
+
+export const closeBoard = createAction(BoardActionsList.close);
