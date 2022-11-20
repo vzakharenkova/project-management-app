@@ -16,6 +16,7 @@ import { CreateColumnComponent } from './single-board-page/components/create-col
 import { TaskModalComponent } from './single-board-page/components/task-card/components/task-modal/task-modal.component';
 import { TaskPriorityDirective } from './single-board-page/components/task-card/directives/task-priority.directive';
 import { TranslocoModule } from '@ngneat/transloco';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'edit', component: EditProfilePageComponent, canActivate: [AuthGuard] },
+  { path: '**', component: ErrorPageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -44,6 +46,7 @@ const routes: Routes = [
     CreateColumnComponent,
     TaskModalComponent,
     TaskPriorityDirective,
+    ErrorPageComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],
   exports: [
@@ -58,6 +61,7 @@ const routes: Routes = [
     CreateBoardComponent,
     CreateColumnComponent,
     TaskModalComponent,
+    ErrorPageComponent,
   ],
 })
 export class WorkspaceModule {}
