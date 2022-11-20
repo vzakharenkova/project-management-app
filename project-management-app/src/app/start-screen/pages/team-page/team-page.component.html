@@ -1,8 +1,12 @@
-<div class="page">
+<div class="page" *transloco="let t; read: 'welcome.teamPage'">
   <app-lang-toggler color="white"></app-lang-toggler>
-  <div class="page_title">Our team brings you a development tool used by agile teams</div>
+  <div class="page_title">{{ t('title') }}</div>
   <div class="team">
-    <app-team-card *ngFor="let member of teamMembers" [member]="member"></app-team-card>
+    <app-team-card
+      *ngFor="let member of teamMembers; index as i"
+      [member]="member"
+      [index]="i + 1"
+    ></app-team-card>
   </div>
   <a routerLink="/welcome"><mat-icon class="prev">navigate_before</mat-icon></a>
   <a routerLink="/welcome/description"><mat-icon class="next">navigate_next</mat-icon></a>

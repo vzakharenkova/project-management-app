@@ -6,6 +6,25 @@
       "ru": "RU"
     }
   },
+  "welcome": {
+    "titlePage": { "title": "Welcome to Client Management App" },
+    "teamPage": {
+      "title": "Our team brings you a development tool used by agile teams",
+      "team": {
+        "1": { "name": "Pavel Kizhlo", "description": "Something" },
+        "2": { "name": "Victoria Zakharenkova", "description": "Something" },
+        "3": { "name": "Nick Davydov", "description": "Something" }
+      }
+    },
+    "descriptionPage": {
+      "text": "An application that will help teams solve work tasks efficiently. It will help organize the work so that everyone knows what to do. Track the progress of tasks, be aware of what is happening. Correctly plan the timing and scope of work.",
+      "loginBtn": "Login",
+      "singupBtn": "SingUp"
+    }
+  },
+  "auth": {
+    "title": "Log in or Sing up to start managing your projects"
+  },
   "boardPage": {
     "title": "Boards"
   },

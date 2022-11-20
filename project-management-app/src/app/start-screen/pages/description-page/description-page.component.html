@@ -1,14 +1,12 @@
-<div class="page">
+<div class="page" *transloco="let t; read: 'welcome.descriptionPage'">
   <app-lang-toggler color="white"></app-lang-toggler>
   <div class="page_buttons">
-    <a mat-raised-button color="primary" routerLink="/auth/login">Log in</a>
-    <a mat-raised-button color="primary" routerLink="/auth/registration"> Sign up </a>
+    <a mat-raised-button color="primary" routerLink="/auth/login">{{ t('loginBtn') }}</a>
+    <a mat-raised-button color="primary" routerLink="/auth/registration"> {{ t('singupBtn') }} </a>
   </div>
   <div class="page_content">
     <div class="description">
-      An application that will help teams solve work tasks efficiently. <br />
-      It will help organize the work so that everyone knows what to do. <br />Track the progress of
-      tasks, be aware of what is happening. <br />Correctly plan the timing and scope of work.
+      {{ t('text') }}
     </div>
     <img class="img" src="../../../../assets/welcome_2.svg" />
   </div>
