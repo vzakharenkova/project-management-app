@@ -30,8 +30,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private localizationSub: Subscription;
 
-  private sidenavSub: Subscription;
-
   constructor(
     public dialog: MatDialog,
     public sidenavService: SidenavService,
@@ -86,7 +84,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.localizationSub.unsubscribe();
-    this.sidenavSub.unsubscribe();
     this.breakpointObserver.ngOnDestroy();
   }
 }

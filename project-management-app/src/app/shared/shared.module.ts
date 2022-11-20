@@ -9,9 +9,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, ConfirmationModalComponent],
+  declarations: [FooterComponent, HeaderComponent, ConfirmationModalComponent, SidenavComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -30,6 +31,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     FooterComponent,
     HeaderComponent,
     ConfirmationModalComponent,
+    SidenavComponent,
   ],
 })
 export class SharedModule {}
