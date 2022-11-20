@@ -43,5 +43,6 @@ export class TaskModalComponent implements OnInit {
   downloadFile(fileName: string) {
     console.log(fileName, this.data);
     let blob = new Blob([]);
+    console.log(blob);
   }
 }

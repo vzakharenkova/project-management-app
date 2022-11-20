@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormFields, TaskForm } from './models/task-form.models';
+import { FileHandle } from './directives/dragDropFiles.directive';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-task-form',
@@ -11,7 +13,13 @@ import { FormFields, TaskForm } from './models/task-form.models';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskForm, private dialog: MatDialog) {}
+  uploadFiles: FileHandle[];
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: TaskForm,
+    private dialog: MatDialog,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit(): void {
     this.taskForm = new FormGroup({
@@ -19,6 +27,7 @@ export class TaskFormComponent implements OnInit {
       taskSize: new FormControl(this.data.formFields.taskSize),
       taskPriority: new FormControl(this.data.formFields.taskPriority),
       taskDescription: new FormControl(this.data.formFields.taskDescription, Validators.required),
+      taskFile: new FormControl(),
     });
   }
 
@@ -43,5 +52,22 @@ export class TaskFormComponent implements OnInit {
 
   private getFormValue(): FormFields {
     return this.taskForm.value;
+  }
+
+  dropFile(event: FileHandle[]) {
+    this.uploadFiles = event;
+    console.log(event);
+  }
+
+  btnUploadFile(event: Event) {
+    let files: FileHandle[] = [];
+    for (let i = 0; i < (event.target! as HTMLInputElement).files!.length; i++) {
+      const file = (event.target! as HTMLInputElement).files![i];
+      const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
+      files.push({ file, url });
+    }
+    if (files.length > 0) {
+      this.uploadFiles = files;
+    }
   }
 }

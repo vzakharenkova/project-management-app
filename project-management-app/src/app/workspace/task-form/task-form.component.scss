@@ -46,6 +46,36 @@
   width: fit-content;
 }
 
+.task-file {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.task-file__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+  cursor: pointer;
+  border: $background-light dashed 2px;
+}
+
+.task-file__input {
+  display: none;
+}
+
+.task-file__upload {
+  margin-bottom: 1rem;
+}
+
+.active {
+  border: greenyellow dashed 2px;
+}
+
 @media screen and (max-width: 680px) {
   .select-container {
     flex-wrap: wrap;
