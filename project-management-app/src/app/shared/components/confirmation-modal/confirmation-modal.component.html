@@ -4,5 +4,5 @@
   </button>
   <div class="modal_title">{{ data.title }}</div>
   <div class="modal_content">{{ data.content }}</div>
-  <button mat-raised-button class="delete_btn" (click)="data.handler()">Delete</button>
+  <button mat-raised-button class="delete_btn" (click)="data.handler()" *transloco="let t">{{t('dialog')}}</button>
 </div>

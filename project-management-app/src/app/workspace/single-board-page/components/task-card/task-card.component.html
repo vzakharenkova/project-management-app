@@ -1,4 +1,4 @@
-<mat-card class="task" (click)="openTask()">
+<mat-card class="task" (click)="openTask()" *transloco="let t; read: 'card'">
   <div class="task_heading">
     <div class="task_props">
       <div class="task_priority" appTaskPriority [task]="task">{{ taskDescription.priority }}</div>
@@ -9,5 +9,5 @@
     </button>
   </div>
   <div class="task_title">{{ task.title }}</div>
-  <div mat-raised-button class="edit_btn" (click)="openTaskForm($event)">Edit Task</div>
+  <div mat-raised-button class="edit_btn" (click)="openTaskForm($event)">{{ t('editBtn') }}</div>
 </mat-card>

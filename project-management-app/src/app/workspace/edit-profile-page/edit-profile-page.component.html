@@ -1,68 +1,70 @@
-<main class="edit">
+<main class="edit" *transloco="let t; read: 'editProfilePage'">
   <div class="edit-left">
     <mat-icon class="back" (click)="navigateBack()">navigate_before</mat-icon>
-    <div class="back-link" (click)="navigateBack()">back</div>
+    <div class="back-link" (click)="navigateBack()">{{ t('btnBack') }}</div>
     <img src="../../assets/edit.svg" class="edit_img" />
   </div>
   <div class="form-wrapper">
-    <h2 class="heading">Edit your profile</h2>
+    <h2 class="heading">{{ t('title') }}</h2>
     <form class="form" [formGroup]="editForm">
       <mat-form-field appearance="outline" class="form_field">
-        <mat-label>Name</mat-label>
+        <mat-label>{{ t('nameFieldLabel') }}</mat-label>
         <input
           matInput
-          placeholder="Enter your name"
+          placeholder="{{ t('nameFieldPlaceHolder') }}"
           class="input"
           formControlName="name"
           [value]="user.name"
         />
-        <mat-error *ngIf="name?.errors?.['required']">Please enter your name</mat-error>
+        <mat-error *ngIf="name?.errors?.['required']">{{ t('nameFieldErr') }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
-        <mat-label>Login</mat-label>
+        <mat-label>{{ t('loginFieldLabel') }}</mat-label>
         <input
           matInput
-          placeholder="Enter your login (email)"
+          placeholder="{{ t('loginFieldPlaceHolder') }}"
           class="input"
           formControlName="login"
           [value]="user.login"
         />
-        <mat-error *ngIf="login?.errors?.['required']">Please enter a login email</mat-error>
-        <mat-error *ngIf="login?.errors?.['pattern']">The login email is invalid</mat-error>
+        <mat-error *ngIf="login?.errors?.['required']">{{ t('loginFieldErr1') }}</mat-error>
+        <mat-error *ngIf="login?.errors?.['pattern']">{{ t('loginFieldErr2') }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
-        <mat-label>Password</mat-label>
+        <mat-label>{{ t('passFieldLabel') }}</mat-label>
         <input
           matInput
           [type]="hidePassword ? 'password' : 'text'"
-          placeholder="Enter your password"
+          placeholder="{{ t('passFieldPlaceHolder') }}"
           class="input"
           formControlName="password"
         />
         <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
           hidePassword ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="password?.errors?.['minlength'] || password?.errors?.['pattern']"
-          >Your password isn't strong enough</mat-error
-        >
-        <mat-error *ngIf="password?.errors?.['required']">Please enter a password</mat-error>
+        <mat-error *ngIf="password?.errors?.['minlength'] || password?.errors?.['pattern']">{{
+          t('passFieldErr')
+        }}</mat-error>
+        <mat-error *ngIf="password?.errors?.['required']">{{ t('confPassFieldErr2') }}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="form_field">
-        <mat-label>Confirm password</mat-label>
+        <mat-label>{{ t('confPassFieldLabel') }}</mat-label>
         <input
           matInput
           [type]="hideConfirmPassword ? 'password' : 'text'"
-          placeholder="Confirm your password"
+          placeholder="{{ t('confPassFieldPlaceHolder') }}"
           class="input"
           formControlName="confirmPassword"
         />
         <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
           hideConfirmPassword ? 'visibility_off' : 'visibility'
         }}</mat-icon>
-        <mat-error *ngIf="confirmPassword?.errors?.['mustMatch']"
-          >The entered password doesn't match</mat-error
-        >
-        <mat-error *ngIf="confirmPassword?.errors?.['required']">Please enter a password</mat-error>
+        <mat-error *ngIf="confirmPassword?.errors?.['mustMatch']">{{
+          t('confPassFieldErr1')
+        }}</mat-error>
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">{{
+          t('confPassFieldErr2')
+        }}</mat-error>
       </mat-form-field>
     </form>
     <div class="action-btns">
@@ -73,7 +75,7 @@
         (click)="updateUser()"
         [disabled]="disableBtn()"
       >
-        Edit
+        {{ t('editBtn') }}
       </button>
       <button
         class="btn delete_btn"
@@ -81,7 +83,7 @@
         color="primary"
         (click)="openConfirmationDialog()"
       >
-        Delete profile
+        {{ t('delProfileBtn') }}
       </button>
     </div>
   </div>

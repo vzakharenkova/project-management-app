@@ -13,10 +13,6 @@ import { createColumn } from 'src/app/core/store/actions/column.actions';
 export class CreateColumnComponent {
   columnForm: FormGroup;
 
-  formTitle: string = 'Create Column';
-
-  columnNameErrMsg: string = 'Please enter a column name';
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { boardId: string },
     public dialog: MatDialog,

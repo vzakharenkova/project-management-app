@@ -11,8 +11,6 @@ import { FormFields, TaskForm } from './models/task-form.models';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
 
-  taskNameErrMsg: string = 'Please enter a task name';
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: TaskForm, private dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -20,7 +18,7 @@ export class TaskFormComponent implements OnInit {
       taskName: new FormControl(this.data.formFields.taskName, Validators.required),
       taskSize: new FormControl(this.data.formFields.taskSize),
       taskPriority: new FormControl(this.data.formFields.taskPriority),
-      taskDescription: new FormControl(this.data.formFields.taskDescription),
+      taskDescription: new FormControl(this.data.formFields.taskDescription, Validators.required),
     });
   }
 

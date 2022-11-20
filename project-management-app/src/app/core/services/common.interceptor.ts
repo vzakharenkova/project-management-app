@@ -6,8 +6,11 @@ export class CommonInterceptor implements HttpInterceptor {
   BASE_URL = 'http://34.88.100.156';
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const cloned = req.clone({ url: this.BASE_URL + req.url });
-
-    return next.handle(cloned);
+    if (!req.url.includes('/assets/i18n/')) {
+      const cloned = req.clone({ url: this.BASE_URL + req.url });
+      return next.handle(cloned);
+    } else {
+      return next.handle(req);
+    }
   }
 }

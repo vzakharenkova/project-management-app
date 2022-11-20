@@ -15,6 +15,7 @@ import { AuthGuard } from '../core/guards/auth.guard';
 import { CreateColumnComponent } from './single-board-page/components/create-column/create-column.component';
 import { TaskModalComponent } from './single-board-page/components/task-card/components/task-modal/task-modal.component';
 import { TaskPriorityDirective } from './single-board-page/components/task-card/directives/task-priority.directive';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const routes: Routes = [
   {
@@ -44,7 +45,7 @@ const routes: Routes = [
     TaskModalComponent,
     TaskPriorityDirective,
   ],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],
   exports: [
     RouterModule,
     SingleBoardPageComponent,

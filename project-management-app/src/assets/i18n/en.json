@@ -1,0 +1,116 @@
+{
+  "header": {
+    "createNewBoardBtn": "Create New Board",
+    "localization": {
+      "en": "EN",
+      "ru": "RU"
+    }
+  },
+  "boardPage": {
+    "title": "Boards"
+  },
+  "singleBoardPage": {
+    "title": "Boards",
+    "createColumnBtn": "Create a column"
+  },
+  "editProfilePage": {
+    "btnBack": "back",
+    "title": "Edit your profile",
+    "nameFieldLabel": "Name",
+    "nameFieldPlaceHolder": "Enter your name",
+    "loginFieldLabel": "Login",
+    "loginFieldPlaceHolder": "Enter your name",
+    "passFieldLabel": "Password",
+    "passFieldPlaceHolder": "Enter your password",
+    "confPassFieldLabel": "Confirm Password",
+    "confPassFieldPlaceHolder": "Confirm your password",
+    "nameFieldErr": "Please enter your name",
+    "loginFieldErr1": "Please enter a login email",
+    "loginFieldErr2": "The login email is invalid",
+    "passFieldErr": "Your password isn't strong enough",
+    "confPassFieldErr1": "The entered password doesn't match",
+    "confPassFieldErr2": "Please enter a password",
+    "editBtn": "Edit",
+    "delProfileBtn": "Delete profile"
+  },
+  "card": {
+    "editBtn": "Edit Task"
+  },
+  "form": {
+    "btnCreateNewBoard": {
+      "title": "Create Board",
+      "nameFieldLabel": "Board Name",
+      "nameFieldErr": "Please enter a board name",
+      "descriptionField": "Board Description",
+      "descriptionFieldErr": "Please enter a board description",
+      "formBtn": "Create Board"
+    },
+    "createColumn": {
+      "title": "Create Column",
+      "nameFieldLabel": "Column Name",
+      "nameFieldPlaceHolder": "Enter Column Name",
+      "nameFieldErr": "Please enter a column name",
+      "btnCreateColumn": "Create Column"
+    },
+    "createTask": {
+      "title": "Create Task",
+      "nameFieldLabel": "Task Name",
+      "nameFieldPlaceHolder": "Enter Task Name",
+      "nameFieldErr": "Please enter a task name",
+      "sizeFieldLabel": "Task Size",
+      "sizeOptions": {
+        "tiny": "Tiny",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large",
+        "xLarge": "X-large"
+      },
+      "priorityFieldLabel": "Task Priority",
+      "priorityOptions": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "descriptionFieldLabel": "Description",
+      "descriptionFieldLabelErr": "Please enter description",
+      "createTaskBtn": "Create Task"
+    },
+    "editTask": {
+      "title": "Edit Task",
+      "nameFieldLabel": "Task Name",
+      "nameFieldPlaceHolder": "Enter Task Name",
+      "nameFieldErr": "Please enter a task name",
+      "sizeFieldLabel": "Task Size",
+      "sizeOptions": {
+        "tiny": "Tiny",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large",
+        "xLarge": "X-large"
+      },
+      "priorityFieldLabel": "Task Priority",
+      "priorityOptions": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "descriptionFieldLabel": "Description",
+      "createTaskBtn": "Edit Task"
+    }
+  },
+  "dialog": "Delete",
+  "dialogDelColumn": {
+    "title": "Delete column",
+    "content": "Do you want to delete {{ name }} column?"
+  },
+  "dialogDelTask": {
+    "title": "Delete task",
+    "content": "Do you want to delete {{ name }} task?"
+  },
+  "dialogDelBoard": {
+    "title": "Delete board",
+    "content": "Do you want to delete {{ name }} board?"
+  }
+}
