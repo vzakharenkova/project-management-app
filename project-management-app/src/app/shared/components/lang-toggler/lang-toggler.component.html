@@ -1,0 +1,5 @@
+<div class="lang" [ngClass]="color" *transloco="let t; read: 'header'">
+  <span class="lang_en" (click)="changeLangEn(lang)">{{ t('localization.en') }}</span>
+  <span class="slash">|</span>
+  <span class="lang_ru" (click)="changeLangRu(lang)">{{ t('localization.ru') }}</span>
+</div>

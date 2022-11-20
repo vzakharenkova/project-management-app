@@ -5,6 +5,12 @@
   display: flex;
   height: 100vh;
 
+  app-lang-toggler {
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
+  }
+
   &-left {
     display: flex;
     flex-direction: column;

@@ -4,12 +4,8 @@
   *transloco="let t; read: 'header'"
 >
   <div class="header-left">
-    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg"  alt="logo"/></a>
-    <div class="lang">
-      <span class="lang_en" (click)="changeLangEn(lang)">{{ t('localization.en') }}</span>
-      <span class="slash">|</span>
-      <span class="lang_ru" (click)="changeLangRu(lang)">{{ t('localization.ru') }}</span>
-    </div>
+    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg" alt="logo" /></a>
+    <app-lang-toggler color="white"></app-lang-toggler>
   </div>
   <div class="header-right">
     <button mat-raised-button class="create_btn btn" (click)="openFormCreateBoard()">

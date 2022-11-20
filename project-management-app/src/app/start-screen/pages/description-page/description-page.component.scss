@@ -8,6 +8,12 @@
   padding-left: 9rem;
   padding-right: 9rem;
 
+  app-lang-toggler {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+  }
+
   &_buttons {
     display: flex;
     justify-content: end;
