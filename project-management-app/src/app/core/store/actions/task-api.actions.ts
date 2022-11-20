@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { FileHandle } from 'src/app/workspace/task-form/directives/dragDropFiles.directive';
 import { TaskModel } from '../../../shared/models/task.model';
 
 export enum TaskApiActionsList {
@@ -26,7 +27,7 @@ export const allTasksError = createAction(
 
 export const taskCreated = createAction(
   TaskApiActionsList.taskCreated,
-  props<{ task: TaskModel; boardId: string; columnId: string }>(),
+  props<{ task: TaskModel; boardId: string; columnId: string; files?: FileHandle[] }>(),
 );
 
 export const taskCreatedError = createAction(
@@ -56,7 +57,7 @@ export const taskDeletedError = createAction(
 
 export const taskUpdated = createAction(
   TaskApiActionsList.taskUpdated,
-  props<{ task: TaskModel; boardId: string; columnId: string }>(),
+  props<{ task: TaskModel; boardId: string; columnId: string; files?: FileHandle[] }>(),
 );
 
 export const taskUpdatedError = createAction(

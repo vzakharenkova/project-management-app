@@ -62,3 +62,25 @@
     }
   }
 }
+
+.task-file__item {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.task-file__name {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-file__icon {
+  height: 100%!important;
+  font-size: 1.25rem!important;
+  cursor: pointer;
+
+  &:hover {
+    @include hover-text;
+  }
+}

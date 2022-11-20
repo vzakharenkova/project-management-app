@@ -9,5 +9,8 @@
     </button>
   </div>
   <div class="task_title">{{ task.title | cut: 30 }}</div>
-  <button mat-icon-button class="edit_btn" (click)="openTaskForm($event)">{{ t('editBtn') }}</button>
+  <div class="btn__container">
+    <div mat-raised-button class="edit_btn" (click)="openTaskForm($event)">{{ t('editBtn') }}</div>
+    <mat-icon *ngIf="taskFile">insert_drive_file</mat-icon>
+  </div>
 </mat-card>

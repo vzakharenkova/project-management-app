@@ -16,6 +16,7 @@ import { CreateColumnComponent } from './single-board-page/components/create-col
 import { TaskModalComponent } from './single-board-page/components/task-card/components/task-modal/task-modal.component';
 import { TaskPriorityDirective } from './single-board-page/components/task-card/directives/task-priority.directive';
 import { TranslocoModule } from '@ngneat/transloco';
+import { DragDirective } from './task-form/directives/dragDropFiles.directive';
 import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
     CreateColumnComponent,
     TaskModalComponent,
     TaskPriorityDirective,
+    DragDirective,
     ErrorPageComponent,
   ],
   imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],

@@ -79,3 +79,9 @@
     @include hover-element;
   }
 }
+
+.btn__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
