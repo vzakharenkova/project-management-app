@@ -1,47 +1,62 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { TranslocoService } from '@ngneat/transloco';
+import { BreakpointObserver } from '@angular/cdk/layout';
+
 import { CreateBoardComponent } from '../../../workspace/create-board/create-board.component';
 import { AuthService } from '../../../core/services/auth.service';
-import { Store } from '@ngrx/store';
 import { changeLocalization } from '../../../core/store/actions/localization.actions';
-import { Subscription } from 'rxjs';
 import { selectLocalization } from '../../../core/store/selectos/app.selectors';
 import { StateModel } from '../../../core/store/state/state.model';
-import { TranslocoService } from '@ngneat/transloco';
+import { BREAKPOINTS } from '../../constants/constants';
+import { SidenavService } from '../../../core/services/sidenav.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   public isScrolled: boolean;
 
   public lang: 'ru' | 'en';
 
-  private subscription: Subscription;
+  public isSmallScreen: boolean;
+
+  public isXSmallScreen: boolean;
+
+  private localizationSub: Subscription;
+
+  private sidenavSub: Subscription;
 
   constructor(
     public dialog: MatDialog,
+    public sidenavService: SidenavService,
     private authService: AuthService,
     private store: Store<StateModel>,
     private transloco: TranslocoService,
+    private breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit() {
-    this.subscription = this.store.select(selectLocalization).subscribe((value) => {
+    this.localizationSub = this.store.select(selectLocalization).subscribe((value) => {
       this.lang = value;
     });
+
     this.animateHeader();
+
+    this.breakpointObserver.observe([BREAKPOINTS.small, BREAKPOINTS.xSmall]).subscribe((res) => {
+      this.isSmallScreen = res.breakpoints[BREAKPOINTS.small];
+      this.isXSmallScreen = res.breakpoints[BREAKPOINTS.xSmall];
+    });
   }
 
   public animateHeader() {
     window.onscroll = () => {
-      if (window.pageYOffset > 0) {
-        this.isScrolled = true;
-      } else {
-        this.isScrolled = false;
-      }
+      this.isScrolled = window.pageYOffset > 0;
     };
   }
 
@@ -65,7 +80,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (lang != 'en') this.store.dispatch(changeLocalization());
   }
 
+  toggleSidenav() {
+    this.sidenavService.toggle();
+  }
+
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.localizationSub.unsubscribe();
+    this.sidenavSub.unsubscribe();
+    this.breakpointObserver.ngOnDestroy();
   }
 }
