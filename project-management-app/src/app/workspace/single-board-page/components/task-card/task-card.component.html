@@ -1,13 +1,13 @@
-<mat-card class="task" *transloco="let t; read: 'card'">
+<mat-card class="task" (click)="openTask()" *transloco="let t; read: 'card'">
   <div class="task_heading">
     <div class="task_props">
-      <div class="task_priority">{{ 'High' }}</div>
-      <div class="task_size">{{ 'Small' }}</div>
+      <div class="task_priority" appTaskPriority [task]="task">{{ taskDescription.priority }}</div>
+      <div class="task_size">{{ taskDescription.size }}</div>
     </div>
     <button mat-raised-button class="delete_btn" (click)="openConfirmationDialog($event)">
       <mat-icon>clear</mat-icon>
     </button>
   </div>
   <div class="task_title">{{ task.title }}</div>
-  <div mat-raised-button class="edit_btn" (click)="openTaskForm()">{{t('editBtn')}}</div>
+  <div mat-raised-button class="edit_btn" (click)="openTaskForm($event)">{{ t('editBtn') }}</div>
 </mat-card>

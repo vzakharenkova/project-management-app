@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
 import { ColumnModel } from 'src/app/shared/models/column.model';
-import { TaskModel } from 'src/app/shared/models/task.model';
+import { TaskModel, TaskObjModel } from 'src/app/shared/models/task.model';
 import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/core/store/actions/task.actions';
+import { TaskModalComponent } from './components/task-modal/task-modal.component';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -14,12 +15,14 @@ import { TranslocoService } from '@ngneat/transloco';
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.scss'],
 })
-export class TaskCardComponent {
+export class TaskCardComponent implements OnInit {
   @Input() task: TaskModel;
 
   @Input() column: ColumnModel;
 
   @Input() boardId: string;
+
+  public taskDescription: TaskObjModel;
 
   private taskFormConfig: TaskForm;
 
@@ -28,6 +31,10 @@ export class TaskCardComponent {
     private store: Store,
     private transloco: TranslocoService,
   ) {}
+
+  ngOnInit(): void {
+    this.taskDescription = JSON.parse(this.task.description);
+  }
 
   public openConfirmationDialog(e: Event) {
     e.stopPropagation();
@@ -54,8 +61,8 @@ export class TaskCardComponent {
     this.dialog.closeAll();
   }
 
-  openTaskForm() {
-    this.taskFormConfig = {
+  private createTaskConfig() {
+    return {
       title: this.transloco.translateObject('form.editTask.title'),
       btnName: this.transloco.translateObject('form.editTask.createTaskBtn'),
       submitBtn: (data: { title: string; description: string }) =>
@@ -75,13 +82,28 @@ export class TaskCardComponent {
         ),
       formFields: {
         taskName: this.task.title,
-        taskSize: 'Small',
-        taskPriority: 'High',
-        taskDescription: this.task.description,
+        taskSize: this.taskDescription.size,
+        taskPriority: this.taskDescription.priority,
+        taskDescription: this.taskDescription.description,
       },
     };
+  }
+
+  openTaskForm(e: Event) {
+    e.stopPropagation();
+    this.taskFormConfig = this.createTaskConfig();
     this.dialog.open(TaskFormComponent, {
       data: this.taskFormConfig,
+    });
+  }
+
+  openTask() {
+    const taskProps = {
+      task: this.task,
+      config: this.createTaskConfig(),
+    };
+    this.dialog.open(TaskModalComponent, {
+      data: taskProps,
     });
   }
 }

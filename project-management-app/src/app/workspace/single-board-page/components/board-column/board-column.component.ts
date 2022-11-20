@@ -104,7 +104,7 @@ export class BoardColumnComponent implements OnInit {
         ),
       formFields: {
         taskSize: 'Small',
-        taskPriority: 'High',
+        taskPriority: 'Low',
       },
     };
     this.dialog.open(TaskFormComponent, {

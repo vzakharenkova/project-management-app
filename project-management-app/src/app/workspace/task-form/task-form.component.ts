@@ -26,7 +26,11 @@ export class TaskFormComponent implements OnInit {
     if (this.taskForm.valid) {
       const taskData = {
         title: this.taskForm.get('taskName')?.value,
-        description: this.taskForm.get('taskDescription')?.value,
+        description: JSON.stringify({
+          description: this.taskForm.get('taskDescription')?.value,
+          size: this.taskForm.get('taskSize')?.value,
+          priority: this.taskForm.get('taskPriority')?.value,
+        }),
       };
       this.dialog.closeAll();
       this.data.submitBtn(taskData);
