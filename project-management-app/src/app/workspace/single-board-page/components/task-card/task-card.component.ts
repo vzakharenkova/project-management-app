@@ -36,7 +36,7 @@ export class TaskCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskDescription = JSON.parse(this.task.description);
-    this.task.files![0] ? (this.taskFile = true) : (this.taskFile = false);
+    this.taskFile = !!this.task.files?.length || false;
   }
 
   public openConfirmationDialog(e: Event) {

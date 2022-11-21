@@ -46,4 +46,12 @@ export class TaskService {
       newData,
     );
   }
+
+  uploadFile(taskId: string, file: FormData) {
+    return this.http.post(`/file`, { taskId, file });
+  }
+
+  downloadFile(taskId: string, fileName: string) {
+    return this.http.get(`/file/${taskId}/${fileName}`);
+  }
 }

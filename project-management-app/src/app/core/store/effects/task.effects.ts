@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 import { TaskService } from '../../services/task.service';
 import {
@@ -19,6 +19,7 @@ import {
   taskDeletedError,
   taskLoaded,
   taskLoadedError,
+  taskUpdated,
   taskUpdatedError,
 } from '../actions/task-api.actions';
 import { getBoardById } from '../actions/board.actions';
@@ -90,10 +91,24 @@ export class TaskEffects {
         this.taskService
           .updateTask(action.boardId, action.columnId, action.taskId, action.data)
           .pipe(
-            map((task) => getBoardById({ boardId: action.boardId })),
+            map((task) =>
+              taskUpdated({ task, boardId: action.boardId, columnId: action.columnId }),
+            ),
             catchError((err) => of(taskUpdatedError({ err }))),
           ),
       ),
     );
   });
+
+  taskUpdated$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(taskUpdated),
+        tap((action) => {
+          getBoardById({ boardId: action.boardId });
+        }),
+      );
+    },
+    { dispatch: false },
+  );
 }

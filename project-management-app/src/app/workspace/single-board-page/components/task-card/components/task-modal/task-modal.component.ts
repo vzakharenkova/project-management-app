@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { TaskService } from 'src/app/core/services/task.service';
 import { TaskModel, TaskObjModel } from 'src/app/shared/models/task.model';
 import { TaskForm } from 'src/app/workspace/task-form/models/task-form.models';
 import { TaskFormComponent } from 'src/app/workspace/task-form/task-form.component';
@@ -15,6 +16,7 @@ export class TaskModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { task: TaskModel; config: TaskForm },
     private dialog: MatDialog,
+    private taskService: TaskService,
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +43,9 @@ export class TaskModalComponent implements OnInit {
   }
 
   downloadFile(fileName: string) {
-    console.log(fileName, this.data);
-    let blob = new Blob([]);
-    console.log(blob);
+    // console.log(fileName, this.data);
+    // let blob = new Blob([]);
+    // console.log(blob);
+    console.log(this.taskService.downloadFile(this.data.task.id, fileName));
   }
 }
