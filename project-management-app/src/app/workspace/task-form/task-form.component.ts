@@ -56,6 +56,7 @@ export class TaskFormComponent implements OnInit {
 
   dropFile(event: FileHandle[]) {
     this.uploadFiles = event;
+    let formData = new FormData();
     console.log(event);
   }
 

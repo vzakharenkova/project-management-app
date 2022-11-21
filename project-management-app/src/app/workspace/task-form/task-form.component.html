@@ -46,7 +46,7 @@
     <div class="task-file">
       <label class="task-file__label" for="file-input" appDrag (files)="dropFile($event)">
         <input formControlName="taskFile" type="file" id="file-input" class="task-file__input" multiple (change)="btnUploadFile($event)">
-        <span>Add or Drag File</span>
+        <mat-icon>attach_file</mat-icon>
       </label>
     </div>
     <div class="task-file__upload" *ngIf="uploadFiles">
