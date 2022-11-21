@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -21,6 +23,8 @@ const MaterialComponents = [
   MatSelectModule,
   DragDropModule,
   MatSnackBarModule,
+  LayoutModule,
+  MatSidenavModule,
 ];
 
 @NgModule({

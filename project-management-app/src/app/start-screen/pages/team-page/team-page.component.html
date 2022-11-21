@@ -1,8 +1,18 @@
 <div class="page">
-  <div class="page_title">Our team brings you a development tool used by agile teams</div>
-  <div class="team">
-    <app-team-card *ngFor="let member of teamMembers" [member]="member"></app-team-card>
+  <div class="page_container">
+    <div class="page_title">Our team brings you a development tool used by agile teams</div>
+    <div class="team">
+      <app-team-card *ngFor="let member of teamMembers" [member]="member"></app-team-card>
+    </div>
+
+    <div class="link-block">
+      <a class="prev-link" routerLink="/welcome">
+        <mat-icon class="prev">navigate_before</mat-icon>
+      </a>
+      <a class="next-link" routerLink="/welcome/description">
+        <mat-icon class="next">navigate_next</mat-icon>
+      </a>
+    </div>
+
   </div>
-  <a routerLink="/welcome"><mat-icon class="prev">navigate_before</mat-icon></a>
-  <a routerLink="/welcome/description"><mat-icon class="next">navigate_next</mat-icon></a>
 </div>

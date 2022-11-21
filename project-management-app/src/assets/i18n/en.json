@@ -1,6 +1,8 @@
 {
   "header": {
     "createNewBoardBtn": "Create New Board",
+    "editProfileBtn": "Edit profile",
+    "logoutBtn": "Log out",
     "localization": {
       "en": "EN",
       "ru": "RU"

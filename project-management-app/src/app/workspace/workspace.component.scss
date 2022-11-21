@@ -1,0 +1,26 @@
+.workspace-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  &-outer {
+    flex-grow: 1;
+  }
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.sidenav-container {
+  width: 85%;
+}
+
+.main-content {
+  flex-grow: 1;
+}
+
+

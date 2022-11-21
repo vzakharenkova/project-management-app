@@ -1,15 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { passwordMatchingValidatior } from 'src/app/shared/utils/password-match.validator';
-import { StateModel } from 'src/app/core/store/state/state.model';
-import { Store } from '@ngrx/store';
-import { SelectedUserModel } from 'src/app/shared/models/user.model';
 import { Subscription } from 'rxjs';
-import { selectCurrentUser } from 'src/app/core/store/selectos/app.selectors';
-import { deleteUser, getAllUsers, updateUser } from 'src/app/core/store/actions/user.actions';
+import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { BreakpointObserver } from '@angular/cdk/layout';
+
+import { passwordMatchingValidatior } from '../../shared/utils/password-match.validator';
+import { StateModel } from '../../core/store/state/state.model';
+import { SelectedUserModel } from '../../shared/models/user.model';
+import { selectCurrentUser } from '../../core/store/selectos/app.selectors';
+import { deleteUser, getAllUsers, updateUser } from '../../core/store/actions/user.actions';
+import { ConfirmationModalComponent } from '../../shared/components/confirmation-modal/confirmation-modal.component';
+import { BREAKPOINTS } from '../../shared/constants/constants';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -25,12 +28,15 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
 
   public user: SelectedUserModel;
 
+  public isMediumScreen: boolean;
+
   private userSubscription: Subscription;
 
   constructor(
     private location: Location,
     private formBuilder: FormBuilder,
     private store: Store<StateModel>,
+    private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
   ) {}
 
@@ -40,6 +46,10 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
       .select(selectCurrentUser)
       .subscribe((user) => (this.user = <SelectedUserModel>user));
     this.initForm();
+
+    this.breakpointObserver.observe(BREAKPOINTS.medium).subscribe((res) => {
+      this.isMediumScreen = res.breakpoints[BREAKPOINTS.medium];
+    });
   }
 
   ngOnDestroy(): void {
@@ -69,9 +79,12 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
   }
 
   public disableBtn() {
-    if (this.editForm.invalid) {
-      return true;
-    } else return false;
+    return !!(
+      this.name?.invalid ||
+      this.login?.invalid ||
+      this.password?.invalid ||
+      this.confirmPassword?.invalid
+    );
   }
 
   public navigateBack() {
