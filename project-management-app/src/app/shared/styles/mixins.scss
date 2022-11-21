@@ -9,6 +9,10 @@
   width: fit-content !important;
   color: $white;
 
+  @include small-screen {
+    position: static;
+  }
+
   &:hover {
     animation: none;
   }
@@ -55,9 +59,39 @@
 }
 
 @mixin hover-element {
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
 @mixin hover-text {
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+}
+
+@mixin xLarge-screen {
+  @media (max-width: 1600px) {
+    @content
+  }
+}
+
+@mixin large-screen {
+  @media (max-width: 1160px) {
+    @content
+  }
+}
+
+@mixin medium-screen {
+  @media (max-width: 960px) {
+    @content
+  }
+}
+
+@mixin small-screen {
+  @media (max-width: 768px) {
+    @content
+  }
+}
+
+@mixin xSmall-screen {
+  @media (max-width: 565px) {
+    @content
+  }
 }

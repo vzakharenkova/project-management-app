@@ -2,9 +2,12 @@
 @import '../../../shared/styles/mixins';
 
 .page {
-  background-color: $background-dark;
-  height: $height-fullScreen;
+  height: 100vh;
   padding-top: 5vh;
+
+  @include medium-screen {
+    padding: 2rem;
+  }
 
   app-lang-toggler {
     position: absolute;
@@ -21,15 +24,40 @@
     margin: 0 auto;
     color: $white;
     font-size: $heading-fontSize;
+
+    @include medium-screen {
+      height: auto;
+      margin-bottom: 1rem;
+      padding: 2.4rem 5rem;
+    }
+
+    @include xSmall-screen {
+      margin-bottom: 0;
+      padding: 2.4rem 4rem 0;
+      font-size: $subheading-fontSize;
+    }
   }
 
   &_img {
     display: block;
     margin: 0 auto;
     height: 65vh;
+
+    @include medium-screen {
+      width: 100%;
+    }
   }
 
   .next {
     @include next-page;
+
+    &-link {
+      @include large-screen {
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: 2rem;
+      }
+    }
   }
 }

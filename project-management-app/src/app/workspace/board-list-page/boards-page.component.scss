@@ -1,7 +1,8 @@
 @import '../../shared/styles/variables';
+@import '../../shared/styles/mixins';
 
 .page {
-  min-height: $main_content_height;
+  height: 100%;
   padding: 0 $padding-x;
   background-color: $background-light;
 
@@ -15,5 +16,14 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    margin-bottom: 2rem;
+
+    @include medium-screen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include xSmall-screen {
+      grid-template-columns: 1fr;
+    }
   }
 }

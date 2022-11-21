@@ -1,12 +1,21 @@
 <main class="edit" *transloco="let t; read: 'editProfilePage'">
   <app-lang-toggler color="black"></app-lang-toggler>
-  <div class="edit-left">
+  <div class="edit-left" *ngIf="!isMediumScreen; else mediumBackLink">
     <mat-icon class="back" (click)="navigateBack()">navigate_before</mat-icon>
     <div class="back-link" (click)="navigateBack()">{{ t('btnBack') }}</div>
     <img src="../../assets/edit.svg" class="edit_img" />
   </div>
+
+  <ng-template #mediumBackLink>
+    <button mat-button class="back-medium" (click)="navigateBack()">
+      <mat-icon>navigate_before</mat-icon>
+      {{ t('btnBack') }}
+    </button>
+  </ng-template>
+
   <div class="form-wrapper">
     <h2 class="heading">{{ t('title') }}</h2>
+
     <form class="form" [formGroup]="editForm">
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>{{ t('nameFieldLabel') }}</mat-label>
@@ -19,6 +28,7 @@
         />
         <mat-error *ngIf="name?.errors?.['required']">{{ t('nameFieldErr') }}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>{{ t('loginFieldLabel') }}</mat-label>
         <input
@@ -31,6 +41,7 @@
         <mat-error *ngIf="login?.errors?.['required']">{{ t('loginFieldErr1') }}</mat-error>
         <mat-error *ngIf="login?.errors?.['pattern']">{{ t('loginFieldErr2') }}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>{{ t('passFieldLabel') }}</mat-label>
         <input
@@ -48,6 +59,7 @@
         }}</mat-error>
         <mat-error *ngIf="password?.errors?.['required']">{{ t('confPassFieldErr2') }}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="form_field">
         <mat-label>{{ t('confPassFieldLabel') }}</mat-label>
         <input

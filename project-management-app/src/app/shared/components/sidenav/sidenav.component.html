@@ -1,0 +1,31 @@
+<div
+  class="sidenav"
+  *transloco="let t; read: 'header'"
+>
+  <div class="lang">
+    <span class="lang_en" (click)="changeLangEn(lang)">{{ t('localization.en') }}</span>
+    <span class="slash">|</span>
+    <span class="lang_ru" (click)="changeLangRu(lang)">{{ t('localization.ru') }}</span>
+  </div>
+
+  <div class="sidenav-buttons">
+    <button mat-raised-button class="create_btn btn" (click)="openFormCreateBoard()">
+      <span>
+        {{ t('createNewBoardBtn') }}
+      </span>
+      <mat-icon>add_circle</mat-icon>
+    </button>
+    <a mat-raised-button routerLink="/edit" class="btn">
+      <span>
+        {{ t('editProfileBtn') }}
+      </span>
+      <mat-icon>settings</mat-icon>
+    </a>
+    <a mat-raised-button class="btn" (click)="logout()">
+      <span>
+        {{ t('logoutBtn') }}
+      </span>
+      <mat-icon class="logout">exit_to_app</mat-icon>
+    </a>
+  </div>
+</div>

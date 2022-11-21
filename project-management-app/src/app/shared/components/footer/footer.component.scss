@@ -2,24 +2,42 @@
 @import 'src/app/shared/styles/mixins';
 
 .footer {
-  height: $header-height;
   background-color: $background-dark;
   display: flex;
   justify-content: space-between;
-  padding: 0 $padding-x;
   align-items: center;
+  padding: 1rem $padding-x;
   color: $white;
+
+  @include xSmall-screen {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
   .gh_list {
     display: flex;
-    justify-content: space-between;
-    width: 30%;
+    gap: 30px;
     font-size: 1.2rem;
+
+    @include medium-screen {
+      flex-direction: column;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    @include xSmall-screen {
+      font-size: 1.2rem;
+    }
 
     .list_item {
       display: flex;
       align-items: center;
       transition: $hover-transition;
+
+      @include xSmall-screen {
+        justify-content: center;
+      }
+
       .gh_logo {
         margin-right: 0.5rem;
         height: 1.7rem;
@@ -35,6 +53,10 @@
     display: flex;
     align-items: center;
     font-size: 1.2rem;
+
+    @include medium-screen {
+      font-size: 1rem;
+    }
 
     &_icon {
       margin-right: 0.5rem;

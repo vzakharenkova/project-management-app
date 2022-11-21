@@ -1,6 +1,8 @@
 {
   "header": {
     "createNewBoardBtn": "Создать доску",
+    "editProfileBtn": "Редактировать профиль",
+    "logoutBtn": "Выйти из аккаунта",
     "localization": {
       "en": "EN",
       "ru": "RU"
