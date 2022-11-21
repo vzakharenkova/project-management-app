@@ -1,5 +1,5 @@
-<mat-card class="member">
+<mat-card class="member" *transloco="let t; read: translationField">
   <img [src]="member.img" class="member_img" />
-  <h3 class="member_name">{{ member.name }}</h3>
-  <div class="member_contribution">{{ member.contribution }}</div>
+  <h3 class="member_name">{{ t('name') }}</h3>
+  <div class="member_contribution">{{ t('description') }}</div>
 </mat-card>

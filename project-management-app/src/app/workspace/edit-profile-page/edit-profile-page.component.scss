@@ -10,7 +10,7 @@
     min-height: 1080px;
     padding-top: 3rem;
     background-color: $background-dark;
-    background-image: url("/assets/edit.svg");
+    background-image: url('/assets/edit.svg');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: 90% 95%;
@@ -22,6 +22,12 @@
 
   @include xSmall-screen {
     min-height: 920px;
+  }
+
+  app-lang-toggler {
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
   }
 
   &-left {

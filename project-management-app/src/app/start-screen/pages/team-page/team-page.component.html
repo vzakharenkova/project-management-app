@@ -1,8 +1,13 @@
-<div class="page">
+<div class="page" *transloco="let t; read: 'welcome.teamPage'">
   <div class="page_container">
-    <div class="page_title">Our team brings you a development tool used by agile teams</div>
+    <app-lang-toggler color="white"></app-lang-toggler>
+    <div class="page_title">{{ t('title') }}</div>
     <div class="team">
-      <app-team-card *ngFor="let member of teamMembers" [member]="member"></app-team-card>
+      <app-team-card
+        *ngFor="let member of teamMembers; index as i"
+        [member]="member"
+        [index]="i + 1"
+      ></app-team-card>
     </div>
 
     <div class="link-block">
@@ -13,6 +18,5 @@
         <mat-icon class="next">navigate_next</mat-icon>
       </a>
     </div>
-
   </div>
 </div>

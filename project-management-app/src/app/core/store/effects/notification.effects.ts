@@ -38,10 +38,15 @@ import {
   taskUpdatedError,
 } from '../actions/task-api.actions';
 import { userDeletedError, userUpdated, userUpdatedError } from '../actions/user-api.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class NotificationEffects {
-  constructor(private actions$: Actions, private _notification: MatSnackBar) {}
+  constructor(
+    private actions$: Actions,
+    private _notification: MatSnackBar,
+    private router: Router,
+  ) {}
 
   signUpError$ = createEffect(
     () => {
@@ -153,6 +158,30 @@ export class NotificationEffects {
             '',
             notificationConfigErr,
           );
+        }),
+      );
+    },
+    { dispatch: false },
+  );
+
+  boardLoadingErorr$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(boardLoadedError),
+        tap((action) => {
+          if (
+            (<HttpErrorResponse>action.err).status === 404 ||
+            (<HttpErrorResponse>action.err).status === 400
+          ) {
+            this._notification.open('The board does not exist!', '', notificationConfigErr);
+            this.router.navigateByUrl('/boards');
+          } else {
+            this._notification.open(
+              'Something is wrong. Please try again',
+              '',
+              notificationConfigErr,
+            );
+          }
         }),
       );
     },

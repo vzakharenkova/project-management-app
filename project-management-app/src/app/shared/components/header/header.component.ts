@@ -1,15 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import { TranslocoService } from '@ngneat/transloco';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 import { CreateBoardComponent } from '../../../workspace/create-board/create-board.component';
 import { AuthService } from '../../../core/services/auth.service';
-import { changeLocalization } from '../../../core/store/actions/localization.actions';
-import { selectLocalization } from '../../../core/store/selectos/app.selectors';
-import { StateModel } from '../../../core/store/state/state.model';
 import { BREAKPOINTS } from '../../constants/constants';
 import { SidenavService } from '../../../core/services/sidenav.service';
 
@@ -28,22 +22,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public isXSmallScreen: boolean;
 
-  private localizationSub: Subscription;
-
   constructor(
     public dialog: MatDialog,
     public sidenavService: SidenavService,
     private authService: AuthService,
-    private store: Store<StateModel>,
-    private transloco: TranslocoService,
     private breakpointObserver: BreakpointObserver,
   ) {}
 
   ngOnInit() {
-    this.localizationSub = this.store.select(selectLocalization).subscribe((value) => {
-      this.lang = value;
-    });
-
     this.animateHeader();
 
     this.breakpointObserver.observe([BREAKPOINTS.small, BREAKPOINTS.xSmall]).subscribe((res) => {
@@ -66,24 +52,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  public changeLangRu(lang: 'ru' | 'en') {
-    localStorage.setItem('lang', 'ru');
-    this.transloco.setActiveLang('ru');
-    if (lang != 'ru') this.store.dispatch(changeLocalization());
-  }
-
-  public changeLangEn(lang: 'ru' | 'en') {
-    this.transloco.setActiveLang('en');
-    localStorage.setItem('lang', 'en');
-    if (lang != 'en') this.store.dispatch(changeLocalization());
-  }
-
   toggleSidenav() {
     this.sidenavService.toggle();
   }
 
   ngOnDestroy() {
-    this.localizationSub.unsubscribe();
     this.breakpointObserver.ngOnDestroy();
   }
 }

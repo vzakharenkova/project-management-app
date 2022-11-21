@@ -9,6 +9,12 @@
     padding: 2rem;
   }
 
+  app-lang-toggler {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+  }
+
   &_title {
     background: url(../../../../assets/title_strings.svg) no-repeat;
     height: 8rem;

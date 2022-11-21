@@ -8,6 +8,7 @@ import { TeamCardComponent } from './components/team-card/team-card.component';
 import { TitlePageComponent } from './pages/title-page/title-page.component';
 import { StartScreenLayoutComponent } from './start-screen-layout.component';
 import { UnauthGuard } from '../core/guards/unauth.guard';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
     TitlePageComponent,
     StartScreenLayoutComponent,
   ],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, TranslocoModule, RouterModule.forChild(routes)],
   exports: [
     RouterModule,
     DescriptionPageComponent,

@@ -20,6 +20,12 @@
     padding: 2rem;
   }
 
+  app-lang-toggler {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+  }
+
   &_buttons {
     display: flex;
     justify-content: end;

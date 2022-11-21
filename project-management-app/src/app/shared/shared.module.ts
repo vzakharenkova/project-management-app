@@ -9,10 +9,17 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { LangTogglerComponent } from './components/lang-toggler/lang-toggler.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, ConfirmationModalComponent, SidenavComponent],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    ConfirmationModalComponent,
+    SidenavComponent,
+    LangTogglerComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -31,6 +38,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FooterComponent,
     HeaderComponent,
     ConfirmationModalComponent,
+    LangTogglerComponent,
     SidenavComponent,
   ],
 })

@@ -8,16 +8,20 @@ import {
   columnUpdated,
 } from '../actions/column-api.actions';
 import { allTasksLoaded, taskCreated, taskDeleted, taskUpdated } from '../actions/task-api.actions';
+import { closeBoard } from '../actions/board.actions';
 
 const initialState: BoardModel | null = null;
 
 export const selectedBoardReducer = createReducer(
   <BoardModel | null>initialState,
+
   on(boardLoaded, (state, { board }): BoardModel => {
     const columns = board.columns && [...board.columns];
     columns?.sort((col_1, col_2) => col_1.order - col_2.order);
     return { ...board, columns };
   }),
+
+  on(closeBoard, (): null => null),
 
   on(allColumnsLoaded, (state, { columns }): BoardModel | null => {
     if (state !== null) {

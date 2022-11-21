@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 import { UnauthGuard } from '../core/guards/unauth.guard';
 
 import { SharedModule } from '../shared/shared.module';
@@ -21,7 +22,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AuthPageComponent, LoginComponent, RegistrationComponent],
-  imports: [SharedModule, RouterModule.forChild(routes)],
+  imports: [SharedModule, TranslocoModule, RouterModule.forChild(routes)],
   exports: [RouterModule, LoginComponent, RegistrationComponent],
 })
 export class AuthModule {}

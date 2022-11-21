@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MemberModel } from '../../models/team-members.model';
 
 @Component({
@@ -6,6 +6,14 @@ import { MemberModel } from '../../models/team-members.model';
   templateUrl: './team-card.component.html',
   styleUrls: ['./team-card.component.scss'],
 })
-export class TeamCardComponent {
+export class TeamCardComponent implements OnInit {
   @Input() member: MemberModel;
+
+  @Input() index: number;
+
+  public translationField: string;
+
+  ngOnInit() {
+    this.translationField = `welcome.teamPage.team.${this.index}`;
+  }
 }

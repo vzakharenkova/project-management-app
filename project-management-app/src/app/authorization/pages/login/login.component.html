@@ -1,32 +1,32 @@
-<div class="form-wrapper">
+<div class="form-wrapper" *transloco="let t; read: 'editProfilePage'">
   <form class="form" [formGroup]="loginForm">
     <mat-form-field appearance="outline" class="form_field">
-      <mat-label>Login</mat-label>
+      <mat-label>{{ t('loginFieldLabel') }}</mat-label>
       <input
         matInput
-        placeholder="Enter your login (email)"
+        placeholder="{{ t('loginFieldPlaceHolder') }}"
         class="input"
         formControlName="login"
       />
-      <mat-error *ngIf="login?.hasError('required')">Please enter a login email</mat-error>
-      <mat-error *ngIf="login?.hasError('pattern')">The login email is invalid</mat-error>
+      <mat-error *ngIf="login?.hasError('required')">{{ t('loginFieldErr1') }}</mat-error>
+      <mat-error *ngIf="login?.hasError('pattern')">{{ t('loginFieldErr2') }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="form_field">
-      <mat-label>Password</mat-label>
+      <mat-label>{{ t('passFieldLabel') }}</mat-label>
       <input
         matInput
         [type]="hide ? 'password' : 'text'"
-        placeholder="Enter your password"
+        placeholder="{{ t('passFieldPlaceHolder') }}"
         class="input"
         formControlName="password"
       />
       <mat-icon matSuffix (click)="hide = !hide">{{
         hide ? 'visibility_off' : 'visibility'
       }}</mat-icon>
-      <mat-error *ngIf="password?.hasError('minlength') || password?.hasError('pattern')"
-        >Your password isn't strong enough</mat-error
-      >
-      <mat-error *ngIf="password?.hasError('required')">Please enter a password</mat-error>
+      <mat-error *ngIf="password?.hasError('minlength') || password?.hasError('pattern')">{{
+        t('passFieldErr')
+      }}</mat-error>
+      <mat-error *ngIf="password?.hasError('required')">{{ t('confPassFieldErr2') }}</mat-error>
     </mat-form-field>
   </form>
   <div class="action-btns">
@@ -37,8 +37,8 @@
       [disabled]="disableBtn()"
       (click)="signIn()"
     >
-      Login
+      {{ t('auth.loginBtn') }}
     </a>
-    <a class="btn reg_btn" mat-button routerLink="/auth/registration">SingUp</a>
+    <a class="btn reg_btn" mat-button routerLink="/auth/registration">{{ t('auth.singupBtn') }}</a>
   </div>
 </div>
