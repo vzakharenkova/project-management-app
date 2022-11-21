@@ -2,23 +2,58 @@
 @import '../../../shared/styles/mixins';
 
 .page {
-  background-color: $background-dark;
-  height: $height-fullScreen;
-  padding-top: 7rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  height: 100vh;
+  padding: 7rem 5rem;
+
+  @include large-screen {
+    height: auto;
+  }
+
+  @include small-screen {
+    padding: 4rem 3rem;
+  }
+
+  @include xSmall-screen {
+    padding: 3rem;
+  }
+
+  &_container {
+
+  }
 
   &_title {
     width: fit-content;
     margin: 0 auto;
+    text-align: center;
     color: $white;
     font-size: $heading-fontSize;
+
+    @include xSmall-screen {
+      font-size: $subheading-fontSize;
+    }
   }
 
   .team {
     display: flex;
     justify-content: space-around;
     margin-top: 5rem;
+
+    @include large-screen {
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    @include xSmall-screen {
+      margin-top: 2rem;
+    }
+  }
+
+  .link-block {
+    @include large-screen {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   .next {

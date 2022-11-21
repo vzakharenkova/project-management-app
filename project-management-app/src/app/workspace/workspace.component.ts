@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatDrawer } from '@angular/material/sidenav';
 
 import { getAllBoards } from '../core/store/actions/board.actions';
 import { getAllUsers } from '../core/store/actions/user.actions';
 import { BREAKPOINTS } from '../shared/constants/constants';
-import { MatDrawer } from '@angular/material/sidenav';
 import { SidenavService } from '../core/services/sidenav.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { SidenavService } from '../core/services/sidenav.service';
   styleUrls: ['./workspace.component.scss'],
 })
 export class WorkspaceComponent implements OnInit, OnDestroy, AfterViewInit {
-  isXSmallScreen: boolean;
+  public isXSmallScreen: boolean;
 
   @ViewChild('drawer') sidenav: MatDrawer;
 
