@@ -1,0 +1,17 @@
+<div class="task">
+  <div class="close-container">
+    <div class="task_props">
+      <div class="task_priority" appTaskPriority [task]="data.task">
+        {{ taskDescription.priority }}
+      </div>
+      <div class="task_size">{{ taskDescription.size }}</div>
+    </div>
+    <button mat-raised-button class="form__close" (click)="closeTask()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="task_item task_title">{{ data.task.title }}</div>
+  <div class="task_item task_description">{{ taskDescription.description }}</div>
+  <div class="task_item task_title">{{ data.task.files }}</div>
+  <div mat-raised-button class="edit_btn" (click)="openTaskForm()">Edit Task</div>
+</div>

@@ -1,3 +1,8 @@
+import {
+  TaskPriority,
+  TaskSize,
+} from 'src/app/workspace/single-board-page/models/taskConfig.model';
+
 export interface TaskModel {
   id: string;
   title: string;
@@ -7,6 +12,12 @@ export interface TaskModel {
   boardId: string;
   columnId: string;
   files?: FileModel[];
+}
+
+export interface TaskObjModel {
+  description: string;
+  priority: TaskPriority;
+  size: TaskSize;
 }
 
 export interface FileModel {

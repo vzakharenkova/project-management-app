@@ -13,6 +13,8 @@ import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.
 import { CreateBoardComponent } from './create-board/create-board.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { CreateColumnComponent } from './single-board-page/components/create-column/create-column.component';
+import { TaskModalComponent } from './single-board-page/components/task-card/components/task-modal/task-modal.component';
+import { TaskPriorityDirective } from './single-board-page/components/task-card/directives/task-priority.directive';
 import { TranslocoModule } from '@ngneat/transloco';
 
 const routes: Routes = [
@@ -40,6 +42,8 @@ const routes: Routes = [
     EditProfilePageComponent,
     CreateBoardComponent,
     CreateColumnComponent,
+    TaskModalComponent,
+    TaskPriorityDirective,
   ],
   imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],
   exports: [
@@ -53,6 +57,7 @@ const routes: Routes = [
     EditProfilePageComponent,
     CreateBoardComponent,
     CreateColumnComponent,
+    TaskModalComponent,
   ],
 })
 export class WorkspaceModule {}
