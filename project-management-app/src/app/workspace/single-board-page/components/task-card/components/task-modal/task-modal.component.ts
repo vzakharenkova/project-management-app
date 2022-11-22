@@ -43,9 +43,20 @@ export class TaskModalComponent implements OnInit {
   }
 
   downloadFile(fileName: string) {
+    function fn(data: any, type: string) {
+      let blob = new Blob([data], { type: type });
+      let url = window.URL.createObjectURL(blob);
+      let pwa = window.open(url);
+      if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+        alert('Please disable your Pop-up blocker and try again.');
+      }
+    }
     // console.log(fileName, this.data);
     // let blob = new Blob([]);
     // console.log(blob);
-    console.log(this.taskService.downloadFile(this.data.task.id, fileName));
+    this.taskService.downloadFile(this.data.task.id, fileName).subscribe(
+      (res) => fn(res, 'image/svg+xml'),
+      (err) => console.log(err),
+    );
   }
 }

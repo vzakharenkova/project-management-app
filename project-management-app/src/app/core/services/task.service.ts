@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { TaskModel } from '../../shared/models/task.model';
+import { FileModel, TaskModel } from '../../shared/models/task.model';
 
 @Injectable({
   providedIn: 'root',
