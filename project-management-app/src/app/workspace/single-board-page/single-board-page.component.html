@@ -2,18 +2,22 @@
   <ng-container *transloco="let t; read: 'singleBoardPage'">
     <div class="page_heading">
       <div class="page_title">
-        <a routerLink="/boards"
-          ><h2 class="common_title">{{ t('title') }}</h2></a
-        >
+        <a routerLink="/boards">
+          <h2 class="common_title">{{ t('title') }}</h2>
+        </a>
         <span class="arrow">&#8212;</span>
         <h3 class="board_title" *ngIf="board">{{ board.title }}</h3>
       </div>
+
       <button mat-raised-button class="create_btn" (click)="openCreateColumnForm()">
         {{ t('createColumnBtn') }}
       </button>
     </div>
+
     <div
       *ngIf="board"
+      (scroll)="onScroll($event)"
+      [ngStyle]="{'border-right': isScrolledToEnd ? 'none' : ''}"
       class="board-columns"
       cdkDropList
       cdkDropListOrientation="horizontal"

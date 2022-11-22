@@ -6,7 +6,6 @@
   padding: 0 $padding-x 1.5rem;
   background-color: $background-light;
   overflow-x: auto;
-  width: 100vw;
 
   &_heading {
     padding: 2rem 0;
@@ -59,6 +58,7 @@
     width: 100%;
     height: fit-content;
     white-space: nowrap;
+    border-right: 2px dotted $background-dark;
   }
 }
 
