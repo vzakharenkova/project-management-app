@@ -38,6 +38,7 @@ import {
   taskUpdatedError,
 } from '../actions/task-api.actions';
 import { userDeletedError, userUpdated, userUpdatedError } from '../actions/user-api.actions';
+import { fileDownloadError } from '../actions/file-api.actions';
 
 @Injectable()
 export class NotificationEffects {
@@ -146,6 +147,7 @@ export class NotificationEffects {
           allTasksError,
           userUpdatedError,
           userDeletedError,
+          fileDownloadError,
         ),
         tap(() => {
           this._notification.open(

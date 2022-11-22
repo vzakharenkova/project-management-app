@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { FileModel, TaskModel } from '../../shared/models/task.model';
+import { TaskModel } from '../../shared/models/task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,13 +45,5 @@ export class TaskService {
       `${this.URL}/${boardId}/columns/${columnId}/tasks/${taskId}`,
       newData,
     );
-  }
-
-  uploadFile(taskId: string, file: FormData) {
-    return this.http.post(`/file`, { taskId, file });
-  }
-
-  downloadFile(taskId: string, fileName: string) {
-    return this.http.get(`/file/${taskId}/${fileName}`);
   }
 }
