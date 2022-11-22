@@ -19,7 +19,11 @@
       }
     },
     "descriptionPage": {
-      "text": "An application that will help teams solve work tasks efficiently. It will help organize the work so that everyone knows what to do. Track the progress of tasks, be aware of what is happening. Correctly plan the timing and scope of work.",
+      "text": {
+        "1": "An application that will help teams solve work tasks efficiently.",
+        "2": "It will help organize the work so that everyone knows what to do. Track the progress of tasks, be aware of what is happening.",
+        "3": "Correctly plan the timing and scope of work."
+      },
       "loginBtn": "Login",
       "singupBtn": "SingUp"
     }
@@ -52,7 +56,8 @@
     "confPassFieldErr1": "The entered password doesn't match",
     "confPassFieldErr2": "Please enter a password",
     "editBtn": "Edit",
-    "delProfileBtn": "Delete profile"
+    "delProfileBtn": "Delete profile",
+    "auth": { "loginBtn": "LogIn", "singupBtn": "SingUp" }
   },
   "card": {
     "editBtn": "Edit Task"
