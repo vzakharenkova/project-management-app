@@ -1,9 +1,10 @@
-import { Component, ElementRef, Inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { FormFields, TaskForm } from './models/task-form.models';
+import { TaskForm } from './models/task-form.models';
 import { FileHandle } from './directives/dragDropFiles.directive';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FileService } from 'src/app/core/services/file.service';
 
 @Component({
   selector: 'app-task-form',
@@ -13,12 +14,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
 
-  uploadFiles: FileHandle[];
+  selectedFiles: FileHandle[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: TaskForm,
     private dialog: MatDialog,
     private sanitizer: DomSanitizer,
+    private fileService: FileService,
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class TaskFormComponent implements OnInit {
         }),
       };
       this.dialog.closeAll();
-      this.data.submitBtn(taskData);
+      this.data.submitBtn(taskData, this.selectedFiles);
     }
   }
 
@@ -50,25 +52,21 @@ export class TaskFormComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  private getFormValue(): FormFields {
-    return this.taskForm.value;
+  dropFile(event: FileHandle[]) {
+    this.selectedFiles = event;
   }
 
-  dropFile(event: FileHandle[]) {
-    this.uploadFiles = event;
-    let formData = new FormData();
-    console.log(event);
-  }
+  fn() {}
 
   btnUploadFile(event: Event) {
-    let files: FileHandle[] = [];
+    const files: FileHandle[] = [];
     for (let i = 0; i < (event.target! as HTMLInputElement).files!.length; i++) {
       const file = (event.target! as HTMLInputElement).files![i];
       const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
       files.push({ file, url });
     }
     if (files.length > 0) {
-      this.uploadFiles = files;
+      this.selectedFiles = files;
     }
   }
 }

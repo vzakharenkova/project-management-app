@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { FileService } from 'src/app/core/services/file.service';
 import { fileDownloadError } from 'src/app/core/store/actions/file-api.actions';
 import { StateModel } from 'src/app/core/store/state/state.model';
@@ -47,13 +48,16 @@ export class TaskModalComponent implements OnInit {
   }
 
   downloadFile(fileName: string) {
-    this.fileService.downloadFile(this.data.task.id, fileName).subscribe(
-      (res) => {
-        const blob: Blob = new Blob([res.body as Blob], { type: 'image/jpeg' });
-        let url = window.URL.createObjectURL(blob);
-        window.open(url);
-      },
-      (err) => this.store.dispatch(fileDownloadError(err)),
-    );
+    this.fileService
+      .downloadFile(this.data.task.id, fileName)
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          const blob: Blob = new Blob([res.body as Blob], { type: 'image/jpeg' });
+          let url = window.URL.createObjectURL(blob);
+          window.open(url);
+        },
+        error: (err) => fileDownloadError(err),
+      });
   }
 }

@@ -10,7 +10,6 @@ import { Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AuthService } from './auth.service';
 import { getTokenFromLS } from '../../shared/utils/getTokenFromLS';
-import { selectToken } from '../store/selectos/app.selectors';
 import { StateModel } from '../store/state/state.model';
 
 @Injectable()

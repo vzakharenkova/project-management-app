@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { FileHandle } from 'src/app/workspace/task-form/directives/dragDropFiles.directive';
 import { TaskModel } from '../../../shared/models/task.model';
 
 export enum TaskActionsList {
@@ -20,6 +21,7 @@ export const createTask = createAction(
     boardId: string;
     columnId: string;
     data: { title: string; description: string; userId: string };
+    files?: FileHandle[];
   }>(),
 );
 
@@ -35,5 +37,11 @@ export const deleteTask = createAction(
 
 export const updateTask = createAction(
   TaskActionsList.update,
-  props<{ boardId: string; columnId: string; taskId: string; data: Omit<TaskModel, 'id'> }>(),
+  props<{
+    boardId: string;
+    columnId: string;
+    taskId: string;
+    data: Omit<TaskModel, 'id'>;
+    files?: FileHandle[];
+  }>(),
 );

@@ -9,8 +9,8 @@ export class FileService {
 
   constructor(private http: HttpClient) {}
 
-  uploadFile(taskId: string, file: FormData) {
-    return this.http.post(this.URL, { taskId, file });
+  uploadFile(file: FormData) {
+    return this.http.post(this.URL, file);
   }
 
   downloadFile(taskId: string, fileName: string) {
