@@ -37,6 +37,11 @@
 
   &_props {
     display: flex;
+
+    @include xSmall-screen {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
   }
 
   &_priority,
@@ -49,6 +54,10 @@
     background-color: $white;
     margin-left: 1rem;
     border: solid 0.05rem black;
+
+    @include xSmall-screen {
+      margin-left: 0;
+    }
   }
 
   &_title {

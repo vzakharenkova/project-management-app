@@ -11,6 +11,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { TranslocoModule } from '@ngneat/transloco';
 import { LangTogglerComponent } from './components/lang-toggler/lang-toggler.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CutPipe } from './pipes/cut.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     ConfirmationModalComponent,
     SidenavComponent,
     LangTogglerComponent,
+    CutPipe,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     ConfirmationModalComponent,
     LangTogglerComponent,
     SidenavComponent,
+    CutPipe,
   ],
 })
 export class SharedModule {}
