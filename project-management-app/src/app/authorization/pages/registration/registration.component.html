@@ -10,6 +10,7 @@
       />
       <mat-error *ngIf="name?.hasError('required')">{{ t('nameFieldErr') }}</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>{{ t('loginFieldLabel') }}</mat-label>
       <input
@@ -21,6 +22,7 @@
       <mat-error *ngIf="login?.hasError('required')">{{ t('loginFieldErr1') }}</mat-error>
       <mat-error *ngIf="login?.hasError('pattern')">{{ t('loginFieldErr2') }}</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>{{ t('passFieldLabel') }}</mat-label>
       <input
@@ -38,6 +40,7 @@
       }}</mat-error>
       <mat-error *ngIf="password?.hasError('required')">{{ t('confPassFieldErr2') }}</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="outline" class="form_field">
       <mat-label>{{ t('confPassFieldLabel') }}</mat-label>
       <input
