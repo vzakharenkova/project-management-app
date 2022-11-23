@@ -2,7 +2,7 @@
 @import '../../../shared/styles/mixins';
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 2rem;
   padding-left: 9rem;
   padding-right: 9rem;
@@ -17,18 +17,27 @@
   }
 
   @include xSmall-screen {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+
+  &_controls {
+    display: flex;
+    justify-content: space-between;
+
+    @include xSmall-screen {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 
   app-lang-toggler {
-    position: absolute;
-    top: 2rem;
-    left: 3rem;
   }
 
   &_buttons {
     display: flex;
     justify-content: end;
+    gap: 1rem;
 
     @include xSmall-screen {
       justify-content: center;
@@ -36,8 +45,6 @@
 
     a[mat-raised-button] {
       background-color: $btn_purple;
-      width: 6rem;
-      margin-left: 1rem;
       font-family: inherit;
       font-size: 1rem;
     }

@@ -2,11 +2,15 @@
 @import '../../../shared/styles/mixins';
 
 .page {
-  height: 100vh;
-  padding-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 6rem;
 
   @include medium-screen {
-    padding: 2rem;
+    padding: 6rem 2rem 2rem;
   }
 
   app-lang-toggler {
@@ -17,31 +21,29 @@
 
   &_title {
     background: url(../../../../assets/title_strings.svg) no-repeat;
-    height: 8rem;
-    width: fit-content;
+    background-size: cover;
+    background-position-y: center;
     text-align: center;
-    padding: 4rem 8rem 6rem 6rem;
+    padding: 2.1rem 7rem;
     margin: 0 auto;
     color: $white;
     font-size: $heading-fontSize;
 
     @include medium-screen {
-      height: auto;
       margin-bottom: 1rem;
-      padding: 2.4rem 5rem;
+      padding: 0;
+      background: none;
     }
 
     @include xSmall-screen {
       margin-bottom: 0;
-      padding: 2.4rem 4rem 0;
       font-size: $subheading-fontSize;
     }
   }
 
   &_img {
     display: block;
-    margin: 0 auto;
-    height: 65vh;
+    width: 80%;
 
     @include medium-screen {
       width: 100%;

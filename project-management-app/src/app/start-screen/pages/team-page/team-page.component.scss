@@ -10,21 +10,21 @@
   }
 
   @include small-screen {
-    padding: 4rem 3rem;
+    padding: 6rem 3rem 4rem;
   }
 
   @include xSmall-screen {
-    padding: 3rem;
-  }
-
-  &_container {
-
+    padding: 6rem 1.5rem 1.5rem;
   }
 
   app-lang-toggler {
     position: absolute;
     top: 2rem;
     left: 3rem;
+
+    @include xSmall-screen {
+      left: 1.5rem;
+    }
   }
 
   &_title {
