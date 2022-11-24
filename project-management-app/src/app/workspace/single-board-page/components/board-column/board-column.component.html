@@ -1,7 +1,8 @@
 <mat-card class="column">
   <div class="column_heading">
     <input
-      [(ngModel)]="title"
+      (input)="changeTitle($event.target)"
+      [value]="title | cut: 16"
       class="column_title"
       (dblclick)="openEditColumnTitle($event.target)"
       (blur)="closeEditColumnTitle($event.target)"
@@ -16,6 +17,7 @@
       </button>
     </div>
   </div>
+
   <div
     class="column_tasks"
     cdkDropList

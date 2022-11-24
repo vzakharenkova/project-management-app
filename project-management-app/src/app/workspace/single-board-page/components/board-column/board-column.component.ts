@@ -1,24 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { TranslocoService } from '@ngneat/transloco';
+import {
+  CdkDragDrop,
+  copyArrayItem,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
+
 import { TaskFormComponent } from '../../../task-form/task-form.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { TaskForm } from '../../../task-form/models/task-form.models';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-  copyArrayItem,
-} from '@angular/cdk/drag-drop';
-import { ColumnModel } from 'src/app/shared/models/column.model';
-import { BoardModel } from 'src/app/shared/models/board.model';
-import { TaskModel } from 'src/app/shared/models/task.model';
-import { Store } from '@ngrx/store';
-import { deleteColumn, updateColumn } from 'src/app/core/store/actions/column.actions';
-import { createTask, updateTask } from 'src/app/core/store/actions/task.actions';
-import { StateModel } from 'src/app/core/store/state/state.model';
-import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
+import { ColumnModel } from '../../../../shared/models/column.model';
+import { BoardModel } from '../../../../shared/models/board.model';
+import { TaskModel } from '../../../../shared/models/task.model';
+import { deleteColumn, updateColumn } from '../../../../core/store/actions/column.actions';
+import { createTask, updateTask } from '../../../../core/store/actions/task.actions';
+import { StateModel } from '../../../../core/store/state/state.model';
+import { AuthDataModel, UserModel } from '../../../../shared/models/user.model';
 import { calculateOrder } from '../../../../shared/utils/calculateOrder';
-import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-board-column',
@@ -71,6 +72,7 @@ export class BoardColumnComponent implements OnInit {
   }
 
   public openEditColumnTitle(input: EventTarget | null) {
+    (<HTMLInputElement>input).value = this.title;
     (<HTMLInputElement>input).readOnly = false;
   }
 
@@ -156,5 +158,9 @@ export class BoardColumnComponent implements OnInit {
   private deleteColumn(board: BoardModel, column: ColumnModel) {
     this.store.dispatch(deleteColumn({ boardId: board.id, columnId: column.id }));
     this.dialog.closeAll();
+  }
+
+  public changeTitle(titleInput: EventTarget | null) {
+    this.title = (<HTMLInputElement>titleInput).value;
   }
 }

@@ -18,17 +18,24 @@
       width: 25rem;
       font-size: 1rem;
       padding-bottom: 0.5rem;
+
+      @include xSmall-screen {
+        width: auto;
+      }
     }
   }
 
   .action-btns {
-    width: 20%;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     margin-top: 1rem;
-    .btn {
-      width: 5rem;
 
+    @include xSmall-screen {
+      flex-direction: column;
+    }
+
+    .btn {
       &:enabled {
         font-family: inherit;
         height: $btn-height;

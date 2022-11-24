@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    margin-top: 2rem;
 
     .btn {
       display: flex;
@@ -28,7 +29,6 @@
 }
 
 .lang {
-  margin-bottom: 2rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: $heading-purple;

@@ -18,16 +18,24 @@
       width: 25rem;
       font-size: 1rem;
       padding-bottom: 0.5rem;
+
+      @include xSmall-screen {
+        width: auto;
+      }
     }
   }
 
   .action-btns {
-    width: 20%;
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     margin-top: 1rem;
+
+    @include xSmall-screen {
+      flex-direction: column-reverse;
+    }
+
     .btn {
-      width: 5rem;
 
       &:enabled {
         font-family: inherit;
@@ -38,6 +46,7 @@
     .login_btn:enabled {
       @include purple-btn;
     }
+
     .reg_btn {
       color: $btn_purple;
       text-decoration: underline;

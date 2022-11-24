@@ -1,9 +1,13 @@
 <div class="page" *transloco="let t; read: 'welcome.descriptionPage'">
-  <app-lang-toggler color="white"></app-lang-toggler>
-  <div class="page_buttons">
-    <a mat-raised-button color="primary" routerLink="/auth/login">{{ t('loginBtn') }}</a>
-    <a mat-raised-button color="primary" routerLink="/auth/registration"> {{ t('singupBtn') }} </a>
+
+  <div class="page_controls">
+    <app-lang-toggler color="white"></app-lang-toggler>
+    <div class="page_buttons">
+      <a mat-raised-button color="primary" routerLink="/auth/login">{{ t('loginBtn') }}</a>
+      <a mat-raised-button color="primary" routerLink="/auth/registration"> {{ t('singupBtn') }} </a>
+    </div>
   </div>
+
   <div class="page_content">
     <div class="description">
       <p class="description-item">

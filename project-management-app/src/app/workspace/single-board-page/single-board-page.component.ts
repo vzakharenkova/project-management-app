@@ -1,21 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-
 import { Store } from '@ngrx/store';
-import { StateModel } from 'src/app/core/store/state/state.model';
-import { BoardModel } from 'src/app/shared/models/board.model';
-import { ColumnModel } from 'src/app/shared/models/column.model';
 import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+
+import { StateModel } from '../../core/store/state/state.model';
+import { BoardModel } from '../../shared/models/board.model';
+import { ColumnModel } from '../../shared/models/column.model';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import {
   selectCurrentBoard,
   selectCurrentUser,
   selectUsers,
-} from 'src/app/core/store/selectos/app.selectors';
-import { closeBoard, getBoardById } from 'src/app/core/store/actions/board.actions';
-import { AuthDataModel, UserModel } from 'src/app/shared/models/user.model';
+} from '../../core/store/selectos/app.selectors';
+import { closeBoard, getBoardById } from '../../core/store/actions/board.actions';
+import { AuthDataModel, UserModel } from '../../shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
 import { calculateOrder } from '../../shared/utils/calculateOrder';
 
@@ -33,6 +33,8 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
 
   public users$: Observable<UserModel[]>;
 
+  public isScrolledToEnd: boolean;
+
   private boardId: string;
 
   private routeSubscription: Subscription;
@@ -47,8 +49,7 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe((params) => {
-      const boardId = params['id'];
-      this.boardId = boardId;
+      this.boardId = params['id'];
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
     this.boardSubscription = this.store.select(selectCurrentBoard).subscribe((value) => {
@@ -90,5 +91,15 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
         order: calculateOrder(event),
       },
     };
+  }
+
+  public onScroll(evt: Event) {
+    const container = <HTMLDivElement>evt.target;
+
+    const containerWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    const scroll = container.scrollLeft;
+
+    this.isScrolledToEnd = containerWidth === clientWidth + scroll;
   }
 }

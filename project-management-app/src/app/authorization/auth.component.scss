@@ -3,7 +3,17 @@
 
 .auth {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: $background-light;
+
+  @include medium-screen {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 
   app-lang-toggler {
     position: absolute;
@@ -25,10 +35,15 @@
     font-size: $heading-fontSize;
     text-align: center;
     font-weight: bold;
+
+    @include xSmall-screen {
+      font-size: $subheading-fontSize;
+    }
   }
 
   &_img {
     display: block;
-    height: 75%;
+    width: 100%;
+    flex-grow: 1;
   }
 }
