@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   padding-top: 6rem;
 
   @include medium-screen {
@@ -43,10 +43,10 @@
 
   &_img {
     display: block;
-    width: 80%;
+    width: 45vw;
 
     @include medium-screen {
-      width: 100%;
+      width: 60vw;
     }
   }
 

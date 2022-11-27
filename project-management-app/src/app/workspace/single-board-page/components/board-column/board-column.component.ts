@@ -71,13 +71,13 @@ export class BoardColumnComponent implements OnInit {
     });
   }
 
-  public openEditColumnTitle(input: EventTarget | null) {
-    (<HTMLInputElement>input).value = this.title;
-    (<HTMLInputElement>input).readOnly = false;
+  public openEditColumnTitle(input: HTMLInputElement) {
+    input.value = this.title;
+    input.readOnly = false;
   }
 
-  public closeEditColumnTitle(input: EventTarget | null) {
-    (<HTMLInputElement>input).readOnly = true;
+  public closeEditColumnTitle(input: HTMLInputElement) {
+    input.readOnly = true;
     if (!this.title.length || this.title === this.column.title) {
       this.title = this.column.title;
       return;
@@ -89,6 +89,12 @@ export class BoardColumnComponent implements OnInit {
         data: { title: this.title, order: this.column.order },
       }),
     );
+  }
+
+  public closeWithoutEditing(input: HTMLInputElement) {
+    input.readOnly = true;
+    input.value = this.column.title;
+    this.title = this.column.title;
   }
 
   public openTaskForm() {

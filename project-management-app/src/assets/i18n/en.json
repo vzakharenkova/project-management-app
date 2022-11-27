@@ -13,9 +13,18 @@
     "teamPage": {
       "title": "Our team brings you a development tool used by agile teams",
       "team": {
-        "1": { "name": "Pavel Kizhlo", "description": "Something" },
-        "2": { "name": "Victoria Zakharenkova", "description": "Something" },
-        "3": { "name": "Nick Davydov", "description": "Something" }
+        "1": {
+          "name": "Pavel Kizhlo",
+          "description": "Backend deployment, global app store (NgRx), API services, responsive layout"
+        },
+        "2": {
+          "name": "Victoria Zakharenkova",
+          "description": "App template, layout, interaction between components and store, login/registration"
+        },
+        "3": {
+          "name": "Nick Davydov",
+          "description": "Localization, Drag & Drop, task creation/editing, upload/download files functionality"
+        }
       }
     },
     "descriptionPage": {

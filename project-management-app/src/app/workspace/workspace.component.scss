@@ -1,7 +1,13 @@
+@import 'src/app/shared/styles/variables';
+
 .workspace-layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100vh;
+}
+
+.container-inner {
+  min-height: calc(100vh - $header-height);
 }
 
 .container {
@@ -22,5 +28,3 @@
 .main-content {
   flex-grow: 1;
 }
-
-
