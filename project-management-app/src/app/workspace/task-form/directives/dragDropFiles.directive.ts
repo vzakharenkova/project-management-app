@@ -39,7 +39,7 @@ export class DragDirective {
     this.render.removeClass(event.currentTarget, 'active');
 
     let files: FileHandle[] = [];
-    for (let i = 0; i < event.dataTransfer!.files.length; i++) {
+    for (let i = 0; i < 1; i++) {
       const file = event.dataTransfer!.files[i];
       const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
       files.push({ file, url });

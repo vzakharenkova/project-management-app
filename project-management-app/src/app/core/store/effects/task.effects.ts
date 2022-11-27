@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, take, tap } from 'rxjs';
+import { catchError, forkJoin, map, of, switchMap, take, tap } from 'rxjs';
 
 import { TaskService } from '../../services/task.service';
 import {
@@ -123,82 +123,25 @@ export class TaskEffects {
     );
   });
 
-  // fileUpload$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(taskUpdated),
-  //     switchMap(
-  //       (action) => {
-  //         let allObservable = action.files?.map((file) => {
-  //           let formData = new FormData();
-  //           formData.append('file', file.file);
-  //           formData.append('taskId', action.task.id);
-  //           return this.fileService.uploadFile(formData);
-  //         }) as Observable<Object>[];
-
-  //         return forkJoin(allObservable).pipe(
-  //           map(() => getBoardById({ boardId: 'df3ed84c-f4e8-41e8-b144-5ccd341b7b6a' })),
-  //         );
-  //       },
-
-  // this.taskService.deleteTask(action.boardId, action.columnId, action.taskId).pipe(
-  //   map(() =>
-  //     taskDeleted({
-  //       boardId: action.boardId,
-  //       columnId: action.columnId,
-  //       taskId: action.taskId,
-  //     }),
-  //   ),
-  //   catchError((err) => of(taskDeletedError({ err }))),
-  // ),
-  //     ),
-  //   );
-  // });
-
-  // fileUpload$ = createEffect(() => {
-  //   console.log('fgerge');
-  //   return this.actions$.pipe(
-  //     ofType(fileUpload),
-  //     switchMap((action) => {
-  //       let formData = new FormData();
-  //       formData.append('file', action.file.file);
-  //       formData.append('taskId', action.taskid);
-  //       console.log('fewfw');
-  //       return this.fileService.uploadFile(formData).pipe(map((res) => getAllBoards()));
-  //     }),
-  //   );
-  // });
-
   taskUpdated$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(taskUpdated, taskCreated),
         tap((action) => {
           if (action.files && action.files.length) {
-            action.files.forEach((file) => {
-              let formData = new FormData();
-              formData.append('file', file.file);
-              formData.append('taskId', action.task.id);
-              this.fileService
-                .uploadFile(formData)
-                .pipe(take(1))
-                .subscribe({
-                  next: (r) => console.log(r),
-                  error: (err) => console.log(err),
-                });
-            });
-            // forkJoin(
-            //   action.files.map((file) => {
-            //     let formData = new FormData();
-            //     formData.append('file', file.file);
-            //     formData.append('taskId', action.task.id);
-            //     return this.fileService.uploadFile(formData);
-            //   }),
-            // )
-            //   .pipe(take(1))
-            //   .subscribe({
-            //     next: () => {},
-            //     error: (err) => console.log(err),
-            //   });
+            forkJoin(
+              action.files.map((file) => {
+                let formData = new FormData();
+                formData.append('file', file.file);
+                formData.append('taskId', action.task.id);
+                return this.fileService.uploadFile(formData, action.boardId);
+              }),
+            )
+              .pipe(take(1))
+              .subscribe({
+                next: () => {},
+                error: (err) => console.log(err),
+              });
           }
         }),
       );
