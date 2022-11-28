@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { deleteTask, updateTask } from 'src/app/core/store/actions/task.actions';
 import { TaskModalComponent } from './components/task-modal/task-modal.component';
 import { TranslocoService } from '@ngneat/transloco';
+import { FileHandle } from 'src/app/workspace/task-form/directives/dragDropFiles.directive';
 
 @Component({
   selector: 'app-task-card',
@@ -24,6 +25,8 @@ export class TaskCardComponent implements OnInit {
 
   public taskDescription: TaskObjModel;
 
+  public taskFile: boolean;
+
   private taskFormConfig: TaskForm;
 
   constructor(
@@ -34,6 +37,7 @@ export class TaskCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskDescription = JSON.parse(this.task.description);
+    this.taskFile = !!this.task.files?.length || false;
   }
 
   public openConfirmationDialog(e: Event) {
@@ -65,7 +69,7 @@ export class TaskCardComponent implements OnInit {
     return {
       title: this.transloco.translateObject('form.editTask.title'),
       btnName: this.transloco.translateObject('form.editTask.createTaskBtn'),
-      submitBtn: (data: { title: string; description: string }) =>
+      submitBtn: (data: { title: string; description: string }, files: FileHandle[]) =>
         this.store.dispatch(
           updateTask({
             boardId: this.boardId,
@@ -78,6 +82,7 @@ export class TaskCardComponent implements OnInit {
               order: this.task.order,
               userId: this.task.userId,
             },
+            files,
           }),
         ),
       formFields: {

@@ -1,7 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { FormFields, TaskForm } from './models/task-form.models';
+import { TaskForm } from './models/task-form.models';
+import { FileHandle } from './directives/dragDropFiles.directive';
+import { DomSanitizer } from '@angular/platform-browser';
+import { FileService } from 'src/app/core/services/file.service';
 
 @Component({
   selector: 'app-task-form',
@@ -11,7 +14,14 @@ import { FormFields, TaskForm } from './models/task-form.models';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: TaskForm, private dialog: MatDialog) {}
+  selectedFiles: FileHandle[];
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: TaskForm,
+    private dialog: MatDialog,
+    private sanitizer: DomSanitizer,
+    private fileService: FileService,
+  ) {}
 
   ngOnInit(): void {
     this.taskForm = new FormGroup({
@@ -19,6 +29,7 @@ export class TaskFormComponent implements OnInit {
       taskSize: new FormControl(this.data.formFields.taskSize),
       taskPriority: new FormControl(this.data.formFields.taskPriority),
       taskDescription: new FormControl(this.data.formFields.taskDescription, Validators.required),
+      taskFile: new FormControl(),
     });
   }
 
@@ -33,7 +44,7 @@ export class TaskFormComponent implements OnInit {
         }),
       };
       this.dialog.closeAll();
-      this.data.submitBtn(taskData);
+      this.data.submitBtn(taskData, this.selectedFiles);
     }
   }
 
@@ -41,7 +52,21 @@ export class TaskFormComponent implements OnInit {
     this.dialog.closeAll();
   }
 
-  private getFormValue(): FormFields {
-    return this.taskForm.value;
+  dropFile(event: FileHandle[]) {
+    this.selectedFiles = event;
+  }
+
+  fn() {}
+
+  btnUploadFile(event: Event) {
+    const files: FileHandle[] = [];
+    for (let i = 0; i < (event.target! as HTMLInputElement).files!.length; i++) {
+      const file = (event.target! as HTMLInputElement).files![i];
+      const url = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
+      files.push({ file, url });
+    }
+    if (files.length > 0) {
+      this.selectedFiles = files;
+    }
   }
 }

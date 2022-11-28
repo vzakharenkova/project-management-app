@@ -20,6 +20,7 @@ import { createTask, updateTask } from '../../../../core/store/actions/task.acti
 import { StateModel } from '../../../../core/store/state/state.model';
 import { AuthDataModel, UserModel } from '../../../../shared/models/user.model';
 import { calculateOrder } from '../../../../shared/utils/calculateOrder';
+import { FileHandle } from 'src/app/workspace/task-form/directives/dragDropFiles.directive';
 
 @Component({
   selector: 'app-board-column',
@@ -96,12 +97,13 @@ export class BoardColumnComponent implements OnInit {
     this.taskFormConfig = {
       title: this.transloco.translateObject('form.createTask.title'),
       btnName: this.transloco.translateObject('form.createTask.createTaskBtn'),
-      submitBtn: (data: { title: string; description: string }) =>
+      submitBtn: (data: { title: string; description: string }, files: FileHandle[]) =>
         this.store.dispatch(
           createTask({
             boardId: this.board.id,
             columnId: this.column.id,
             data: { ...data, userId: this.userId },
+            files,
           }),
         ),
       formFields: {

@@ -12,6 +12,11 @@
   </div>
   <div class="task_item task_title">{{ data.task.title }}</div>
   <div class="task_item task_description">{{ taskDescription.description }}</div>
-  <div class="task_item task_title">{{ data.task.files }}</div>
+  <div *ngIf="data.task.files">
+    <div class="task-file__item" *ngFor="let file of data.task.files; index as i">
+      <span class="task-file__name">{{nameHandler(file.filename)}}</span>
+      <mat-icon class="task-file__icon" (click)="downloadFile(file.filename)">download</mat-icon>
+    </div>
+  </div>
   <div mat-raised-button class="edit_btn" (click)="openTaskForm()">Edit Task</div>
 </div>
