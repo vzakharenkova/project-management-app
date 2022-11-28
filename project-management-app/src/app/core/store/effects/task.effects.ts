@@ -140,7 +140,7 @@ export class TaskEffects {
               .pipe(take(1))
               .subscribe({
                 next: () => {},
-                error: (err) => console.log(err),
+                error: () => {},
               });
           }
         }),
