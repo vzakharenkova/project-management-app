@@ -18,10 +18,35 @@ export class RegistrationComponent implements OnInit {
 
   public hideConfirmPassword = true;
 
+  public get name() {
+    return this.registrationForm.get('name');
+  }
+
+  public get login() {
+    return this.registrationForm.get('login');
+  }
+
+  public get password() {
+    return this.registrationForm.get('password');
+  }
+
+  public get confirmPassword() {
+    return this.registrationForm.get('confirmPassword');
+  }
+
   constructor(private formBuilder: FormBuilder, private store: Store<StateModel>) {}
 
   ngOnInit() {
     this.initForm();
+  }
+
+  public signUp() {
+    const userData: AuthDataModel = {
+      name: this.name?.value,
+      login: this.login?.value,
+      password: this.password?.value,
+    };
+    this.store.dispatch(signUp({ newUserData: userData }));
   }
 
   private initForm() {
@@ -44,41 +69,5 @@ export class RegistrationComponent implements OnInit {
       },
       { validator: passwordMatchingValidatior('password', 'confirmPassword') },
     );
-  }
-
-  public disableBtn() {
-    if (
-      this.name?.invalid ||
-      this.login?.invalid ||
-      this.password?.invalid ||
-      this.confirmPassword?.invalid
-    ) {
-      return true;
-    } else return false;
-  }
-
-  public signUp() {
-    const userData: AuthDataModel = {
-      name: this.name?.value,
-      login: this.login?.value,
-      password: this.password?.value,
-    };
-    this.store.dispatch(signUp({ newUserData: userData }));
-  }
-
-  public get name() {
-    return this.registrationForm.get('name');
-  }
-
-  public get login() {
-    return this.registrationForm.get('login');
-  }
-
-  public get password() {
-    return this.registrationForm.get('password');
-  }
-
-  public get confirmPassword() {
-    return this.registrationForm.get('confirmPassword');
   }
 }

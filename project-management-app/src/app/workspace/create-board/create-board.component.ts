@@ -11,7 +11,7 @@ import { createBoard } from 'src/app/core/store/actions/board.actions';
   styleUrls: ['./create-board.component.scss'],
 })
 export class CreateBoardComponent {
-  boardForm: FormGroup;
+  public boardForm: FormGroup;
 
   constructor(public dialog: MatDialog, private store: Store<StateModel>) {
     this.boardForm = new FormGroup({
@@ -20,11 +20,11 @@ export class CreateBoardComponent {
     });
   }
 
-  closeBoardForm() {
+  public closeBoardForm() {
     this.dialog.closeAll();
   }
 
-  submitCreateBoardForm() {
+  public submitCreateBoardForm() {
     if (this.boardForm.valid) {
       this.store.dispatch(
         createBoard({

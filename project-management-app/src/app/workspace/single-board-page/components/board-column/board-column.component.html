@@ -34,12 +34,14 @@
     [cdkDropListConnectedTo]="columnsId"
     (cdkDropListDropped)="drop($event)"
   >
-    <app-task-card
-      *ngFor="let task of column.tasks"
-      [task]="task"
-      [column]="column"
-      [boardId]="board.id"
-      cdkDrag
-    ></app-task-card>
+    <ng-container *ngIf="column.tasks && column.tasks.length">
+      <app-task-card
+        *ngFor="let task of column.tasks | filter: filterTerm"
+        [task]="task"
+        [column]="column"
+        [boardId]="board.id"
+        cdkDrag
+      ></app-task-card>
+    </ng-container>
   </div>
 </mat-card>

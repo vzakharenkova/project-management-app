@@ -68,7 +68,7 @@
       mat-raised-button
       mat-button
       color="primary"
-      [disabled]="disableBtn()"
+      [disabled]="registrationForm.invalid"
       (click)="signUp()"
     >
       {{ t('auth.singupBtn') }}

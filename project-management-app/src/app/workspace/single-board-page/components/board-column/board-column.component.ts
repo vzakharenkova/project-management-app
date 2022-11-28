@@ -36,6 +36,8 @@ export class BoardColumnComponent implements OnInit {
 
   @Input() user: AuthDataModel | null;
 
+  @Input() filterTerm: string;
+
   public title: string;
 
   public columnsId: string[] = [];
@@ -139,6 +141,10 @@ export class BoardColumnComponent implements OnInit {
     }
   }
 
+  public changeTitle(titleInput: EventTarget | null) {
+    this.title = (<HTMLInputElement>titleInput).value;
+  }
+
   private createPropsUpdTask(
     event: CdkDragDrop<TaskModel[] | undefined>,
     columnIdForUpd: string,
@@ -166,9 +172,5 @@ export class BoardColumnComponent implements OnInit {
   private deleteColumn(board: BoardModel, column: ColumnModel) {
     this.store.dispatch(deleteColumn({ boardId: board.id, columnId: column.id }));
     this.dialog.closeAll();
-  }
-
-  public changeTitle(titleInput: EventTarget | null) {
-    this.title = (<HTMLInputElement>titleInput).value;
   }
 }

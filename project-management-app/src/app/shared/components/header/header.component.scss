@@ -59,7 +59,7 @@
       color: $white;
       transition: $hover-transition;
       cursor: pointer;
-      height: 2.7rem;
+      height: 3.5rem;
       min-width: unset;
       line-height: unset;
 
@@ -78,17 +78,15 @@
   }
 }
 
-
 .burger-menu {
-    width: 60px !important;
-    height: 60px !important;
-    transition: 0.25s;
+  width: 60px !important;
+  height: 60px !important;
+  transition: 0.25s;
 
   &_rotate {
     transform: rotate(90deg);
   }
 }
-
 
 .burger-menu-icon {
   display: flex;

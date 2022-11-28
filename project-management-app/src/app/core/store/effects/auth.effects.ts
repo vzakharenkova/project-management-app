@@ -17,6 +17,7 @@ import { notificationConfigBasic } from 'src/app/shared/utils/noticationConfig';
 import { StateModel } from '../state/state.model';
 import { Store } from '@ngrx/store';
 import { selectCurrentUser } from '../selectos/app.selectors';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Injectable()
 export class AuthEffects {
@@ -26,6 +27,7 @@ export class AuthEffects {
     private router: Router,
     private _notification: MatSnackBar,
     private store: Store<StateModel>,
+    private transloco: TranslocoService,
   ) {}
 
   signIn$ = createEffect(() => {
@@ -73,7 +75,8 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(AuthApiActionsList.signedUp),
         tap(() => {
-          this._notification.open('Sign up successfully', '', notificationConfigBasic);
+          const msg = this.transloco.translateObject('notifications.userExist');
+          this._notification.open(msg, '', notificationConfigBasic);
         }),
       );
     },

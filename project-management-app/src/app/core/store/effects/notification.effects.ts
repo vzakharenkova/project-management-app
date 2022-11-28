@@ -40,6 +40,7 @@ import {
 import { userDeletedError, userUpdated, userUpdatedError } from '../actions/user-api.actions';
 import { Router } from '@angular/router';
 import { fileDownloadError } from '../actions/file-api.actions';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Injectable()
 export class NotificationEffects {
@@ -47,6 +48,7 @@ export class NotificationEffects {
     private actions$: Actions,
     private _notification: MatSnackBar,
     private router: Router,
+    private transloco: TranslocoService,
   ) {}
 
   signUpError$ = createEffect(
@@ -55,17 +57,11 @@ export class NotificationEffects {
         ofType(AuthApiActionsList.signedUpError),
         tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedUpError }) => {
           if (action.err.error.statusCode === 409) {
-            this._notification.open(
-              'User login already exists. Please change login and try again',
-              '',
-              notificationConfigErr,
-            );
+            const msg = this.transloco.translateObject('notifications.userExist');
+            this._notification.open(msg, '', notificationConfigErr);
           } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
+            const msg = this.transloco.translateObject('notifications.smthWrong');
+            this._notification.open(msg, '', notificationConfigErr);
           }
         }),
       );
@@ -79,17 +75,11 @@ export class NotificationEffects {
         ofType(AuthApiActionsList.signedInError),
         tap((action: { err: HttpErrorResponse; type: AuthApiActionsList.signedInError }) => {
           if (action.err.error.statusCode === 403) {
-            this._notification.open(
-              'This user does not exist. Please sing up',
-              '',
-              notificationConfigErr,
-            );
+            const msg = this.transloco.translateObject('notifications.userNotExist');
+            this._notification.open(msg, '', notificationConfigErr);
           } else {
-            this._notification.open(
-              'Something goes wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
+            const msg = this.transloco.translateObject('notifications.smthWrong');
+            this._notification.open(msg, '', notificationConfigErr);
           }
         }),
       );
@@ -102,7 +92,8 @@ export class NotificationEffects {
       return this.actions$.pipe(
         ofType(boardCreated, columnCreated, taskCreated),
         tap(() => {
-          this._notification.open('Created', '', notificationConfigBasic);
+          const msg = this.transloco.translateObject('notifications.created');
+          this._notification.open(msg, '', notificationConfigBasic);
         }),
       );
     },
@@ -114,7 +105,8 @@ export class NotificationEffects {
       return this.actions$.pipe(
         ofType(boardDeleted, columnDeleted, taskDeleted),
         tap(() => {
-          this._notification.open('Deleted', '', notificationConfigBasic);
+          const msg = this.transloco.translateObject('notifications.deleted');
+          this._notification.open(msg, '', notificationConfigBasic);
         }),
       );
     },
@@ -126,7 +118,8 @@ export class NotificationEffects {
       return this.actions$.pipe(
         ofType(boardUpdated, columnUpdated, taskUpdated, userUpdated),
         tap(() => {
-          this._notification.open('Updated', '', notificationConfigBasic);
+          const msg = this.transloco.translateObject('notifications.updated');
+          this._notification.open(msg, '', notificationConfigBasic);
         }),
       );
     },
@@ -155,11 +148,8 @@ export class NotificationEffects {
           fileDownloadError,
         ),
         tap(() => {
-          this._notification.open(
-            'Something is wrong. Please try again',
-            '',
-            notificationConfigErr,
-          );
+          const msg = this.transloco.translateObject('notifications.smthWrong');
+          this._notification.open(msg, '', notificationConfigErr);
         }),
       );
     },
@@ -175,14 +165,12 @@ export class NotificationEffects {
             (<HttpErrorResponse>action.err).status === 404 ||
             (<HttpErrorResponse>action.err).status === 400
           ) {
-            this._notification.open('The board does not exist!', '', notificationConfigErr);
+            const msg = this.transloco.translateObject('notifications.boardNotExist');
+            this._notification.open(msg, '', notificationConfigErr);
             this.router.navigateByUrl('/boards');
           } else {
-            this._notification.open(
-              'Something is wrong. Please try again',
-              '',
-              notificationConfigErr,
-            );
+            const msg = this.transloco.translateObject('notifications.smthWrong');
+            this._notification.open(msg, '', notificationConfigErr);
           }
         }),
       );

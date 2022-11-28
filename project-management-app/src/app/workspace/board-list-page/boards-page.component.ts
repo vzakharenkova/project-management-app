@@ -11,7 +11,7 @@ import { BoardModel } from 'src/app/shared/models/board.model';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  boards$: Observable<BoardModel[]>;
+  public boards$: Observable<BoardModel[]>;
 
   constructor(private store: Store<StateModel>) {}
 

@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { TaskForm } from './models/task-form.models';
 import { FileHandle } from './directives/dragDropFiles.directive';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FileService } from 'src/app/core/services/file.service';
 
 @Component({
   selector: 'app-task-form',
@@ -12,15 +11,14 @@ import { FileService } from 'src/app/core/services/file.service';
   styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
-  taskForm: FormGroup;
+  public taskForm: FormGroup;
 
-  selectedFiles: FileHandle[];
+  public selectedFiles: FileHandle[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: TaskForm,
     private dialog: MatDialog,
     private sanitizer: DomSanitizer,
-    private fileService: FileService,
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +31,7 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  submitTaskForm() {
+  public submitTaskForm() {
     if (this.taskForm.valid) {
       const taskData = {
         title: this.taskForm.get('taskName')?.value,
@@ -48,17 +46,15 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  closeTaskForm() {
+  public closeTaskForm() {
     this.dialog.closeAll();
   }
 
-  dropFile(event: FileHandle[]) {
+  public dropFile(event: FileHandle[]) {
     this.selectedFiles = event;
   }
 
-  fn() {}
-
-  btnUploadFile(event: Event) {
+  public btnUploadFile(event: Event) {
     const files: FileHandle[] = [];
     for (let i = 0; i < (event.target! as HTMLInputElement).files!.length; i++) {
       const file = (event.target! as HTMLInputElement).files![i];

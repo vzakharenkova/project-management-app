@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 
 import { ColumnService } from '../../services/column.service';
 import {
@@ -8,19 +8,16 @@ import {
   deleteColumn,
   getAllColumns,
   getColumnById,
-  updateAllColumns,
   updateColumn,
 } from '../actions/column.actions';
 import {
   allColumnsError,
   allColumnsLoaded,
-  columnCreated,
   columnCreatedError,
   columnDeleted,
   columnDeletedError,
   columnLoaded,
   columnLoadedError,
-  columnUpdated,
   columnUpdatedError,
 } from '../actions/column-api.actions';
 import { getBoardById } from '../actions/board.actions';

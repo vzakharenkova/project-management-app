@@ -21,7 +21,7 @@ export class WorkspaceComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private store: Store,
     private breakpointObserver: BreakpointObserver,
-    public sidenavService: SidenavService,
+    private sidenavService: SidenavService,
   ) {}
 
   ngOnInit(): void {

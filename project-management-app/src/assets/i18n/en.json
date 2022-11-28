@@ -45,7 +45,8 @@
   },
   "singleBoardPage": {
     "title": "Boards",
-    "createColumnBtn": "Create a column"
+    "createColumnBtn": "Create a column",
+    "placeHolder": "Search for tasks..."
   },
   "editProfilePage": {
     "btnBack": "back",
@@ -147,5 +148,15 @@
   "dialogDelBoard": {
     "title": "Delete board",
     "content": "Do you want to delete {{ name }} board?"
+  },
+  "notifications": {
+    "userExist": "User login already exists. Please change login and try again",
+    "userNotExist": "This user does not exist. Please sing up",
+    "singedUp": "Sing up successfully",
+    "smthWrong": "Something goes wrong. Please try again",
+    "boardNotExist": "The board does not exist!",
+    "created": "Created",
+    "deleted": "Deleted",
+    "updated": "Updated"
   }
 }

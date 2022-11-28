@@ -18,20 +18,8 @@ import { StateModel } from '../store/state/state.model';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanLoad, CanActivate {
+export class AuthGuard implements CanActivate {
   constructor(private router: Router, private store: Store<StateModel>) {}
-
-  canLoad(_route: Route, _segments: UrlSegment[]): Observable<boolean> {
-    return this.store.select(selectToken).pipe(
-      map((token) => {
-        if (token === null) {
-          this.router.navigateByUrl('/welcome');
-          return false;
-        }
-        return true;
-      }),
-    );
-  }
 
   canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> {
     return this.store.select(selectToken).pipe(
