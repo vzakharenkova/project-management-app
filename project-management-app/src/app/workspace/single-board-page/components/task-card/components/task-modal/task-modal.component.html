@@ -15,7 +15,9 @@
   <div *ngIf="data.task.files">
     <div class="task-file__item" *ngFor="let file of data.task.files; index as i">
       <span class="task-file__name">{{ nameHandler(file.filename) }}</span>
-      <mat-icon class="task-file__icon" (click)="downloadFile(file.filename)">download</mat-icon>
+      <a [href]="filesUrl[i]" download="{{ file.filename }}">
+        <mat-icon class="task-file__icon">download</mat-icon>
+      </a>
     </div>
   </div>
   <div mat-raised-button class="edit_btn" (click)="openTaskForm()">{{ t('editBtn') }}</div>
