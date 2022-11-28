@@ -7,11 +7,12 @@ import { TaskModel } from 'src/app/shared/models/task.model';
 export class FilterPipe implements PipeTransform {
   transform(tasks: TaskModel[], filterTerm: string): TaskModel[] {
     if (tasks && tasks.length > 0 && filterTerm.length) {
-      return tasks.filter(
-        (task) =>
-          task.title.includes(filterTerm.toLowerCase()) ||
-          task.description.includes(filterTerm.toLowerCase()),
-      );
+      return tasks.filter((task) => {
+        return (
+          task.title.toLowerCase().includes(filterTerm.toLowerCase()) ||
+          task.description.toLowerCase().includes(filterTerm.toLowerCase())
+        );
+      });
     }
 
     return tasks;

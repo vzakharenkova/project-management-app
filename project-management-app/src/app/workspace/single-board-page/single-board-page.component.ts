@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
-import { map, Observable, startWith, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
 import { StateModel } from '../../core/store/state/state.model';
@@ -18,7 +18,6 @@ import { closeBoard, getBoardById } from '../../core/store/actions/board.actions
 import { AuthDataModel, UserModel } from '../../shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
 import { calculateOrder } from '../../shared/utils/calculateOrder';
-import { TaskModel } from 'src/app/shared/models/task.model';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -37,13 +36,9 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
 
   public tasksSearch = new FormControl('');
 
-  public filteredTasks: Observable<TaskModel[]>;
-
   public filterTerm: string = '';
 
   public isScrolledToEnd: boolean;
-
-  private tasks: TaskModel[] = [];
 
   private boardId: string;
 
@@ -65,18 +60,8 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
     this.boardSubscription = this.store.select(selectCurrentBoard).subscribe((value) => {
       if (value != null) {
         this.board = JSON.parse(JSON.stringify(value));
-        this.board.columns?.forEach((column) => {
-          if (column.tasks) {
-            this.tasks = this.tasks.concat(column.tasks);
-          }
-        });
       }
     });
-
-    this.filteredTasks = this.tasksSearch.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value || '')),
-    );
 
     this.user$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
@@ -118,16 +103,6 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
         order: calculateOrder(event),
       },
     };
-  }
-
-  private _filter(value: string): TaskModel[] {
-    const filterValue = value.toLowerCase();
-
-    return this.tasks.filter(
-      (task) =>
-        task.title.toLowerCase().includes(filterValue) ||
-        task.description.toLowerCase().includes(filterValue),
-    );
   }
 
   ngOnDestroy(): void {
