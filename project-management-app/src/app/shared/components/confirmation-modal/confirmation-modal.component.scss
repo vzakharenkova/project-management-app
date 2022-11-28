@@ -1,0 +1,43 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.modal {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  .close-container {
+    align-self: flex-end;
+    cursor: pointer;
+    background-color: $background-light;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    cursor: pointer;
+    min-width: unset;
+    line-height: 0;
+
+    &:hover {
+      @include hover-element;
+    }
+  }
+
+  &_title {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  &_content {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .delete_btn {
+    @include purple-btn;
+    margin-top: 1rem;
+    background-color: $background-delete;
+    color: $color-urgent;
+    align-self: flex-start;
+    min-width: 7rem;
+  }
+}

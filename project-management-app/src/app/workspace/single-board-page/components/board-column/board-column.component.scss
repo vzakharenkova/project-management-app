@@ -1,0 +1,133 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.column {
+  background-color: $white;
+  border-radius: $card-border-radius;
+  padding: $card_padding-x;
+  cursor: grab;
+  margin-bottom: 1rem;
+  width: 25rem;
+  max-height: 97%;
+  display: flex;
+  flex-direction: column;
+
+  @include small-screen {
+    width: auto;
+  }
+
+  @include xSmall-screen {
+    padding: calc($card_padding-x / 2);
+  }
+
+  &_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    @include xSmall-screen {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  &_title {
+    &:not(.readonly) {
+      outline: none;
+      border: 0.1rem solid $btn_purple;
+      padding: 0 0.5rem;
+      border-radius: $card-border-radius;
+      align-items: center;
+      display: flex;
+      width: 70%;
+    }
+
+    &-input {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: calc($subheading-fontSize - 0.4rem);
+      font-weight: bold;
+      width: 100%;
+    }
+
+    mat-icon {
+      cursor: pointer;
+      transition: $hover-transition;
+
+      &:hover {
+        @include hover-text;
+      }
+
+      &:first-of-type {
+        margin: 0 0.2rem;
+      }
+    }
+
+    @include xSmall-screen {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &_actions {
+    display: flex;
+
+    .delete_btn {
+      @include delete-btn;
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+
+    .add_btn {
+      @include add-btn;
+      margin-right: 1rem;
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+
+    .mat-raised-button {
+      min-width: unset;
+      line-height: 0;
+    }
+  }
+
+  &_tasks {
+    display: grid;
+    grid-auto-rows: 10rem;
+    row-gap: 1rem;
+    padding: calc($card_padding-x / 2);
+    overflow-x: auto;
+    overflow-x: auto;
+    height: 90%;
+
+    @include xSmall-screen {
+      grid-auto-rows: 12rem;
+      grid-template-columns: 14rem;
+      height: 76%;
+    }
+  }
+
+  &:hover {
+    @include hover-element;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $btn_purple;
+  border-radius: 0.6rem;
+}

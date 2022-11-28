@@ -1,0 +1,51 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.auth {
+  display: flex;
+  height: 100vh;
+  background-color: $background-light;
+
+  @include medium-screen {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 8rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  app-lang-toggler {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+  }
+
+  &-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45vw;
+    justify-content: space-between;
+    background-color: $background-dark;
+    padding: $padding-x;
+  }
+
+  &_heading {
+    font-size: $heading-fontSize;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+
+    @include xSmall-screen {
+      font-size: $subheading-fontSize;
+    }
+  }
+
+  &_img {
+    display: block;
+    max-width: 40vw;
+    flex-grow: 1;
+    margin-top: 2rem;
+  }
+}

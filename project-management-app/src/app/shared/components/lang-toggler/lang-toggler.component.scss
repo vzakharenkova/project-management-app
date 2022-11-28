@@ -1,0 +1,29 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.lang {
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  &.white {
+    color: $white;
+  }
+
+  &.black {
+    color: black;
+  }
+
+  .slash {
+    margin: 0 0.5rem;
+  }
+
+  &_en,
+  &_ru {
+    cursor: pointer;
+    transition: $hover-transition;
+
+    &:hover {
+      @include hover-text;
+    }
+  }
+}

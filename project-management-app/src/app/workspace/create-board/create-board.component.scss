@@ -1,0 +1,40 @@
+@import 'src/app/shared/styles/mixins';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form__title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.close-container {
+  display: flex;
+  justify-content: right;
+}
+
+.form_field {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.form__close {
+  min-width: fit-content;
+  line-height: 0;
+  border-radius: 100%;
+  padding: 0.3rem;
+  cursor: pointer;
+
+  &:hover {
+    @include hover-element;
+  }
+}
+
+.form__btn {
+  @include purple-btn;
+  width: fit-content;
+}

@@ -1,0 +1,103 @@
+<main class="edit" *transloco="let t; read: 'editProfilePage'">
+  <app-lang-toggler color="black"></app-lang-toggler>
+  <div class="edit-left" *ngIf="!isMediumScreen; else mediumBackLink">
+    <mat-icon class="back" (click)="navigateBack()">navigate_before</mat-icon>
+    <div class="back-link" (click)="navigateBack()">{{ t('btnBack') }}</div>
+    <img src="../../assets/edit.svg" class="edit_img" />
+  </div>
+
+  <ng-template #mediumBackLink>
+    <button mat-button class="back-medium" (click)="navigateBack()">
+      <mat-icon>navigate_before</mat-icon>
+      {{ t('btnBack') }}
+    </button>
+  </ng-template>
+
+  <div class="form-wrapper">
+    <h2 class="heading">{{ t('title') }}</h2>
+
+    <form class="form" [formGroup]="editForm">
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>{{ t('nameFieldLabel') }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ t('nameFieldPlaceHolder') }}"
+          class="input"
+          formControlName="name"
+          [value]="user.name"
+        />
+        <mat-error *ngIf="name?.errors?.['required']">{{ t('nameFieldErr') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>{{ t('loginFieldLabel') }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ t('loginFieldPlaceHolder') }}"
+          class="input"
+          formControlName="login"
+          [value]="user.login"
+        />
+        <mat-error *ngIf="login?.errors?.['required']">{{ t('loginFieldErr1') }}</mat-error>
+        <mat-error *ngIf="login?.errors?.['pattern']">{{ t('loginFieldErr2') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>{{ t('passFieldLabel') }}</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          placeholder="{{ t('passFieldPlaceHolder') }}"
+          class="input"
+          formControlName="password"
+        />
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error *ngIf="password?.errors?.['minlength'] || password?.errors?.['pattern']">{{
+          t('passFieldErr')
+        }}</mat-error>
+        <mat-error *ngIf="password?.errors?.['required']">{{ t('confPassFieldErr2') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>{{ t('confPassFieldLabel') }}</mat-label>
+        <input
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+          placeholder="{{ t('confPassFieldPlaceHolder') }}"
+          class="input"
+          formControlName="confirmPassword"
+        />
+        <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{
+          hideConfirmPassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+        <mat-error *ngIf="confirmPassword?.errors?.['mustMatch']">{{
+          t('confPassFieldErr1')
+        }}</mat-error>
+        <mat-error *ngIf="confirmPassword?.errors?.['required']">{{
+          t('confPassFieldErr2')
+        }}</mat-error>
+      </mat-form-field>
+    </form>
+    <div class="action-btns">
+      <button
+        class="btn"
+        mat-raised-button
+        color="primary"
+        (click)="updateUser()"
+        [disabled]="disableBtn()"
+      >
+        {{ t('editBtn') }}
+      </button>
+      <button
+        class="btn delete_btn"
+        mat-raised-button
+        color="primary"
+        (click)="openConfirmationDialog()"
+      >
+        {{ t('delProfileBtn') }}
+      </button>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,40 @@
+<header
+  class="header"
+  [ngStyle]="isScrolled ? { height: '100px' } : {}"
+  *transloco="let t; read: 'header'"
+>
+  <div class="header-left">
+    <a class="logo" routerLink="/boards"><img src="../../../../assets/cat.svg" alt="logo" /></a>
+    <app-lang-toggler color="white" *ngIf="!isXSmallScreen"></app-lang-toggler>
+  </div>
+
+  <button
+    mat-icon-button
+    color="primary"
+    class="burger-menu"
+    [class.burger-menu_rotate]="sidenavService.isOpen"
+    (click)="toggleSidenav()"
+    *ngIf="isXSmallScreen; else headerButtons"
+  >
+    <mat-icon class="burger-menu-icon">menu</mat-icon>
+  </button>
+
+  <ng-template #headerButtons>
+    <div class="header-right">
+      <button mat-raised-button class="create_btn btn" (click)="openFormCreateBoard()">
+        <mat-icon *ngIf="isSmallScreen; else newBoardSpan">add_circle</mat-icon>
+        <ng-template #newBoardSpan>
+          <span>
+            {{ t('createNewBoardBtn') }}
+          </span>
+        </ng-template>
+      </button>
+      <a mat-raised-button routerLink="/edit" class="btn">
+        <mat-icon [class.settings]="!isSmallScreen">settings</mat-icon>
+      </a>
+      <a mat-raised-button class="btn" (click)="logout()">
+        <mat-icon class="logout">exit_to_app</mat-icon>
+      </a>
+    </div>
+  </ng-template>
+</header>

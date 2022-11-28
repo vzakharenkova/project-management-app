@@ -1,0 +1,98 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.header {
+  height: $header-height;
+  background-color: $background-dark;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $padding-x;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  transition: $hover-transition;
+
+  @include xSmall-screen {
+    padding: 0 $padding-x-xSmall;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      margin-right: 2rem;
+      cursor: pointer;
+    }
+
+    .lang {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $white;
+
+      .slash {
+        margin: 0 0.5rem;
+      }
+
+      &_en,
+      &_ru {
+        cursor: pointer;
+        transition: $hover-transition;
+
+        &:hover {
+          @include hover-text;
+        }
+      }
+    }
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      background-color: $btn-yellow;
+      font-size: larger;
+      color: $white;
+      transition: $hover-transition;
+      cursor: pointer;
+      height: 3.5rem;
+      min-width: unset;
+      line-height: unset;
+
+      &:nth-child(2) {
+        margin: 0 1rem;
+      }
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+
+    .create_btn {
+      padding: 0.2rem 0.8rem;
+    }
+  }
+}
+
+.burger-menu {
+  width: 60px !important;
+  height: 60px !important;
+  transition: 0.25s;
+
+  &_rotate {
+    transform: rotate(90deg);
+  }
+}
+
+.burger-menu-icon {
+  display: flex;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 50px !important;
+  line-height: 50px !important;
+  color: $btn-yellow;
+}

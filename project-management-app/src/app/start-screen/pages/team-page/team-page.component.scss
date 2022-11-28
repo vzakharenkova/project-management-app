@@ -1,0 +1,81 @@
+@import '../../../shared/styles/variables';
+@import '../../../shared/styles/mixins';
+
+.page {
+  height: 100vh;
+  padding: 7rem 5rem;
+
+  @include large-screen {
+    height: auto;
+  }
+
+  @include small-screen {
+    padding: 6rem 3rem 4rem;
+  }
+
+  @include xSmall-screen {
+    padding: 6rem 1.5rem 1.5rem;
+  }
+
+  app-lang-toggler {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+
+    @include xSmall-screen {
+      left: 1.5rem;
+    }
+  }
+
+  &_title {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    color: $white;
+    font-size: $heading-fontSize;
+
+    @include xSmall-screen {
+      font-size: $subheading-fontSize;
+    }
+  }
+
+  .team {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5rem;
+    font-size: 1.2rem;
+
+    @include large-screen {
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    @include xSmall-screen {
+      margin-top: 2rem;
+    }
+  }
+
+  .link-block {
+    @include large-screen {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .next {
+    @include next-page;
+
+    @include large-screen {
+      bottom: unset;
+    }
+  }
+
+  .prev {
+    @include prev-page;
+
+    @include large-screen {
+      bottom: unset;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<main class="auth" *transloco="let t; read: 'auth'">
+  <div class="auth-left" *ngIf="!isMediumScreen; else heading">
+    <h2 class="auth_heading">{{ t('title') }}</h2>
+    <img src="../../assets/auth.svg" class="auth_img" />
+  </div>
+
+  <ng-template #heading>
+    <h2 class="auth_heading">{{ t('title') }}</h2>
+  </ng-template>
+
+  <app-lang-toggler color="black"></app-lang-toggler>
+  <router-outlet></router-outlet>
+</main>

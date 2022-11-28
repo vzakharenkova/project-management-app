@@ -1,0 +1,36 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.page {
+  background-color: $background-dark;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+
+  &_img {
+    display: block;
+    margin-right: 2rem;
+    height: 10rem;
+  }
+
+  &_text {
+    font-size: $heading-fontSize;
+    font-weight: bold;
+  }
+
+  .back-link {
+    position: absolute;
+    top: 2.8rem;
+    left: 9rem;
+    cursor: pointer;
+    font-size: $subheading-fontSize;
+  }
+
+  .back {
+    @include prev-page;
+    top: 2rem;
+  }
+}

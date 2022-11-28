@@ -1,0 +1,162 @@
+{
+  "header": {
+    "createNewBoardBtn": "Создать доску",
+    "editProfileBtn": "Редактировать профиль",
+    "logoutBtn": "Выйти из аккаунта",
+    "localization": {
+      "en": "EN",
+      "ru": "RU"
+    }
+  },
+  "welcome": {
+    "titlePage": { "title": "Добро пожаловать в приложение для управления проектами" },
+    "teamPage": {
+      "title": "Наша команда предлагает вам инструмент разработки, используемый agile-командами",
+      "team": {
+        "1": {
+          "name": "Павел Кижло",
+          "description": "Бэкэнд-развертывание, глобальный стейт приложения (NgRx), API сервисы, адаптивная верстка"
+        },
+        "2": {
+          "name": "Виктория Захаренкова",
+          "description": "Шаблон приложения, верстка, взаимодействие между компонентами и глобальным стейтом, вход и регистрация"
+        },
+        "3": {
+          "name": "Николай Давыдов",
+          "description": "Локализация, Drag & Drop, создание и редактирование задач, функциональность загрузки/выгрузки файлов"
+        }
+      }
+    },
+    "descriptionPage": {
+      "text": {
+        "1": "Это приложение поможет командам эффективно решать рабочие задачи и организовать работу так, чтобы все знали, что делать.",
+        "2": "Отслеживайте ход выполнения задач, будьте в курсе происходящего.",
+        "3": "Правильно планируйте сроки и объем работ."
+      },
+      "loginBtn": "Войти",
+      "singupBtn": "Зарегистрироваться"
+    }
+  },
+  "auth": {
+    "title": "Войдите или зарегистрируйтесь, чтобы начать управлять своими проектами"
+  },
+  "boardPage": {
+    "title": "Доски"
+  },
+  "singleBoardPage": {
+    "title": "Доски",
+    "createColumnBtn": "Создать колонку",
+    "placeHolder": "Поиск задач..."
+  },
+  "editProfilePage": {
+    "btnBack": "назад",
+    "title": "Редактировать профиль",
+    "nameFieldLabel": "Имя",
+    "nameFieldPlaceHolder": "Введите имя",
+    "loginFieldLabel": "Логин",
+    "loginFieldPlaceHolder": "Введите логин (email)",
+    "passFieldLabel": "Пароль",
+    "passFieldPlaceHolder": "Введите пароль",
+    "confPassFieldLabel": "Подтвердите пароль",
+    "confPassFieldPlaceHolder": "Подтвердите пароль",
+    "nameFieldErr": "Пожалуйста введите имя",
+    "loginFieldErr1": "Пожалуйста введите логин - email",
+    "loginFieldErr2": "Не верный логин",
+    "passFieldErr": "Ваш пароль недостаточно надежен",
+    "confPassFieldErr1": "Пароли не совпадают",
+    "confPassFieldErr2": "Пожалуйста введите пароль",
+    "editBtn": "Сохранить",
+    "delProfileBtn": "Удалить профиль",
+    "auth": { "loginBtn": "Войти", "singupBtn": "Зарегистрироваться" }
+  },
+  "card": {
+    "editBtn": "Редактировать"
+  },
+  "form": {
+    "btnCreateNewBoard": {
+      "title": "Создать доску",
+      "nameFieldLabel": "Имя доски",
+      "nameFieldErr": "Пожалуйста введите имя доски",
+      "descriptionField": "Описание доски",
+      "descriptionFieldErr": "Пожалуйста введите описание",
+      "formBtn": "Создать доску"
+    },
+    "createColumn": {
+      "title": "Создать колонку",
+      "nameFieldLabel": "Имя колонки",
+      "nameFieldPlaceHolder": "Введите имя колонки",
+      "nameFieldErr": "Пожалуйста введите имя колонки",
+      "btnCreateColumn": "Создать колонку"
+    },
+    "createTask": {
+      "title": "Создать задачу",
+      "nameFieldLabel": "Имя задачи",
+      "nameFieldPlaceHolder": "Введите имя задачи",
+      "nameFieldErr": "Пожалуйста введите имя задачи",
+      "sizeFieldLabel": "Размер задачи",
+      "sizeOptions": {
+        "tiny": "Крошечная",
+        "small": "Маленькая",
+        "medium": "Средняя",
+        "large": "Большая",
+        "xLarge": "Очень большая"
+      },
+      "priorityFieldLabel": "Приоритет",
+      "priorityOptions": {
+        "low": "Низкий",
+        "medium": "Средний",
+        "high": "Высокий",
+        "urgent": "Срочно"
+      },
+      "descriptionFieldLabel": "Описание",
+      "descriptionFieldLabelErr": "Пожалуйста введите описание",
+      "createTaskBtn": "Создать задачу"
+    },
+    "editTask": {
+      "title": "Редактировать задачу",
+      "nameFieldLabel": "Имя задачи",
+      "nameFieldPlaceHolder": "Введите имя задачи",
+      "nameFieldErr": "Пожалуйста введите имя задачи",
+      "sizeFieldLabel": "Размер задачи",
+      "sizeOptions": {
+        "tiny": "Крошечная",
+        "small": "Маленькая",
+        "medium": "Средняя",
+        "large": "Большая",
+        "xLarge": "Очень большая"
+      },
+      "priorityFieldLabel": "Приоритет",
+      "priorityOptions": {
+        "low": "Низкий",
+        "medium": "Средний",
+        "high": "Высокий",
+        "urgent": "Срочная"
+      },
+      "descriptionFieldLabel": "Описание",
+      "createTaskBtn": "Сохранить"
+    }
+  },
+  "dialog": "Удалить",
+  "dialogDelColumn": {
+    "title": "Удалить колонку",
+    "content": "Вы хотите удалить {{ name }} колонку?"
+  },
+  "dialogDelTask": {
+    "title": "Удалить задачу",
+    "content": "Вы хотите удалить {{ name }} задачу?"
+  },
+  "dialogDelBoard": {
+    "title": "Удалить доску",
+    "content": "Вы хотите удалить {{ name }} доску?"
+  },
+  "notifications": {
+    "userExist": "Пользователь уже существует. Пожалуйста, измените логин и попробуйте еще раз",
+    "userNotExist": "Пользователь не существует. Пожалуйста, зарегистрируйтесь",
+    "singedUp": "Регистрация прошла успешно",
+    "smthWrong": "Что-то пошло не так. Пожалуйста, попробуйте еще раз",
+    "boardNotExist": "Выбранная доска не существует!",
+    "created": "Создано успешно",
+    "deleted": "Удалено успешно",
+    "updated": "Обновлено успешно"
+  }
+}

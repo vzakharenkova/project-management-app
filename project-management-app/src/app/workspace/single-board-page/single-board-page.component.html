@@ -1,0 +1,47 @@
+<main class="page" cdkDropListGroup>
+  <ng-container *transloco="let t; read: 'singleBoardPage'">
+    <div class="page_heading">
+      <div class="page_title">
+        <a routerLink="/boards">
+          <h2 class="common_title">{{ t('title') }}</h2>
+        </a>
+        <span class="arrow">&#8212;</span>
+        <h3 class="board_title" *ngIf="board">{{ board.title }}</h3>
+      </div>
+
+      <input
+        type="text"
+        [placeholder]="t('placeHolder')"
+        class="search_input"
+        matInput
+        [(ngModel)]="filterTerm"
+        autocomplete="off"
+      />
+
+      <button mat-raised-button class="create_btn" (click)="openCreateColumnForm()">
+        {{ t('createColumnBtn') }}
+      </button>
+    </div>
+
+    <div
+      *ngIf="board"
+      (scroll)="onScroll($event)"
+      [ngStyle]="{ 'border-right': isScrolledToEnd ? 'none' : '' }"
+      class="board-columns"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-board-column
+        cdkDragLockAxis="x"
+        *ngFor="let column of board.columns"
+        [column]="column"
+        [board]="board"
+        [users]="users$ | async"
+        [user]="user$ | async"
+        [filterTerm]="filterTerm"
+        cdkDrag
+      ></app-board-column>
+    </div>
+  </ng-container>
+</main>

@@ -1,0 +1,39 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.sidenav {
+  height: 100%;
+  padding: 20px;
+  background-color: $background-light;
+
+  &-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 2rem;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $btn-yellow;
+      font-size: 1.1rem;
+      color: $white;
+      transition: $hover-transition;
+      cursor: pointer;
+      height: 3.7rem;
+      min-width: unset;
+      line-height: unset;
+    }
+  }
+}
+
+.lang {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $heading-purple;
+
+  .slash {
+    margin: 0 0.5rem;
+  }
+}

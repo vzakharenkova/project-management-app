@@ -1,0 +1,126 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.page {
+  height: calc(100vh - $header-height - $footer-height);
+  padding: 0 $padding-x 1.5rem;
+  background-color: $background-light;
+  display: flex;
+  flex-direction: column;
+
+  @include medium-screen {
+    height: calc(100vh - $header-height - $footer-height - 2rem);
+  }
+
+  @include xSmall-screen {
+    padding: 0 1.5rem 1.5rem;
+    height: calc(100vh - $header-height - $footer-height - 4rem);
+  }
+
+  @include xxSmall-screen {
+    height: calc(100vh - $header-height - $footer-height - 6.5rem);
+  }
+
+  &_heading {
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include small-screen {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .search_input {
+      outline: none;
+      font-size: 1.3rem;
+      border: 0.1rem solid $btn_purple;
+      padding: 0.3rem 0.5rem;
+      border-radius: $card-border-radius;
+      align-items: center;
+      display: flex;
+      flex-basis: 30%;
+      margin: 0 1rem;
+
+      @include medium-screen {
+        width: 70%;
+      }
+    }
+
+    .page_title {
+      display: flex;
+      align-items: baseline;
+      font-weight: bold;
+      justify-content: space-between;
+
+      .common_title {
+        font-size: $heading-fontSize;
+        transition: $hover-transition;
+
+        &:hover {
+          @include hover-text;
+        }
+      }
+
+      .arrow {
+        height: fit-content;
+        width: fit-content;
+        font-size: 2rem;
+        padding: 0 0.5rem;
+      }
+
+      .board_title {
+        font-size: $subheading-fontSize;
+      }
+    }
+
+    .create_btn {
+      background-color: $btn_purple;
+      color: $white;
+      font-family: inherit;
+      height: $btn-height;
+      font-size: $btn-fontSize;
+      width: fit-content;
+
+      &:hover {
+        @include hover-element;
+      }
+    }
+  }
+
+  .board-columns {
+    display: inline-flex;
+    column-gap: 2rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+    border-right: 2px dotted $background-dark;
+
+    @include xSmall-screen {
+      height: 77%;
+    }
+
+    app-board-column {
+      height: 100%;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  height: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $btn_purple;
+  border-radius: 0.6rem;
+}
+
+.cdk-drag {
+  height: fit-content;
+}
