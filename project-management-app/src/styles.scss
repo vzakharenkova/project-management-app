@@ -55,6 +55,10 @@ body {
   height: 100%;
 }
 
+html {
+  font-size: 12px;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -100,11 +104,6 @@ a {
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
   color: $background-dark !important;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 .mat-icon {

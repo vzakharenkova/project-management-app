@@ -1,13 +1,21 @@
 <mat-card class="column">
   <div class="column_heading">
-    <input
-      (input)="changeTitle($event.target)"
-      [value]="title | cut: 16"
-      class="column_title"
-      (dblclick)="openEditColumnTitle($event.target)"
-      (blur)="closeEditColumnTitle($event.target)"
-      readonly
-    />
+    <div class="column_title" [ngClass]="titleInput.readOnly ? 'readonly' : ''">
+      <input
+        #titleInput
+        (input)="changeTitle(titleInput)"
+        [value]="title | cut: 16"
+        class="column_title-input"
+        (dblclick)="openEditColumnTitle(titleInput)"
+        readonly
+      />
+      <mat-icon *ngIf="!titleInput.readOnly" (click)="closeEditColumnTitle(titleInput)"
+        >done</mat-icon
+      >
+      <mat-icon *ngIf="!titleInput.readOnly" (click)="closeWithoutEditing(titleInput)"
+        >close</mat-icon
+      >
+    </div>
     <div class="column_actions">
       <button mat-raised-button class="add_btn" (click)="openTaskForm()">
         <mat-icon>add</mat-icon>

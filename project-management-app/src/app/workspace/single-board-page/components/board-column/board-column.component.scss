@@ -8,13 +8,15 @@
   cursor: grab;
   margin-bottom: 1rem;
   width: 25rem;
+  max-height: 97%;
+  display: flex;
+  flex-direction: column;
 
   @include small-screen {
     width: auto;
   }
 
   @include xSmall-screen {
-    width: 13rem;
     padding: calc($card_padding-x / 2);
   }
 
@@ -32,18 +34,36 @@
   }
 
   &_title {
-    font-size: $subheading-fontSize;
-    font-weight: bold;
-    &:read-only {
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
-    &:not(:read-only) {
+    &:not(.readonly) {
       outline: none;
       border: 0.1rem solid $btn_purple;
       padding: 0 0.5rem;
       border-radius: $card-border-radius;
+      align-items: center;
+      display: flex;
+      width: 70%;
+    }
+
+    &-input {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: calc($subheading-fontSize - 0.4rem);
+      font-weight: bold;
+      width: 100%;
+    }
+
+    mat-icon {
+      cursor: pointer;
+      transition: $hover-transition;
+
+      &:hover {
+        @include hover-text;
+      }
+
+      &:first-of-type {
+        margin: 0 0.2rem;
+      }
     }
 
     @include xSmall-screen {
@@ -82,12 +102,15 @@
     display: grid;
     grid-auto-rows: 10rem;
     row-gap: 1rem;
-    max-height: 50rem;
     padding: calc($card_padding-x / 2);
+    overflow-x: auto;
+    overflow-x: auto;
+    height: 90%;
 
     @include xSmall-screen {
       grid-auto-rows: 12rem;
-      grid-template-columns: 11rem;
+      grid-template-columns: 14rem;
+      height: 76%;
     }
   }
 

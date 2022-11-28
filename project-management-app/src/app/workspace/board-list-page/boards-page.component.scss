@@ -2,9 +2,21 @@
 @import '../../shared/styles/mixins';
 
 .page {
-  height: 100%;
+  min-height: calc(100vh - $header-height - $footer-height);
   padding: 0 $padding-x;
   background-color: $background-light;
+
+  @include medium-screen {
+    height: calc(100vh - $header-height - $footer-height - 2rem);
+  }
+
+  @include xSmall-screen {
+    height: calc(100vh - $header-height - $footer-height - 4rem);
+  }
+
+  @include xxSmall-screen {
+    height: calc(100vh - $header-height - $footer-height - 6.5rem);
+  }
 
   &_title {
     padding: 2rem 0;
@@ -14,9 +26,13 @@
 
   .board-card_list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
+
+    @include large-screen {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
     @include medium-screen {
       grid-template-columns: repeat(2, 1fr);

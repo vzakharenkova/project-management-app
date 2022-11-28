@@ -2,13 +2,23 @@
 @import 'src/app/shared/styles/mixins';
 
 .page {
-  height: 100%;
+  height: calc(100vh - $header-height - $footer-height);
   padding: 0 $padding-x 1.5rem;
   background-color: $background-light;
-  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+
+  @include medium-screen {
+    height: calc(100vh - $header-height - $footer-height - 2rem);
+  }
 
   @include xSmall-screen {
     padding: 0 1.5rem 1.5rem;
+    height: calc(100vh - $header-height - $footer-height - 4rem);
+  }
+
+  @include xxSmall-screen {
+    height: calc(100vh - $header-height - $footer-height - 6.5rem);
   }
 
   &_heading {
@@ -65,9 +75,18 @@
     display: inline-flex;
     column-gap: 2rem;
     overflow-x: auto;
+    overflow-y: hidden;
     width: 100%;
-    height: fit-content;
+    height: 100%;
     border-right: 2px dotted $background-dark;
+
+    @include xSmall-screen {
+      height: 77%;
+    }
+
+    app-board-column {
+      height: 100%;
+    }
   }
 }
 
