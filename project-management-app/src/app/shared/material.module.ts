@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -25,6 +26,7 @@ const MaterialComponents = [
   MatSnackBarModule,
   LayoutModule,
   MatSidenavModule,
+  MatAutocompleteModule,
 ];
 
 @NgModule({

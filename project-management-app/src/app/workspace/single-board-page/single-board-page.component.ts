@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
 import { StateModel } from '../../core/store/state/state.model';
@@ -18,6 +18,8 @@ import { closeBoard, getBoardById } from '../../core/store/actions/board.actions
 import { AuthDataModel, UserModel } from '../../shared/models/user.model';
 import { updateColumn } from '../../core/store/actions/column.actions';
 import { calculateOrder } from '../../shared/utils/calculateOrder';
+import { TaskModel } from 'src/app/shared/models/task.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-single-board-page',
@@ -33,7 +35,15 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
 
   public users$: Observable<UserModel[]>;
 
+  public tasksSearch = new FormControl('');
+
+  public filteredTasks: Observable<TaskModel[]>;
+
+  public filterTerm: string = '';
+
   public isScrolledToEnd: boolean;
+
+  private tasks: TaskModel[] = [];
 
   private boardId: string;
 
@@ -43,8 +53,8 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     public route: ActivatedRoute,
-    private store: Store<StateModel>,
     public dialog: MatDialog,
+    private store: Store<StateModel>,
   ) {}
 
   ngOnInit(): void {
@@ -53,29 +63,46 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
     });
     this.store.dispatch(getBoardById({ boardId: this.boardId }));
     this.boardSubscription = this.store.select(selectCurrentBoard).subscribe((value) => {
-      if (value != null) this.board = JSON.parse(JSON.stringify(value));
+      if (value != null) {
+        this.board = JSON.parse(JSON.stringify(value));
+        this.board.columns?.forEach((column) => {
+          if (column.tasks) {
+            this.tasks = this.tasks.concat(column.tasks);
+          }
+        });
+      }
     });
+
+    this.filteredTasks = this.tasksSearch.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value || '')),
+    );
+
     this.user$ = this.store.select(selectCurrentUser);
     this.users$ = this.store.select(selectUsers);
   }
 
-  ngOnDestroy(): void {
-    this.routeSubscription.unsubscribe();
-    this.boardSubscription.unsubscribe();
-    this.store.dispatch(closeBoard());
-  }
-
-  drop(event: CdkDragDrop<ColumnModel[]>): void {
+  public drop(event: CdkDragDrop<ColumnModel[]>): void {
     moveItemInArray(this.board.columns!, event.previousIndex, event.currentIndex);
     this.updateColumnsOrder(event);
   }
 
-  openCreateColumnForm(): void {
+  public openCreateColumnForm(): void {
     this.dialog.open(CreateColumnComponent, {
       data: {
         boardId: this.boardId,
       },
     });
+  }
+
+  public onScroll(evt: Event) {
+    const container = <HTMLDivElement>evt.target;
+
+    const containerWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    const scroll = container.scrollLeft;
+
+    this.isScrolledToEnd = containerWidth === clientWidth + scroll;
   }
 
   private updateColumnsOrder(event: CdkDragDrop<ColumnModel[]>): void {
@@ -93,13 +120,19 @@ export class SingleBoardPageComponent implements OnInit, OnDestroy {
     };
   }
 
-  public onScroll(evt: Event) {
-    const container = <HTMLDivElement>evt.target;
+  private _filter(value: string): TaskModel[] {
+    const filterValue = value.toLowerCase();
 
-    const containerWidth = container.scrollWidth;
-    const clientWidth = container.clientWidth;
-    const scroll = container.scrollLeft;
+    return this.tasks.filter(
+      (task) =>
+        task.title.toLowerCase().includes(filterValue) ||
+        task.description.toLowerCase().includes(filterValue),
+    );
+  }
 
-    this.isScrolledToEnd = containerWidth === clientWidth + scroll;
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+    this.boardSubscription.unsubscribe();
+    this.store.dispatch(closeBoard());
   }
 }

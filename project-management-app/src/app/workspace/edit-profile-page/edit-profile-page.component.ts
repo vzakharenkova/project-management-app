@@ -30,14 +30,30 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
 
   public isMediumScreen: boolean;
 
+  public get name() {
+    return this.editForm.get('name');
+  }
+
+  public get login() {
+    return this.editForm.get('login');
+  }
+
+  public get password() {
+    return this.editForm.get('password');
+  }
+
+  public get confirmPassword() {
+    return this.editForm.get('confirmPassword');
+  }
+
   private userSubscription: Subscription;
 
   constructor(
+    public dialog: MatDialog,
     private location: Location,
     private formBuilder: FormBuilder,
     private store: Store<StateModel>,
     private breakpointObserver: BreakpointObserver,
-    public dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -50,10 +66,6 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
     this.breakpointObserver.observe(BREAKPOINTS.medium).subscribe((res) => {
       this.isMediumScreen = res.breakpoints[BREAKPOINTS.medium];
     });
-  }
-
-  ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
   }
 
   private initForm() {
@@ -115,19 +127,7 @@ export class EditProfilePageComponent implements OnInit, OnDestroy {
     this.dialog.closeAll();
   }
 
-  public get name() {
-    return this.editForm.get('name');
-  }
-
-  public get login() {
-    return this.editForm.get('login');
-  }
-
-  public get password() {
-    return this.editForm.get('password');
-  }
-
-  public get confirmPassword() {
-    return this.editForm.get('confirmPassword');
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }

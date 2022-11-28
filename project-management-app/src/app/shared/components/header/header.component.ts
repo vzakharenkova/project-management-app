@@ -16,8 +16,6 @@ import { SidenavService } from '../../../core/services/sidenav.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   public isScrolled: boolean;
 
-  public lang: 'ru' | 'en';
-
   public isSmallScreen: boolean;
 
   public isXSmallScreen: boolean;
@@ -52,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  toggleSidenav() {
+  public toggleSidenav() {
     this.sidenavService.toggle();
   }
 

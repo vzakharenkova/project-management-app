@@ -18,6 +18,7 @@ import { TaskPriorityDirective } from './single-board-page/components/task-card/
 import { TranslocoModule } from '@ngneat/transloco';
 import { DragDirective } from './task-form/directives/dragDropFiles.directive';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { FilterPipe } from './single-board-page/pipes/filter.pipe';
 
 const routes: Routes = [
   {
@@ -49,6 +50,7 @@ const routes: Routes = [
     TaskPriorityDirective,
     DragDirective,
     ErrorPageComponent,
+    FilterPipe,
   ],
   imports: [SharedModule, RouterModule.forChild(routes), TranslocoModule],
   exports: [

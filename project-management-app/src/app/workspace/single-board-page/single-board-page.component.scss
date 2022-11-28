@@ -32,6 +32,25 @@
       gap: 1rem;
     }
 
+    .search_input {
+      outline: none;
+      font-size: 1.3rem;
+      border: 0.1rem solid $btn_purple;
+      padding: 0.3rem 0.5rem;
+      border-radius: $card-border-radius;
+      align-items: center;
+      display: flex;
+      width: 30rem;
+
+      @include medium-screen {
+        width: 40%;
+      }
+
+      @include xSmall-screen {
+        width: 70%;
+      }
+    }
+
     .page_title {
       display: flex;
       align-items: baseline;

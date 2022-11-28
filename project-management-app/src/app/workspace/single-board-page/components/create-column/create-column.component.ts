@@ -11,7 +11,7 @@ import { createColumn } from 'src/app/core/store/actions/column.actions';
   styleUrls: ['./create-column.component.scss'],
 })
 export class CreateColumnComponent {
-  columnForm: FormGroup;
+  public columnForm: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { boardId: string },
@@ -23,7 +23,7 @@ export class CreateColumnComponent {
     });
   }
 
-  closeColumnForm() {
+  public closeColumnForm() {
     this.dialog.closeAll();
   }
 

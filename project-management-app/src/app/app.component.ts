@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { getDataFromLS } from './core/store/actions/auth.actions';
 import { TranslocoService } from '@ngneat/transloco';
 import { StateModel } from './core/store/state/state.model';
-import { selectLocalization } from './core/store/selectos/app.selectors';
 
 @Component({
   selector: 'app-root',

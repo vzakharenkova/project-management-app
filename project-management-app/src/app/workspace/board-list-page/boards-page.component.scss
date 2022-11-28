@@ -7,15 +7,15 @@
   background-color: $background-light;
 
   @include medium-screen {
-    height: calc(100vh - $header-height - $footer-height - 2rem);
+    min-height: calc(100vh - $header-height - $footer-height - 2rem);
   }
 
   @include xSmall-screen {
-    height: calc(100vh - $header-height - $footer-height - 4rem);
+    min-height: calc(100vh - $header-height - $footer-height - 4rem);
   }
 
   @include xxSmall-screen {
-    height: calc(100vh - $header-height - $footer-height - 6.5rem);
+    min-height: calc(100vh - $header-height - $footer-height - 6.5rem);
   }
 
   &_title {
@@ -29,6 +29,7 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
+    font-size: 1.3rem;
 
     @include large-screen {
       grid-template-columns: repeat(4, 1fr);

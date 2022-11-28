@@ -17,8 +17,8 @@ export class BoardCardComponent {
   @Input() board: BoardModel;
 
   constructor(
-    private router: Router,
     public dialog: MatDialog,
+    private router: Router,
     private store: Store<StateModel>,
     private transloco: TranslocoService,
   ) {}
@@ -37,12 +37,12 @@ export class BoardCardComponent {
     });
   }
 
+  public openBoard() {
+    this.router.navigate(['boards', this.board.id]);
+  }
+
   private deleteBoard(board: BoardModel) {
     this.store.dispatch(deleteBoard({ boardId: board.id }));
     this.dialog.closeAll();
-  }
-
-  public openBoard() {
-    this.router.navigate(['boards', this.board.id]);
   }
 }

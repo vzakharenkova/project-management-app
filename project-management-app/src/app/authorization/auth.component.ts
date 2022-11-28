@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { BREAKPOINTS } from '../shared/constants/constants';
 
@@ -7,7 +7,7 @@ import { BREAKPOINTS } from '../shared/constants/constants';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthPageComponent implements OnInit {
+export class AuthPageComponent implements OnInit, OnDestroy {
   public isMediumScreen: boolean;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
@@ -16,5 +16,9 @@ export class AuthPageComponent implements OnInit {
     this.breakpointObserver.observe(BREAKPOINTS.medium).subscribe((res) => {
       this.isMediumScreen = res.breakpoints[BREAKPOINTS.medium];
     });
+  }
+
+  ngOnDestroy(): void {
+    this.breakpointObserver.ngOnDestroy();
   }
 }

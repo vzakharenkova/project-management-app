@@ -54,6 +54,24 @@ export class TaskCardComponent implements OnInit {
     });
   }
 
+  public openTaskForm(e: Event) {
+    e.stopPropagation();
+    this.taskFormConfig = this.createTaskConfig();
+    this.dialog.open(TaskFormComponent, {
+      data: this.taskFormConfig,
+    });
+  }
+
+  public openTask() {
+    const taskProps = {
+      task: this.task,
+      config: this.createTaskConfig(),
+    };
+    this.dialog.open(TaskModalComponent, {
+      data: taskProps,
+    });
+  }
+
   private deleteTask(column: ColumnModel, task: TaskModel) {
     this.store.dispatch(
       deleteTask({
@@ -92,23 +110,5 @@ export class TaskCardComponent implements OnInit {
         taskDescription: this.taskDescription.description,
       },
     };
-  }
-
-  openTaskForm(e: Event) {
-    e.stopPropagation();
-    this.taskFormConfig = this.createTaskConfig();
-    this.dialog.open(TaskFormComponent, {
-      data: this.taskFormConfig,
-    });
-  }
-
-  openTask() {
-    const taskProps = {
-      task: this.task,
-      config: this.createTaskConfig(),
-    };
-    this.dialog.open(TaskModalComponent, {
-      data: taskProps,
-    });
   }
 }

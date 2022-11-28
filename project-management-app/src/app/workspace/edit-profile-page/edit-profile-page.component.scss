@@ -26,7 +26,7 @@
     justify-content: center;
     background-color: $background-dark;
     padding: $padding-x;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: $white;
   }
 
@@ -85,8 +85,8 @@
     flex-direction: column;
 
     &_field {
-      width: 25rem;
-      font-size: 1rem;
+      width: 30rem;
+      font-size: 1.3rem;
       padding-bottom: 0.5rem;
 
       @include xSmall-screen {
@@ -107,7 +107,7 @@
     }
 
     .btn {
-      width: 10rem;
+      min-width: 10rem;
 
       &:enabled {
         font-family: inherit;

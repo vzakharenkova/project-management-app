@@ -34,7 +34,7 @@
       class="btn login_btn"
       mat-raised-button
       color="primary"
-      [disabled]="disableBtn()"
+      [disabled]="loginForm.invalid"
       (click)="signIn()"
     >
       {{ t('auth.loginBtn') }}

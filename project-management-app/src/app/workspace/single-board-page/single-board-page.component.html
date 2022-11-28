@@ -9,6 +9,16 @@
         <h3 class="board_title" *ngIf="board">{{ board.title }}</h3>
       </div>
 
+      <input
+        type="text"
+        [placeholder]="t('placeHolder')"
+        class="search_input"
+        matInput
+        [(ngModel)]="filterTerm"
+        [formControl]="tasksSearch"
+        autocomplete="off"
+      />
+
       <button mat-raised-button class="create_btn" (click)="openCreateColumnForm()">
         {{ t('createColumnBtn') }}
       </button>
@@ -17,7 +27,7 @@
     <div
       *ngIf="board"
       (scroll)="onScroll($event)"
-      [ngStyle]="{'border-right': isScrolledToEnd ? 'none' : ''}"
+      [ngStyle]="{ 'border-right': isScrolledToEnd ? 'none' : '' }"
       class="board-columns"
       cdkDropList
       cdkDropListOrientation="horizontal"
@@ -30,6 +40,7 @@
         [board]="board"
         [users]="users$ | async"
         [user]="user$ | async"
+        [filterTerm]="filterTerm"
         cdkDrag
       ></app-board-column>
     </div>

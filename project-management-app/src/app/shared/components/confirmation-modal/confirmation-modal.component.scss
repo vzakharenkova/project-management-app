@@ -28,7 +28,7 @@
   }
 
   &_content {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 1rem 0;
   }
 
@@ -38,6 +38,6 @@
     background-color: $background-delete;
     color: $color-urgent;
     align-self: flex-start;
-    width: 6rem;
+    min-width: 7rem;
   }
 }

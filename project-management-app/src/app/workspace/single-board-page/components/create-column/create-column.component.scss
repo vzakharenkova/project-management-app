@@ -1,4 +1,4 @@
-@import "src/app/shared/styles/mixins";
+@import 'src/app/shared/styles/mixins';
 
 .form {
   display: flex;
@@ -19,6 +19,7 @@
 .form_field {
   width: 100%;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
 .form__close {

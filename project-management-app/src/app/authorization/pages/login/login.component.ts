@@ -15,11 +15,36 @@ export class LoginComponent implements OnInit {
 
   public hide = true;
 
-  // eslint-disable-next-line @ngrx/no-typed-global-store
+  public get login() {
+    return this.loginForm.get('login');
+  }
+
+  public get password() {
+    return this.loginForm.get('password');
+  }
+
   constructor(private formBuilder: FormBuilder, private store: Store<StateModel>) {}
 
   ngOnInit() {
     this.initForm();
+  }
+
+  public getPasswordErrorMessage() {
+    if (this.password?.errors?.['minlength'] || this.password?.errors?.['pattern']) {
+      return "Your password isn't strong enough";
+    }
+    if (this.password?.errors?.['required']) {
+      return 'Please enter a password';
+    }
+    return '';
+  }
+
+  public signIn() {
+    const userData: Omit<AuthDataModel, 'name'> = {
+      login: this.login?.value,
+      password: this.password?.value,
+    };
+    this.store.dispatch(signIn({ userData }));
   }
 
   private initForm() {
@@ -37,37 +62,5 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
-  }
-
-  public getPasswordErrorMessage() {
-    if (this.password?.errors?.['minlength'] || this.password?.errors?.['pattern']) {
-      return "Your password isn't strong enough";
-    }
-    if (this.password?.errors?.['required']) {
-      return 'Please enter a password';
-    }
-    return '';
-  }
-
-  public disableBtn() {
-    if (this.login?.invalid || this.password?.invalid) {
-      return true;
-    } else return false;
-  }
-
-  public signIn() {
-    const userData: Omit<AuthDataModel, 'name'> = {
-      login: this.login?.value,
-      password: this.password?.value,
-    };
-    this.store.dispatch(signIn({ userData }));
-  }
-
-  public get login() {
-    return this.loginForm.get('login');
-  }
-
-  public get password() {
-    return this.loginForm.get('password');
   }
 }

@@ -1,11 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  HostListener,
-  Output,
-  EventEmitter,
-  Renderer2,
-} from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export interface FileHandle {
