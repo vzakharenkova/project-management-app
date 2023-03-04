@@ -1,0 +1,33 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+  background-color: $white;
+  border-radius: 0.8rem;
+  height: 5rem;
+  padding: $card_padding-x;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  .delete_btn {
+    @include delete-btn;
+
+    &:hover {
+      @include hover-element;
+    }
+  }
+
+  .mat-raised-button {
+    min-width: unset;
+    line-height: 0;
+  }
+
+  &:hover {
+    @include hover-element;
+  }
+}

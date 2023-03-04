@@ -1,0 +1,6 @@
+<main class="page" *transloco="let t; read: 'boardPage'">
+  <h2 class="page_title">{{ t('title') }}</h2>
+  <div class="board-card_list" *ngIf="boards$ | async as boards">
+    <app-board-card *ngFor="let board of boards" [board]="board"></app-board-card>
+  </div>
+</main>

@@ -1,0 +1,87 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 25rem;
+  max-width: 35rem;
+  font-size: 1.3rem;
+
+  .close-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .form__close {
+    min-width: fit-content;
+    line-height: 0;
+    border-radius: 100%;
+    padding: 0.3rem;
+    cursor: pointer;
+
+    &:hover {
+      @include hover-element;
+    }
+  }
+
+  &_props {
+    display: flex;
+  }
+
+  &_priority,
+  &_size {
+    padding: 0.3rem 0.9rem;
+    border-radius: 1rem;
+  }
+
+  &_size {
+    background-color: $white;
+    margin-left: 1rem;
+    border: solid 0.05rem black;
+  }
+
+  &_title {
+    font-weight: bold;
+  }
+
+  &_item {
+    margin-bottom: 1rem;
+  }
+
+  .edit_btn {
+    color: $btn_purple;
+    font-weight: bold;
+    transition: $hover-transition;
+    cursor: pointer;
+
+    &:hover {
+      @include hover-text;
+    }
+  }
+}
+
+.task-file__item {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.task-file__name {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.task-file__icon {
+  height: 100% !important;
+  font-size: 1.25rem !important;
+  cursor: pointer;
+
+  &:hover {
+    @include hover-text;
+  }
+}

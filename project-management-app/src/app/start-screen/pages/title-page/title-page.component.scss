@@ -1,0 +1,65 @@
+@import '../../../shared/styles/variables';
+@import '../../../shared/styles/mixins';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding-top: 6rem;
+
+  @include medium-screen {
+    padding: 6rem 2rem 2rem;
+  }
+
+  app-lang-toggler {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+  }
+
+  &_title {
+    background: url(../../../../assets/title_strings.svg) no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    text-align: center;
+    padding: 2.1rem 7rem;
+    margin: 0 auto;
+    color: $white;
+    font-size: $heading-fontSize;
+
+    @include medium-screen {
+      margin-bottom: 1rem;
+      padding: 0;
+      background: none;
+    }
+
+    @include xSmall-screen {
+      margin-bottom: 0;
+      font-size: $subheading-fontSize;
+    }
+  }
+
+  &_img {
+    display: block;
+    width: 45vw;
+
+    @include medium-screen {
+      width: 60vw;
+    }
+  }
+
+  .next {
+    @include next-page;
+
+    &-link {
+      @include large-screen {
+        display: block;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: 2rem;
+      }
+    }
+  }
+}

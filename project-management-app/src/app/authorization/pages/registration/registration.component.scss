@@ -1,0 +1,54 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.form-wrapper {
+  height: 100%;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    &_field {
+      font-family: inherit;
+      width: 28rem;
+      font-size: 1.2rem;
+      padding-bottom: 0.5rem;
+
+      @include xSmall-screen {
+        width: auto;
+      }
+    }
+  }
+
+  .action-btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    @include xSmall-screen {
+      flex-direction: column-reverse;
+    }
+
+    .btn {
+      &:enabled {
+        font-family: inherit;
+        height: $btn-height;
+        font-size: $btn-fontSize;
+      }
+    }
+    .login_btn:enabled {
+      @include purple-btn;
+    }
+
+    .reg_btn {
+      color: $btn_purple;
+      text-decoration: underline;
+    }
+  }
+}

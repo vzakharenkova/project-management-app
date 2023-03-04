@@ -1,0 +1,93 @@
+@import 'src/app/shared/styles/variables';
+@import 'src/app/shared/styles/mixins';
+
+.footer {
+  background-color: $background-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem $padding-x;
+  color: $white;
+  height: $footer-height;
+
+  @include medium-screen {
+    height: calc($footer-height + 2rem);
+  }
+
+  @include xSmall-screen {
+    height: calc($footer-height + 4rem);
+    display: grid;
+    gap: 1rem;
+  }
+
+  @include xxSmall-screen {
+    height: calc($footer-height + 6.5rem);
+    display: grid;
+    gap: 1rem;
+  }
+
+  .logo {
+    @include xSmall-screen {
+      grid-row-start: 2;
+      grid-column-start: 2;
+      grid-column-end: 3;
+    }
+  }
+
+  .gh_list {
+    display: flex;
+    gap: 30px;
+    font-size: 1.2rem;
+
+    @include medium-screen {
+      flex-direction: column;
+      gap: 10px;
+      font-size: 1rem;
+    }
+
+    @include xSmall-screen {
+      font-size: 1.2rem;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      grid-template-rows: 1 2;
+      grid-row-start: 1;
+      grid-column-start: 1;
+      grid-column-end: 5;
+    }
+
+    .list_item {
+      display: flex;
+      align-items: center;
+      transition: $hover-transition;
+    }
+  }
+
+  .gh_logo {
+    margin-right: 0.5rem;
+    height: 1.7rem;
+  }
+
+  &:hover {
+    @include hover-text;
+  }
+}
+
+.year {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+
+  @include medium-screen {
+    font-size: 1rem;
+  }
+  @include xSmall-screen {
+    grid-row-start: 2;
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  &_icon {
+    margin-right: 0.5rem;
+  }
+}

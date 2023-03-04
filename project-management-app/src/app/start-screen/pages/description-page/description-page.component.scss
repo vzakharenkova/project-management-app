@@ -1,0 +1,110 @@
+@import '../../../shared/styles/variables';
+@import '../../../shared/styles/mixins';
+
+.page {
+  min-height: 100vh;
+  padding-top: 2rem;
+  padding-left: 9rem;
+  padding-right: 9rem;
+
+  @include xLarge-screen {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @include medium-screen {
+    height: auto;
+  }
+
+  @include xSmall-screen {
+    padding: 1.5rem;
+  }
+
+  &_controls {
+    display: flex;
+    justify-content: space-between;
+
+    @include xSmall-screen {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+
+    @include xSmall-screen {
+      justify-content: center;
+    }
+
+    a[mat-raised-button] {
+      background-color: $btn_purple;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+  }
+
+  &_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+
+    @include medium-screen {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @include small-screen {
+      margin-bottom: 3rem;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      color: $white;
+      font-size: $heading-fontSize;
+      margin-right: 3rem;
+      line-height: 4rem;
+
+      @include xLarge-screen {
+        font-size: $subheading-fontSize;
+        line-height: 2.5rem;
+      }
+
+      @include medium-screen {
+        align-items: center;
+        margin-right: 0;
+      }
+
+      &-item {
+        margin: 0;
+        text-align: justify;
+        text-indent: 1rem;
+
+        @include medium-screen {
+          text-indent: 0;
+          text-align: center;
+        }
+      }
+    }
+
+    .img {
+      height: 80vh;
+      width: 50vw;
+
+      @include medium-screen {
+        height: auto;
+      }
+    }
+  }
+
+  .prev {
+    @include prev-page;
+  }
+}

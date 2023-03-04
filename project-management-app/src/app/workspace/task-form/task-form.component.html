@@ -1,0 +1,67 @@
+<div class="form" *transloco="let t; read: 'form.createTask'">
+  <div class="close-container">
+    <button mat-raised-button class="form__close" (click)="closeTaskForm()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <h1 class="form__title">{{ data.title }}</h1>
+  <form class="task" [formGroup]="taskForm" (ngSubmit)="submitTaskForm()">
+    <mat-form-field appearance="outline" class="form_field">
+      <mat-label>{{ t('nameFieldLabel') }}</mat-label>
+      <input matInput placeholder="{{ t('nameFieldPlaceHolder') }}" formControlName="taskName" />
+      <mat-error>{{ t('nameFieldErr') }}</mat-error>
+    </mat-form-field>
+
+    <div class="select-container">
+      <mat-form-field appearance="outline" class="form__selector">
+        <mat-label>{{ t('sizeFieldLabel') }}</mat-label>
+        <mat-select formControlName="taskSize" class="form_field">
+          <mat-option value="Tiny">{{ t('sizeOptions.tiny') }}</mat-option>
+          <mat-option value="Small">{{ t('sizeOptions.small') }}</mat-option>
+          <mat-option value="Medium">{{ t('sizeOptions.medium') }}</mat-option>
+          <mat-option value="Large">{{ t('sizeOptions.large') }}</mat-option>
+          <mat-option value="X-large">{{ t('sizeOptions.xLarge') }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form__selector">
+        <mat-label>{{ t('priorityFieldLabel') }}</mat-label>
+        <mat-select formControlName="taskPriority" class="form_field">
+          <mat-option value="Low">{{ t('priorityOptions.low') }}</mat-option>
+          <mat-option value="Medium">{{ t('priorityOptions.medium') }}</mat-option>
+          <mat-option value="High">{{ t('priorityOptions.high') }}</mat-option>
+          <mat-option value="Urgent">{{ t('priorityOptions.urgent') }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="task__description description">
+      <mat-form-field appearance="outline" class="form_field">
+        <mat-label>{{ t('descriptionFieldLabel') }}</mat-label>
+        <textarea matInput formControlName="taskDescription">{{
+          data.formFields.taskDescription
+        }}</textarea>
+        <mat-error>{{ t('descriptionFieldLabelErr') }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="task-file">
+      <label class="task-file__label" for="file-input" appDrag (files)="dropFile($event)">
+        <input
+          formControlName="taskFile"
+          type="file"
+          id="file-input"
+          class="task-file__input"
+          accept="image/*"
+          multiple
+          (change)="btnUploadFile($event)"
+        />
+        <mat-icon>attach_file</mat-icon>
+      </label>
+    </div>
+    <div class="task-file__upload" *ngIf="selectedFiles">
+      <div *ngFor="let file of selectedFiles">{{ file.file.name }}</div>
+    </div>
+    <button mat-raised-button type="submit" class="form__btn" [disabled]="taskForm.invalid">
+      {{ data.btnName }}
+    </button>
+  </form>
+</div>

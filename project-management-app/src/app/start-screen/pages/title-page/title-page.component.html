@@ -1,0 +1,8 @@
+<div class="page" *transloco="let t; read: 'welcome.titlePage'">
+  <app-lang-toggler color="white"></app-lang-toggler>
+  <h1 class="page_title">{{ t('title') }}</h1>
+  <img class="page_img" src="../../../../assets/welcome_1.svg" />
+  <a class="next-link" routerLink="/welcome/team">
+    <mat-icon class="next">navigate_next</mat-icon>
+  </a>
+</div>

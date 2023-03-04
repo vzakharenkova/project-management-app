@@ -1,0 +1,31 @@
+@import 'src/app/shared/styles/variables';
+
+.workspace-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-size: 1.2rem;
+}
+
+.container-inner {
+  min-height: calc(100vh - $header-height);
+}
+
+.container {
+  &-outer {
+    flex-grow: 1;
+  }
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.sidenav-container {
+  width: 85%;
+}
+
+.main-content {
+  flex-grow: 1;
+}
